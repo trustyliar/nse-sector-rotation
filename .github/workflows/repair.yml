@@ -1,0 +1,32 @@
+name: Repair gaps
+on:
+  workflow_dispatch:
+    inputs:
+      boundary:
+        description: Audit dates before this day
+        default: "2026-10-19"
+concurrency: data-branch
+permissions:
+  contents: write
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -q -r requirements.txt
+      - name: Get data branch
+        run: |
+          URL="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}"
+          git clone -q --depth 1 --branch data "$URL" data
+      - run: python pipeline/repair_gaps.py "${{ inputs.boundary }}"
+      - name: Save data
+        run: |
+          cd data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Gap audit $(date -u +%F)" || exit 0
+          git push -q origin data
