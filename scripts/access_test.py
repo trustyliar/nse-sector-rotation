@@ -6,7 +6,7 @@ import requests
 UA = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                     "(KHTML, like Gecko) Chrome/130.0 Safari/537.36",
       "Accept": "*/*", "Accept-Language": "en-US,en;q=0.9"}
-lines = ["# Data access test", "", f"Run (UTC): {dt.datetime.utcnow():%Y-%m-%d %H:%M}", ""]
+lines = ["# Data access test", "", f"Run (UTC): {dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M}", ""]
 
 def probe(label, url):
     try:
@@ -72,5 +72,7 @@ try:
 except Exception:
     lines.append("- yfinance FAILED:\n```\n" + traceback.format_exc()[-800:] + "\n```")
 
-open("reports/access_test.md", "w").write("\n".join(lines) + "\n")
 print("\n".join(lines))
+import os
+os.makedirs("reports", exist_ok=True)
+open("reports/access_test.md", "w").write("\n".join(lines) + "\n")
