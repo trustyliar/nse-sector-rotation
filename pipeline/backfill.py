@@ -46,7 +46,10 @@ if idx_frames:
     (DATA / "indices").mkdir(parents=True, exist_ok=True)
     pd.concat(idx_frames).to_parquet(DATA / "indices" / "indices.parquet", index=False)
 
-state = read_state()
+state = {}          # a fresh backfill supersedes earlier NSE rows and adjustments
+adjf = DATA / "meta" / "adjustments.csv"
+if adjf.exists():
+    adjf.unlink()
 state.update({"backfill_start": START, "backfill_run": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()),
               "backfill_last_date": str(px["date"].max().date())})
 write_state(state)

@@ -5,6 +5,9 @@ on:
       first:
         description: First date to (re)load, YYYY-MM-DD. Blank = continue from last stored day
         default: ""
+      reset:
+        description: Type "reset" to clear recorded split adjustments first
+        default: ""
   schedule:
     # 19:37 and 21:07 IST on trading days, plus 08:07 IST next morning as a safety net
     - cron: "7 14 * * 1-5"
@@ -26,7 +29,7 @@ jobs:
         run: |
           URL="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}"
           git clone -q --depth 1 --branch data "$URL" data
-      - run: python pipeline/daily_update.py "${{ inputs.first }}"
+      - run: python pipeline/daily_update.py "${{ inputs.first }}" "${{ inputs.reset }}"
       - name: Save data
         run: |
           cd data
