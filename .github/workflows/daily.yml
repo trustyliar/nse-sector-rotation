@@ -30,6 +30,7 @@ jobs:
           URL="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}"
           git clone -q --depth 1 --branch data "$URL" data
       - run: python pipeline/daily_update.py "${{ inputs.first }}" "${{ inputs.reset }}"
+      - run: python pipeline/regime.py
       - name: Save data
         run: |
           cd data
