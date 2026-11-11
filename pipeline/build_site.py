@@ -50,7 +50,7 @@ rows = "".join(
 body = ('<p class="read">Themes ranked by strength (click a theme to see its setups, click any column heading to sort): a blend of the median stock\'s 1-week (20%), 1-month (40%) and '
         '3-month (40%) return, compared across themes. The arrow shows places gained or lost against a month ago.</p>'
         '<div class="tw"><table><thead><tr><th>#</th><th class="l">Theme</th><th>vs 1m ago</th><th class="l">Strength</th>'
-        '<th>1 week</th><th>1 month</th><th>3 months</th><th>&gt;50-day</th><th>RS 80+ / stocks</th><th>Setups</th>'
+        '<th>1 week</th><th>1 month</th><th>3 months</th><th>&gt;50-day</th><th>RS 80+ / stocks</th><th>A-grade setups</th>'
         f'<th class="l">Highest RS</th></tr></thead><tbody>{rows}</tbody></table></div>'
         '<ul class="note"><li>Only liquid stocks count (median traded value Rs 1 crore+, price Rs 40+); themes need five or more.</li>'
         '<li>Returns are the median member\'s, so one large mover cannot carry a theme.</li>'
@@ -58,28 +58,37 @@ body = ('<p class="read">Themes ranked by strength (click a theme to see its set
 (docs / "sectors.html").write_text(page("NSE sector strength", "Sectors", body))
 
 s = pd.read_csv(DATA / "derived" / "setups.csv")
-rank = t.set_index("theme")["rank"]
-s["trank"] = s["theme"].map(rank)
-s = s.sort_values(["trank", "rs"], ascending=[True, False], na_position="last")
+s = s[s["grade"] != "C"].sort_values("rank_score", ascending=False).reset_index(drop=True)
+tv_link = lambda x: f'https://www.tradingview.com/chart/?symbol=NSE:{x.replace("&", "_").replace("-", "_")}'
 rows = "".join(
-    f'<tr data-k="{r.setup}" data-t="{r.theme}"><td class="l"><b><a target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:{r.symbol.replace("&", "_").replace("-", "_")}">{r.symbol}</a></b></td><td class="l">{r.theme}</td>'
-    f'<td>{"" if pd.isna(r.trank) else int(r.trank)}</td><td class="l">{r.setup}</td><td>{r.rs}</td><td>{r.close:,.1f}</td>'
-    f'<td>{r.vs_ema20:+.1f}%</td><td>{r.vs_ema50:+.1f}%</td><td>{r.from_high:.0f}%</td><td>{r.range10:.0f}%</td>'
-    f'<td>{r.turnover_cr:,.0f}</td></tr>' for r in s.itertuples())
-kinds = "".join(f"<option>{k}</option>" for k in sorted(s["setup"].unique()))
-themes = "".join(f"<option>{k}</option>" for k in s.drop_duplicates("theme")["theme"])
-body = (f'<p class="read">{len(s)} candidates in {s["theme"].nunique()} themes, strongest themes first. Every stock is liquid, '
-        'above Rs 40, above its 200-day average and has RS of 70 or more. These are shortlists for chart review, not signals. Click a stock to open its chart, or a column heading to sort.</p>'
-        f'<input id="q" placeholder="Search stock or theme"><select id="k"><option value="">All setups</option>{kinds}</select><select id="t"><option value="">All themes</option>{themes}</select>'
-        '<div class="tw"><table><thead><tr><th class="l">Stock</th><th class="l">Theme</th><th>Theme rank</th><th class="l">Setup</th>'
-        '<th>RS</th><th>Close</th><th>vs 20 EMA</th><th>vs 50 EMA</th><th>From 52w high</th><th>10-day range</th>'
-        f'<th>Turnover (cr)</th></tr></thead><tbody id="b">{rows}</tbody></table></div>'
-        '<ul class="note"><li><b>Pullback to 20 EMA:</b> 10 &gt; 20 &gt; 50 EMA &gt; 200-day, the day\'s low within 1.5% of the 20 EMA, close holding it.</li>'
-        '<li><b>Pullback to 50 EMA:</b> 50 EMA above the 200-day, the low within 2% of the 50 EMA, close holding it.</li>'
-        '<li><b>Tight near highs:</b> within 10% of the 52-week high, 10-day range under 8% and under 60% of the 40-day range, volume drying up.</li></ul>')
-js = ('<script>const k=document.getElementById("k"),t=document.getElementById("t"),q=document.getElementById("q"),'
-      'f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display=(!k.value||r.dataset.k==k.value)&&(!t.value||r.dataset.t==t.value)'
-      '&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");k.onchange=t.onchange=q.oninput=f;'
-      'const p=new URLSearchParams(location.search).get("theme");if(p){if(![...t.options].some(o=>o.value==p))t.add(new Option(p,p));t.value=p;f()}</script>')
+    f'<tr data-k="{r.tags}" data-t="{r.theme}" data-g="{r.grade}"><td>{i + 1}</td>'
+    f'<td class="l"><b><a target="_blank" rel="noopener" href="{tv_link(r.symbol)}">{r.symbol}</a></b></td>'
+    f'<td class="l">{r.theme}</td><td><b>{r.rank_score:.0f}</b></td><td>{r.grade}</td><td>{r.quality:.0f}</td>'
+    f'<td class="l sm">{r.tags.replace("; ", " &middot; ")}</td><td>{r.rs}</td><td>{r.close:,.1f}</td><td>{r.runup:.0f}%</td>'
+    f'<td>{r.depth:.0f}%</td><td>{r.range5:.1f}%</td><td>{r.adr:.1f}%</td><td>{r.vs_ema10:+.1f}%</td><td>{r.vs_ema20:+.1f}%</td>'
+    f'<td>{r.vol_ratio:.2f}</td><td>{r.turnover_cr:,.0f}</td></tr>' for i, r in enumerate(s.itertuples()))
+alltags = sorted({t for x in s["tags"] for t in x.split("; ")})
+kinds = "".join(f"<option>{k}</option>" for k in alltags)
+themes = "".join(f"<option>{k}</option>" for k in sorted(s["theme"].dropna().unique()))
+body = (f'<p class="read">{len(s)} candidates, best first. Each is a liquid leader (price Rs 40+, above its 200-day average, RS 70+) '
+        'scored on what Kristjan Kullamagi looks for: a strong prior move, a shallow orderly consolidation, tightening ranges, '
+        'price riding the 10/20 EMA and volume drying up. Click a stock for its chart, a heading to sort. Shortlists for chart review, not signals.</p>'
+        f'<input id="q" placeholder="Search stock or theme"><select id="g"><option value="">All grades</option><option>A+</option><option>A</option><option>B</option></select>'
+        f'<select id="k"><option value="">All patterns</option>{kinds}</select><select id="t"><option value="">All themes</option>{themes}</select>'
+        '<div class="tw"><table><thead><tr><th>#</th><th class="l">Stock</th><th class="l">Theme</th><th>Rank score</th><th>Grade</th><th>Quality</th>'
+        '<th class="l">Patterns today</th><th>RS</th><th>Close</th><th>Prior run</th><th>Off high</th><th>5-day range</th><th>ADR</th>'
+        f'<th>vs 10 EMA</th><th>vs 20 EMA</th><th>Vol 5d/50d</th><th>Turnover (cr)</th></tr></thead><tbody id="b">{rows}</tbody></table></div>'
+        '<ul class="note"><li><b>Quality (0-100):</b> tightness 30%, prior run 25%, EMA alignment and closeness 20%, shallow pullback 15%, volume dry-up 10%. '
+        'Grade A+ is 75 or more, A is 65+, B is 55+.</li>'
+        '<li><b>Rank score:</b> 65% quality, 20% relative strength, 15% theme strength, so a clean setup in a leading theme ranks highest.</li>'
+        '<li><b>Prior run:</b> the best low-to-high move ending in the last 60 sessions. <b>Off high:</b> distance below the 60-session high. '
+        '<b>ADR:</b> average daily range over 20 sessions.</li>'
+        '<li><b>Patterns:</b> flag after a 30%+ move; tight 5-day range; inside day; narrowest range in 7 days; at the 10, 20 or 50 EMA; '
+        'episodic pivot (6%+ gap on 3x volume in the last 5 sessions, still holding); breakout today (50-day closing high on 1.5x volume).</li></ul>')
+js = ('<script>const $=i=>document.getElementById(i),k=$("k"),t=$("t"),q=$("q"),g=$("g"),'
+      'f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display=(!k.value||r.dataset.k.includes(k.value))&&(!t.value||r.dataset.t==t.value)'
+      '&&(!g.value||r.dataset.g==g.value)&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");'
+      'k.onchange=t.onchange=g.onchange=q.oninput=f;const p=new URLSearchParams(location.search).get("theme");'
+      'if(p){if(![...t.options].some(o=>o.value==p))t.add(new Option(p,p));t.value=p;f()}</script>')
 (docs / "setups.html").write_text(page("NSE setups", "Setups", body, js))
 print("site built:", len(t), "themes,", len(s), "setups")

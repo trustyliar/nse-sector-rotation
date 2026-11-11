@@ -53,33 +53,79 @@ now["rank_change"] = now["rank_1m_ago"] - now["rank"]
 stocks = stocks.sort_values("rs", ascending=False)
 now["top"] = [", ".join(stocks[stocks["theme"] == t].index[:4]) for t in now.index]
 
-# ---- setups, on leaders only: liquid, price >= 40, above 200-day average, RS >= 70
+# ---- setups: Kullamagi-style quality score on leaders (liquid, price >= 40, above 200-day, RS >= 70)
+# What is scored: a strong prior move, an orderly shallow consolidation, tightening ranges,
+# price riding the 10/20 EMA, and volume drying up. Tags describe what the chart is doing today.
+o = load_prices(pd.Timestamp.today() - pd.Timedelta(days=40)).pivot(index="date", columns="symbol", values="open").reindex(columns=c.columns)
 e10, e20, e50 = (c.ewm(span=n, min_periods=n).mean().iloc[-1] for n in (10, 20, 50))
 last, lo, hi = c.iloc[-1], l.iloc[-1], h.iloc[-1]
 ma200 = c.rolling(200, min_periods=150).mean().iloc[-1]
 hi52 = h.rolling(250, min_periods=120).max().iloc[-1]
-rng10 = h.tail(10).max() / l.tail(10).min() - 1
-rng40 = h.tail(40).max() / l.tail(40).min() - 1
-vdry = v.tail(10).mean() / v.tail(50).mean()
+adr = (h / l - 1).tail(20).mean()
+rng = lambda n: h.tail(n).max() / l.tail(n).min() - 1
+rng5, rng10, rng30 = rng(5), rng(10), rng(30)
+vdry = v.tail(5).mean() / v.tail(50).mean()
+Hh, Ll = h.tail(120).to_numpy(), l.tail(120).to_numpy()
+runup, since = {}, {}
+for j, sym in enumerate(c.columns):                    # best run in the last 60 sessions: low -> later high
+    col = Hh[60:, j]
+    if np.isnan(col).all():
+        continue
+    pos = 60 + int(np.nanargmax(col))
+    low = np.nanmin(Ll[pos - 60: pos + 1, j]) if not np.isnan(Ll[pos - 60: pos + 1, j]).all() else np.nan
+    runup[sym], since[sym] = Hh[pos, j] / low - 1, 119 - pos
+runup, since = pd.Series(runup).reindex(c.columns), pd.Series(since).reindex(c.columns)
+hi60 = h.tail(60).max()
+depth = 1 - last / hi60
+clip = lambda x: x.clip(0, 1)
+sc_move = clip((runup - 0.15) / 0.60)
+sc_tight = 0.7 * clip((3.2 - rng5 / adr) / 1.9) + 0.3 * clip((0.75 - rng10 / rng30) / 0.40)
+align = ((last >= e10).astype(int) + (e10 >= e20) + (e20 >= e50) + (e50 >= ma200)) / 4
+near = pd.concat([(last / e10 - 1).abs(), (last / e20 - 1).abs()], axis=1).min(axis=1)
+sc_trend = 0.6 * align + 0.4 * clip(1 - near / (1.5 * adr))
+sc_dry = clip((1.1 - vdry) / 0.6)
+sc_depth = clip((0.25 - depth) / 0.20)
+quality = 100 * (0.25 * sc_move + 0.30 * sc_tight + 0.20 * sc_trend + 0.10 * sc_dry + 0.15 * sc_depth)
 rs = stocks["rs"].reindex(c.columns)
-base = liquid.iloc[-1] & (last > ma200) & (rs >= 70)
-up = (e10 > e20) & (e20 > e50) & (e50 > ma200)
-S = {"Pullback to 20 EMA": base & up & (lo <= e20 * 1.015) & (last >= e20 * 0.99) & (last <= e20 * 1.04),
-     "Pullback to 50 EMA": base & (e50 > ma200) & (lo <= e50 * 1.02) & (last >= e50 * 0.99) & (last <= e50 * 1.04),
-     "Tight near highs": base & up & (last >= hi52 * 0.90) & (rng10 <= 0.08) & (rng10 <= 0.6 * rng40) & (vdry < 0.9)}
+tstr = th.reindex(c.columns).map(now["strength"]).fillna(50)
+rank_score = 0.65 * quality + 0.20 * rs + 0.15 * tstr
+base = liquid.iloc[-1] & (last > ma200) & (rs >= 70) & (adr >= 0.02)
+up = (e10 >= e20) & (e20 >= e50)
+day_rng = h / l - 1
+gap = (o / c.shift(1) - 1).tail(5)
+epday = (gap >= 0.06) & (v.tail(5) >= 3 * v.shift(1).rolling(50, min_periods=30).mean().tail(5))
+ep_low = l.tail(5).where(epday).min()
+TAGS = {
+    "Flag after big move": (runup >= 0.30) & since.between(4, 40) & (depth <= 0.20) & (last >= e20),
+    "Tight range": up & (rng5 <= 1.7 * adr) & (depth <= 0.20),
+    "Inside day": up & (hi <= h.iloc[-2]) & (lo >= l.iloc[-2]) & (depth <= 0.20),
+    "Narrowest in 7": up & (day_rng.iloc[-1] <= day_rng.tail(7).min()) & (depth <= 0.20),
+    "At 10 EMA": up & (lo <= e10 * (1 + 0.4 * adr)) & (last >= e10 * 0.995) & (last <= e10 * (1 + adr)),
+    "At 20 EMA": up & (lo <= e20 * (1 + 0.4 * adr)) & (last >= e20 * 0.99) & (last <= e20 * (1 + adr)),
+    "At 50 EMA": (e50 > ma200) & (lo <= e50 * (1 + 0.5 * adr)) & (last >= e50 * 0.99) & (last <= e50 * (1 + 1.2 * adr)),
+    "Episodic pivot": epday.any() & (last >= ep_low),
+    "Breakout today": (last > c.shift(1).rolling(50, min_periods=50).max().iloc[-1]) & (v.iloc[-1] >= 1.5 * v.shift(1).rolling(50, min_periods=30).mean().iloc[-1]),
+    "Volume dry-up": (vdry <= 0.6) & (depth <= 0.20),
+}
+ACTION = [k for k in TAGS if k != "Volume dry-up"]
+tagdf = pd.DataFrame({k: m.reindex(c.columns).fillna(False).astype(bool) for k, m in TAGS.items()})
+cand = base & tagdf[ACTION].any(axis=1)
 rows = []
-for kind, m in S.items():
-    for s in m[m].index:
-        rows.append({"symbol": s, "theme": th.get(s, ""), "setup": kind, "close": round(float(last[s]), 2),
-                     "rs": int(rs[s]), "from_high": round(100 * (last[s] / hi52[s] - 1), 1),
-                     "vs_ema20": round(100 * (last[s] / e20[s] - 1), 1), "vs_ema50": round(100 * (last[s] / e50[s] - 1), 1),
-                     "range10": round(100 * rng10[s], 1), "turnover_cr": round(med_tv.iloc[-1][s] / 1e7, 1),
-                     "mcap_cr": mcap.get(s)})
-setups = pd.DataFrame(rows).sort_values(["rs", "symbol"], ascending=[False, True]) if rows else pd.DataFrame()
-now["setups"] = setups.groupby("theme").symbol.nunique().reindex(now.index).fillna(0).astype(int) if len(setups) else 0
+for s in cand[cand].index:
+    q = float(quality[s])
+    rows.append({"symbol": s, "theme": th.get(s, ""), "rank_score": round(float(rank_score[s]), 1), "quality": round(q, 1),
+                 "grade": "A+" if q >= 75 else "A" if q >= 65 else "B" if q >= 55 else "C",
+                 "tags": "; ".join(k for k in TAGS if tagdf.at[s, k]), "setup": "; ".join(k for k in TAGS if tagdf.at[s, k]),
+                 "rs": int(rs[s]), "close": round(float(last[s]), 2), "adr": round(100 * adr[s], 1),
+                 "runup": round(100 * runup[s], 0), "depth": round(100 * depth[s], 1), "range5": round(100 * rng5[s], 1),
+                 "vs_ema10": round(100 * (last[s] / e10[s] - 1), 1), "vs_ema20": round(100 * (last[s] / e20[s] - 1), 1),
+                 "vol_ratio": round(float(vdry[s]), 2), "turnover_cr": round(med_tv.iloc[-1][s] / 1e7, 1)})
+setups = pd.DataFrame(rows).sort_values("rank_score", ascending=False) if rows else pd.DataFrame()
+now["setups"] = (setups[setups["grade"].isin(["A+", "A"])].groupby("theme").symbol.nunique().reindex(now.index).fillna(0).astype(int)
+                 if len(setups) else 0)
 (DATA / "derived").mkdir(exist_ok=True)
 now.round(1).to_csv(DATA / "derived" / "themes.csv")
 setups.to_csv(DATA / "derived" / "setups.csv", index=False)
 stocks.assign(close=last.reindex(stocks.index).round(2)).to_csv(DATA / "derived" / "stocks.csv")
 print(now.head(12)[["n", "r1w", "r1m", "r3m", "above50", "leaders", "rank_change", "setups", "top"]].round(1).to_string())
-print("themes", len(now), "| setups", len(setups), setups["setup"].value_counts().to_dict() if len(setups) else "")
+print("themes", len(now), "| setups", len(setups), setups["grade"].value_counts().to_dict(), tagdf[cand].sum().to_dict())
