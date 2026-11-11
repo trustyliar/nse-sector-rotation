@@ -80,6 +80,6 @@ body = (f'<p class="read">{len(s)} candidates in {s["theme"].nunique()} themes, 
 js = ('<script>const k=document.getElementById("k"),t=document.getElementById("t"),q=document.getElementById("q"),'
       'f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display=(!k.value||r.dataset.k==k.value)&&(!t.value||r.dataset.t==t.value)'
       '&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");k.onchange=t.onchange=q.oninput=f;'
-      'const p=new URLSearchParams(location.search).get("theme");if(p){t.value=p;f()}</script>')
+      'const p=new URLSearchParams(location.search).get("theme");if(p){if(![...t.options].some(o=>o.value==p))t.add(new Option(p,p));t.value=p;f()}</script>')
 (docs / "setups.html").write_text(page("NSE setups", "Setups", body, js))
 print("site built:", len(t), "themes,", len(s), "setups")
