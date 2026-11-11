@@ -1,0 +1,2 @@
+# Manual corrections to sector/industry. Any filled column replaces the automatic value.
+symbol,nse_sector,yahoo_sector,yahoo_industry
