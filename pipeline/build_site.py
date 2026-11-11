@@ -12,7 +12,7 @@ css = re.search(r"<style>.*?</style>", index, re.S).group(0).replace("</style>",
 nav{display:flex;gap:18px;margin:0 0 18px;font-weight:600}nav a{color:var(--ink2);text-decoration:none;padding-bottom:4px}
 nav a.on{color:var(--ink);border-bottom:2px solid var(--s)}td.l,th.l{text-align:left}td.up{color:var(--ink)}td.sm{font-size:12.5px;color:var(--ink2)}
 select,input{font:inherit;padding:6px 8px;border:1px solid var(--grid);border-radius:6px;background:var(--bg);color:var(--ink);margin:0 8px 12px 0}
-main.wide{max-width:1180px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
+main.wide{max-width:1600px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
 main a{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}th{cursor:pointer;user-select:none}th[data-d]::after{content:" \2195"}
 .bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style>""")
 day = re.search(r"close of ([^<]+)</h1>", index).group(1)
