@@ -42,3 +42,11 @@ jobs:
           git add -A
           git commit -q -m "Daily update $(date -u +%F)" || exit 0
           git push -q origin data
+      - name: Publish site
+        run: |
+          cd data/docs
+          rm -rf .git && git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -q -m "Site $(date -u +%F)"
+          git push -q -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" gh-pages

@@ -1,5 +1,6 @@
 """Add the Sectors and Setups pages and a shared navigation bar to the site in docs/."""
 import re
+from urllib.parse import quote
 
 import pandas as pd
 
@@ -12,8 +13,15 @@ nav{display:flex;gap:18px;margin:0 0 18px;font-weight:600}nav a{color:var(--ink2
 nav a.on{color:var(--ink);border-bottom:2px solid var(--s)}td.l,th.l{text-align:left}td.up{color:var(--ink)}td.sm{font-size:12.5px;color:var(--ink2)}
 select,input{font:inherit;padding:6px 8px;border:1px solid var(--grid);border-radius:6px;background:var(--bg);color:var(--ink);margin:0 8px 12px 0}
 main.wide{max-width:1180px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
+main a{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}th{cursor:pointer;user-select:none}th[data-d]::after{content:" \2195"}
 .bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style>""")
 day = re.search(r"close of ([^<]+)</h1>", index).group(1)
+
+
+SORT = ('<script>document.querySelectorAll("th").forEach((th,i)=>{th.title="Click to sort";th.onclick=()=>{const tb=th.closest("table").tBodies[0],'
+        'd=th.dataset.d=th.dataset.d=="1"?"-1":"1",key=c=>c.dataset.v??c.textContent.trim(),num=s=>{const v=parseFloat(String(s).replace(/[^0-9.+-]/g,""));'
+        'return isNaN(v)||/^[A-Za-z]/.test(s)?null:v};[...tb.rows].sort((a,b)=>{const x=key(a.cells[i]),y=key(b.cells[i]),nx=num(x),ny=num(y);'
+        'return d*(nx!=null&&ny!=null?nx-ny:String(x).localeCompare(String(y)))}).forEach(r=>tb.appendChild(r))}})</script>')
 
 
 def nav(on):
@@ -24,7 +32,7 @@ def nav(on):
 def page(title, on, body, script=""):
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" '
             f'content="width=device-width,initial-scale=1"><title>{title}</title>{css}</head><body><main class="wide">'
-            f'{nav(on)}<h1>{title} &middot; close of {day}</h1>{body}</main>{script}</body></html>')
+            f'{nav(on)}<h1>{title} &middot; close of {day}</h1>{body}</main>{SORT}{script}</body></html>')
 
 
 if "<nav>" not in index:
@@ -35,11 +43,11 @@ if "<nav>" not in index:
 t = pd.read_csv(DATA / "derived" / "themes.csv")
 arrow = lambda d: "" if pd.isna(d) or d == 0 else (f"&#9650; {int(d)}" if d > 0 else f"&#9660; {int(-d)}")
 rows = "".join(
-    f'<tr><td>{r["rank"]}</td><td class="l"><b>{r.theme}</b></td><td class="sm">{arrow(r.rank_change)}</td>'
+    f'<tr><td>{r["rank"]}</td><td class="l"><b><a href="setups.html?theme={quote(r.theme)}">{r.theme}</a></b></td><td class="sm" data-v="{0 if pd.isna(r.rank_change) else r.rank_change:.0f}">{arrow(r.rank_change)}</td>'
     f'<td class="l"><span class="bar" style="width:{0.6 * r.strength:.0f}px"></span>{r.strength:.0f}</td>'
     f'<td>{r.r1w:+.1f}%</td><td>{r.r1m:+.1f}%</td><td>{r.r3m:+.1f}%</td><td>{r.above50:.0f}%</td>'
     f'<td>{r.leaders}/{r.n}</td><td>{r.setups}</td><td class="l sm">{r.top}</td></tr>' for _, r in t.iterrows())
-body = ('<p class="read">Themes ranked by strength: a blend of the median stock\'s 1-week (20%), 1-month (40%) and '
+body = ('<p class="read">Themes ranked by strength (click a theme to see its setups, click any column heading to sort): a blend of the median stock\'s 1-week (20%), 1-month (40%) and '
         '3-month (40%) return, compared across themes. The arrow shows places gained or lost against a month ago.</p>'
         '<div class="tw"><table><thead><tr><th>#</th><th class="l">Theme</th><th>vs 1m ago</th><th class="l">Strength</th>'
         '<th>1 week</th><th>1 month</th><th>3 months</th><th>&gt;50-day</th><th>RS 80+ / stocks</th><th>Setups</th>'
@@ -54,23 +62,24 @@ rank = t.set_index("theme")["rank"]
 s["trank"] = s["theme"].map(rank)
 s = s.sort_values(["trank", "rs"], ascending=[True, False], na_position="last")
 rows = "".join(
-    f'<tr data-k="{r.setup}" data-t="{r.theme}"><td class="l"><b>{r.symbol}</b></td><td class="l">{r.theme}</td>'
+    f'<tr data-k="{r.setup}" data-t="{r.theme}"><td class="l"><b><a target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:{r.symbol.replace("&", "_").replace("-", "_")}">{r.symbol}</a></b></td><td class="l">{r.theme}</td>'
     f'<td>{"" if pd.isna(r.trank) else int(r.trank)}</td><td class="l">{r.setup}</td><td>{r.rs}</td><td>{r.close:,.1f}</td>'
     f'<td>{r.vs_ema20:+.1f}%</td><td>{r.vs_ema50:+.1f}%</td><td>{r.from_high:.0f}%</td><td>{r.range10:.0f}%</td>'
     f'<td>{r.turnover_cr:,.0f}</td></tr>' for r in s.itertuples())
 kinds = "".join(f"<option>{k}</option>" for k in sorted(s["setup"].unique()))
 themes = "".join(f"<option>{k}</option>" for k in s.drop_duplicates("theme")["theme"])
 body = (f'<p class="read">{len(s)} candidates in {s["theme"].nunique()} themes, strongest themes first. Every stock is liquid, '
-        'above Rs 40, above its 200-day average and has RS of 70 or more. These are shortlists for chart review, not signals.</p>'
-        f'<select id="k"><option value="">All setups</option>{kinds}</select><select id="t"><option value="">All themes</option>{themes}</select>'
+        'above Rs 40, above its 200-day average and has RS of 70 or more. These are shortlists for chart review, not signals. Click a stock to open its chart, or a column heading to sort.</p>'
+        f'<input id="q" placeholder="Search stock or theme"><select id="k"><option value="">All setups</option>{kinds}</select><select id="t"><option value="">All themes</option>{themes}</select>'
         '<div class="tw"><table><thead><tr><th class="l">Stock</th><th class="l">Theme</th><th>Theme rank</th><th class="l">Setup</th>'
         '<th>RS</th><th>Close</th><th>vs 20 EMA</th><th>vs 50 EMA</th><th>From 52w high</th><th>10-day range</th>'
         f'<th>Turnover (cr)</th></tr></thead><tbody id="b">{rows}</tbody></table></div>'
         '<ul class="note"><li><b>Pullback to 20 EMA:</b> 10 &gt; 20 &gt; 50 EMA &gt; 200-day, the day\'s low within 1.5% of the 20 EMA, close holding it.</li>'
         '<li><b>Pullback to 50 EMA:</b> 50 EMA above the 200-day, the low within 2% of the 50 EMA, close holding it.</li>'
         '<li><b>Tight near highs:</b> within 10% of the 52-week high, 10-day range under 8% and under 60% of the 40-day range, volume drying up.</li></ul>')
-js = ('<script>const k=document.getElementById("k"),t=document.getElementById("t"),f=()=>document.querySelectorAll("#b tr")'
-      '.forEach(r=>r.style.display=(!k.value||r.dataset.k==k.value)&&(!t.value||r.dataset.t==t.value)?"":"none");'
-      'k.onchange=t.onchange=f</script>')
+js = ('<script>const k=document.getElementById("k"),t=document.getElementById("t"),q=document.getElementById("q"),'
+      'f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display=(!k.value||r.dataset.k==k.value)&&(!t.value||r.dataset.t==t.value)'
+      '&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");k.onchange=t.onchange=q.oninput=f;'
+      'const p=new URLSearchParams(location.search).get("theme");if(p){t.value=p;f()}</script>')
 (docs / "setups.html").write_text(page("NSE setups", "Setups", body, js))
 print("site built:", len(t), "themes,", len(s), "setups")
