@@ -11,7 +11,7 @@ index = (docs / "index.html").read_text()
 css = re.search(r"<style>.*?</style>", index, re.S).group(0).replace("</style>", """
 nav{display:flex;gap:18px;margin:0 0 18px;font-weight:600}nav a{color:var(--ink2);text-decoration:none;padding-bottom:4px}
 nav a.on{color:var(--ink);border-bottom:2px solid var(--s)}td.l,th.l{text-align:left}td.up{color:var(--ink)}td.sm{font-size:12.5px;color:var(--ink2)}
-select,input{font:inherit;padding:6px 8px;border:1px solid var(--grid);border-radius:6px;background:var(--bg);color:var(--ink);margin:0 8px 12px 0}
+select,input,button{font:inherit;padding:6px 8px;border:1px solid var(--grid);border-radius:6px;background:var(--bg);color:var(--ink);margin:0 8px 12px 0}button{cursor:pointer}
 main.wide{max-width:1600px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
 main a{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}th{cursor:pointer;user-select:none}th[data-d]::after{content:" \2195"}
 .bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style>""")
@@ -75,6 +75,7 @@ body = (f'<p class="read">{len(s)} candidates, best first. Each is a liquid lead
         'price riding the 10/20 EMA and volume drying up. Click a stock for its chart, a heading to sort. Shortlists for chart review, not signals.</p>'
         f'<input id="q" placeholder="Search stock or theme"><select id="g"><option value="">All grades</option><option>A+</option><option>A</option><option>B</option></select>'
         f'<select id="k"><option value="">All patterns</option>{kinds}</select><select id="t"><option value="">All themes</option>{themes}</select>'
+        '<button id="dx">Download Excel (CSV)</button><button id="dt">Download TradingView watchlist</button>'
         '<div class="tw"><table><thead><tr><th>#</th><th class="l">Stock</th><th class="l">Theme</th><th>Rank score</th><th>Grade</th><th>Quality</th>'
         '<th class="l">Patterns today</th><th>RS</th><th>Close</th><th>Prior run</th><th>Off high</th><th>5-day range</th><th>ADR</th>'
         f'<th>vs 10 EMA</th><th>vs 20 EMA</th><th>Vol 5d/50d</th><th>Turnover (cr)</th></tr></thead><tbody id="b">{rows}</tbody></table></div>'
@@ -89,6 +90,12 @@ js = ('<script>const $=i=>document.getElementById(i),k=$("k"),t=$("t"),q=$("q"),
       'f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display=(!k.value||r.dataset.k.includes(k.value))&&(!t.value||r.dataset.t==t.value)'
       '&&(!g.value||r.dataset.g==g.value)&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");'
       'k.onchange=t.onchange=g.onchange=q.oninput=f;const p=new URLSearchParams(location.search).get("theme");'
-      'if(p){if(![...t.options].some(o=>o.value==p))t.add(new Option(p,p));t.value=p;f()}</script>')
+      'if(p){if(![...t.options].some(o=>o.value==p))t.add(new Option(p,p));t.value=p;f()}'
+      'const vis=()=>[...document.querySelectorAll("#b tr")].filter(r=>r.style.display!="none"),'
+      'save=(name,text,type)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click()},'
+      'cell=c=>\'"\'+c.textContent.trim().replace(/"/g,\'""\')+\'"\',day=new Date().toISOString().slice(0,10);'
+      '$("dx").onclick=()=>save("nse-setups-"+day+".csv","\\ufeff"+[[...document.querySelectorAll("thead th")].map(cell).join(",")]'
+      '.concat(vis().map(r=>[...r.cells].map(cell).join(","))).join("\\n"),"text/csv");'
+      '$("dt").onclick=()=>save("nse-setups-"+day+".txt",vis().map(r=>"NSE:"+r.cells[1].textContent.trim().replace(/[&-]/g,"_")).join(","),"text/plain")</script>')
 (docs / "setups.html").write_text(page("NSE setups", "Setups", body, js))
 print("site built:", len(t), "themes,", len(s), "setups")
