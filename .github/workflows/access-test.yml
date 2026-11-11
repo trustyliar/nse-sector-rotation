@@ -1,0 +1,26 @@
+name: Data access test
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - scripts/access_test.py
+      - .github/workflows/access-test.yml
+permissions:
+  contents: write
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests yfinance pandas
+      - run: python scripts/access_test.py
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/access_test.md
+          git commit -m "Data access test report" || echo "nothing to commit"
+          git push
