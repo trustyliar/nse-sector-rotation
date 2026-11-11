@@ -32,6 +32,8 @@ jobs:
       - run: python pipeline/daily_update.py "${{ inputs.first }}" "${{ inputs.reset }}"
       - run: python pipeline/regime.py
       - run: python pipeline/build_page.py
+      - run: python pipeline/sectors.py
+      - run: python pipeline/build_site.py
       - name: Save data
         run: |
           cd data
