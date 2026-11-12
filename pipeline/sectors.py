@@ -65,8 +65,8 @@ adr = (h / l - 1).tail(20).mean()
 rng = lambda n: h.tail(n).max() / l.tail(n).min() - 1
 rng5, rng10, rng30 = rng(5), rng(10), rng(30)
 vdry = v.tail(5).mean() / v.tail(50).mean()
-Hh, Ll = h.tail(120).to_numpy(), l.tail(120).to_numpy()
-runup, since = {}, {}
+Hh, Ll, Vv = h.tail(120).to_numpy(), l.tail(120).to_numpy(), v.tail(120).to_numpy()
+runup, since, basevol = {}, {}, {}
 for j, sym in enumerate(c.columns):                    # sharpest run: low within 30 sessions before the 60-session high
     col = Hh[60:, j]
     if np.isnan(col).all():
@@ -74,19 +74,24 @@ for j, sym in enumerate(c.columns):                    # sharpest run: low withi
     pos = 60 + int(np.nanargmax(col))
     low = np.nanmin(Ll[pos - 30: pos + 1, j]) if not np.isnan(Ll[pos - 30: pos + 1, j]).all() else np.nan
     runup[sym], since[sym] = Hh[pos, j] / low - 1, 119 - pos
+    if 119 - pos >= 3:                                  # volume in the base against volume in the run before it
+        basevol[sym] = np.nanmean(Vv[pos + 1:, j]) / np.nanmean(Vv[pos - 30: pos + 1, j])
 runup, since = pd.Series(runup).reindex(c.columns), pd.Series(since).reindex(c.columns)
 hi60 = h.tail(60).max()
 depth = 1 - last / hi60
 clip = lambda x: x.clip(0, 1)
-sc_move = clip((runup - 0.15) / 0.60)
+sc_move = clip((runup - 0.15) / 0.45)
 sc_tight = 0.7 * clip((3.2 - rng5 / adr) / 1.9) + 0.3 * clip((0.75 - rng10 / rng30) / 0.40)
-align = ((last >= e10).astype(int) + (e10 >= e20) + (e20 >= e50) + (e50 >= ma200)) / 4
-near = pd.concat([(last / e10 - 1).abs(), (last / e20 - 1).abs()], axis=1).min(axis=1)
+E20 = c.ewm(span=20, min_periods=20).mean()
+rising20 = E20.iloc[-1] > E20.iloc[-6]
+align = ((last >= e20).astype(int) + (e10 >= e20) + (e20 >= e50) + (e50 >= ma200) + rising20) / 5
+near = pd.concat([(last / e10 - 1).abs(), (last / e20 - 1).abs()], axis=1).min(axis=1)   # the EMAs have caught up with price
 sc_trend = 0.6 * align + 0.4 * clip(1 - near / (1.5 * adr))
-sc_dry = clip((1.1 - vdry) / 0.6)
+basevol = pd.Series(basevol).reindex(c.columns)
+sc_dry = clip((1.0 - basevol.fillna(vdry)) / 0.6)
 sc_depth = clip((0.25 - depth) / 0.20)
 # A setup needs a base: time spent going sideways after the high. None = still running (no setup).
-sc_base = (clip((since - 2) / 4) * clip((55 - since) / 20)).fillna(0)
+sc_base = (clip((since - 3) / 4) * clip((50 - since) / 20)).fillna(0)   # full credit for a 7-30 session base
 quality = 100 * (0.20 * sc_move + 0.25 * sc_tight + 0.20 * sc_trend + 0.10 * sc_dry + 0.10 * sc_depth + 0.15 * sc_base)
 quality = quality * (0.5 + 0.5 * sc_base.clip(lower=0.0)) * clip(adr / 0.03).clip(lower=0.7)   # no base or a sleepy stock: marked down
 rs = stocks["rs"].reindex(c.columns)
@@ -106,6 +111,7 @@ TAGS = {
     "At 10 EMA": up & (lo <= e10 * (1 + 0.4 * adr)) & (last >= e10 * 0.995) & (last <= e10 * (1 + adr)),
     "At 20 EMA": up & (lo <= e20 * (1 + 0.4 * adr)) & (last >= e20 * 0.99) & (last <= e20 * (1 + adr)),
     "At 50 EMA": (e50 > ma200) & (lo <= e50 * (1 + 0.5 * adr)) & (last >= e50 * 0.99) & (last <= e50 * (1 + 1.2 * adr)),
+    "Turning up off EMA": up & (since >= 4) & (depth <= 0.20) & (l.tail(3).min() <= e20 * (1 + 0.5 * adr)) & (last > h.iloc[-2]) & (last >= e20),
     "Episodic pivot": epday.any() & (last >= ep_low),
     "Breakout today": (last > c.shift(1).rolling(50, min_periods=50).max().iloc[-1]) & (v.iloc[-1] >= 1.5 * v.shift(1).rolling(50, min_periods=30).mean().iloc[-1]),
     "Volume dry-up": (vdry <= 0.6) & (depth <= 0.20),
@@ -122,7 +128,7 @@ for s in cand[cand].index:
                  "rs": int(rs[s]), "close": round(float(last[s]), 2), "adr": round(100 * adr[s], 1),
                  "runup": round(100 * runup[s], 0), "depth": round(100 * depth[s], 1), "range5": round(100 * rng5[s], 1),
                  "vs_ema10": round(100 * (last[s] / e10[s] - 1), 1), "vs_ema20": round(100 * (last[s] / e20[s] - 1), 1),
-                 "vol_ratio": round(float(vdry[s]), 2), "turnover_cr": round(med_tv.iloc[-1][s] / 1e7, 1)})
+                 "vol_ratio": round(float(basevol.fillna(vdry)[s]), 2), "base_days": int(since[s]) if pd.notna(since[s]) else 0, "turnover_cr": round(med_tv.iloc[-1][s] / 1e7, 1)})
 setups = pd.DataFrame(rows).sort_values("rank_score", ascending=False) if rows else pd.DataFrame()
 now["setups"] = (setups[setups["grade"].isin(["A+", "A"])].groupby("theme").symbol.nunique().reindex(now.index).fillna(0).astype(int)
                  if len(setups) else 0)
