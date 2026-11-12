@@ -2,9 +2,9 @@
 import pandas as pd
 import yfinance as yf
 
-from common import DATA
+from common import DATA, today_ist
 
-WANT = {"Nifty Smallcap 100": "^CNXSC", "Nifty Midcap 100": "NIFTY_MIDCAP_100.NS", "Nifty 500": "^CRSLDX", "Nifty 50": "^NSEI"}
+WANT = {"Nifty 500": "^CRSLDX", "Nifty 50": "^NSEI"}      # Yahoo has no usable history for the small and mid-cap indices
 p = DATA / "indices" / "indices.parquet"
 old = pd.read_parquet(p)
 frames = []
@@ -21,5 +21,7 @@ for name, tick in WANT.items():
         print(name, "failed:", e)
 if frames:
     new = pd.concat(frames)
+    new = new[new["date"] < pd.Timestamp(today_ist())]          # today's bar is intraday until NSE publishes the close
+    old = old[~((old["index"].isin(["Nifty Smallcap 100", "Nifty Midcap 100"])) | (old["date"] >= pd.Timestamp(today_ist())))]
     allx = pd.concat([new, old]).drop_duplicates(["index", "date"], keep="last")   # NSE's own rows win where both exist
     allx.sort_values(["index", "date"]).to_parquet(p, index=False)

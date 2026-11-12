@@ -44,6 +44,32 @@ if "<nav>" not in index:
                  .replace("<main>", "<main>" + nav("Regime"), 1)
     (docs / "index.html").write_text(index)
 
+# Reversal watch panel on the Regime page
+rv = pd.read_csv(DATA / "derived" / "reversal.csv", parse_dates=["date"]).set_index("date")
+x = rv.iloc[-1]
+trig = rv.index[rv["first"]][-1] if rv["first"].any() else None
+ago = len(rv.loc[trig:]) - 1 if trig is not None else 99
+if ago <= 10:
+    stop = rv.loc[trig, "low10"]
+    since = 100 * (x["idx"] / rv.loc[trig, "idx"] - 1)
+    state = (f"<b>&#9650; Turn signal on {trig:%d %b}</b> ({ago} sessions ago). Small caps are {since:+.1f}% since. "
+             + ("The signal has <b>failed</b>: the index closed below the low before the signal." if x["idx"] < stop
+                else "It fails if small caps close below the low set before the signal."))
+elif x["os5"] >= 60:
+    state = ("<b>&#9679; Oversold: watch for the turn day.</b> The trigger is a day when small caps gain 1%+, stocks up 4% "
+             "outnumber stocks down 4% by two to one, and more stocks are back above their 20-day average.")
+else:
+    state = "<b>Not oversold.</b> No reversal setup in the broad market right now."
+panel = (f'<h2>Reversal watch (small caps)</h2><div class="m"><div class="mh"><span>Oversold score</span><span class="v">{x["oversold"]:.0f}</span></div>'
+         f'<div class="track"><div class="fill" style="width:{x["oversold"]:.0f}%"></div></div><div>{state}</div>'
+         f'<div class="d" style="margin-top:6px">Stocks above 20-day: {x["a20"]:.0f}% &middot; RSI: {x["rsi"]:.0f} &middot; '
+         f'from 60-day high: {x["dd"]:.1f}% &middot; stocks at 20-day lows: {x["lows20"]:.0f}%. '
+         'Oversold is 60 or more. Tested on 14 lows marked by hand: it caught all 8 deep sell-offs, usually one or two sessions after the low, '
+         'and none of the 6 shallow dips. A quarter of signals since October 2023 failed.</div></div>')
+if "Reversal watch" not in index:
+    index = index.replace("<h2>The five parts", panel + "<h2>The five parts", 1)
+    (docs / "index.html").write_text(index)
+
 t = pd.read_csv(DATA / "derived" / "themes.csv")
 arrow = lambda d: "" if pd.isna(d) or d == 0 else (f"&#9650; {int(d)}" if d > 0 else f"&#9660; {int(-d)}")
 rows = "".join(
