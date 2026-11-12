@@ -67,12 +67,12 @@ rng5, rng10, rng30 = rng(5), rng(10), rng(30)
 vdry = v.tail(5).mean() / v.tail(50).mean()
 Hh, Ll = h.tail(120).to_numpy(), l.tail(120).to_numpy()
 runup, since = {}, {}
-for j, sym in enumerate(c.columns):                    # best run in the last 60 sessions: low -> later high
+for j, sym in enumerate(c.columns):                    # sharpest run: low within 30 sessions before the 60-session high
     col = Hh[60:, j]
     if np.isnan(col).all():
         continue
     pos = 60 + int(np.nanargmax(col))
-    low = np.nanmin(Ll[pos - 60: pos + 1, j]) if not np.isnan(Ll[pos - 60: pos + 1, j]).all() else np.nan
+    low = np.nanmin(Ll[pos - 30: pos + 1, j]) if not np.isnan(Ll[pos - 30: pos + 1, j]).all() else np.nan
     runup[sym], since[sym] = Hh[pos, j] / low - 1, 119 - pos
 runup, since = pd.Series(runup).reindex(c.columns), pd.Series(since).reindex(c.columns)
 hi60 = h.tail(60).max()
@@ -85,7 +85,10 @@ near = pd.concat([(last / e10 - 1).abs(), (last / e20 - 1).abs()], axis=1).min(a
 sc_trend = 0.6 * align + 0.4 * clip(1 - near / (1.5 * adr))
 sc_dry = clip((1.1 - vdry) / 0.6)
 sc_depth = clip((0.25 - depth) / 0.20)
-quality = 100 * (0.25 * sc_move + 0.30 * sc_tight + 0.20 * sc_trend + 0.10 * sc_dry + 0.15 * sc_depth)
+# A setup needs a base: time spent going sideways after the high. None = still running (no setup).
+sc_base = (clip((since - 2) / 4) * clip((55 - since) / 20)).fillna(0)
+quality = 100 * (0.20 * sc_move + 0.25 * sc_tight + 0.20 * sc_trend + 0.10 * sc_dry + 0.10 * sc_depth + 0.15 * sc_base)
+quality = quality * (0.5 + 0.5 * sc_base.clip(lower=0.0)) * clip(adr / 0.03).clip(lower=0.7)   # no base or a sleepy stock: marked down
 rs = stocks["rs"].reindex(c.columns)
 tstr = th.reindex(c.columns).map(now["strength"]).fillna(50)
 rank_score = 0.65 * quality + 0.20 * rs + 0.15 * tstr
@@ -97,7 +100,7 @@ epday = (gap >= 0.06) & (v.tail(5) >= 3 * v.shift(1).rolling(50, min_periods=30)
 ep_low = l.tail(5).where(epday).min()
 TAGS = {
     "Flag after big move": (runup >= 0.30) & since.between(4, 40) & (depth <= 0.20) & (last >= e20),
-    "Tight range": up & (rng5 <= 1.7 * adr) & (depth <= 0.20),
+    "Tight range": up & (rng5 <= 1.7 * adr) & (depth <= 0.20) & (since >= 4),
     "Inside day": up & (hi <= h.iloc[-2]) & (lo >= l.iloc[-2]) & (depth <= 0.20),
     "Narrowest in 7": up & (day_rng.iloc[-1] <= day_rng.tail(7).min()) & (depth <= 0.20),
     "At 10 EMA": up & (lo <= e10 * (1 + 0.4 * adr)) & (last >= e10 * 0.995) & (last <= e10 * (1 + adr)),

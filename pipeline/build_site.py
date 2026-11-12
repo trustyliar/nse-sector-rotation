@@ -79,10 +79,11 @@ body = (f'<p class="read">{len(s)} candidates, best first. Each is a liquid lead
         '<div class="tw"><table><thead><tr><th>#</th><th class="l">Stock</th><th class="l">Theme</th><th>Rank score</th><th>Grade</th><th>Quality</th>'
         '<th class="l">Patterns today</th><th>RS</th><th>Close</th><th>Prior run</th><th>Off high</th><th>5-day range</th><th>ADR</th>'
         f'<th>vs 10 EMA</th><th>vs 20 EMA</th><th>Vol 5d/50d</th><th>Turnover (cr)</th></tr></thead><tbody id="b">{rows}</tbody></table></div>'
-        '<ul class="note"><li><b>Quality (0-100):</b> tightness 30%, prior run 25%, EMA alignment and closeness 20%, shallow pullback 15%, volume dry-up 10%. '
+        '<ul class="note"><li><b>Quality (0-100):</b> tightness 25%, prior run 20%, EMA alignment and closeness 20%, time in a base 15%, shallow pullback 10%, volume dry-up 10%. '
+        'Stocks still making new highs with no base, and stocks with a daily range under 3%, are marked down. '
         'Grade A+ is 75 or more, A is 65+, B is 55+.</li>'
         '<li><b>Rank score:</b> 65% quality, 20% relative strength, 15% theme strength, so a clean setup in a leading theme ranks highest.</li>'
-        '<li><b>Prior run:</b> the best low-to-high move ending in the last 60 sessions. <b>Off high:</b> distance below the 60-session high. '
+        '<li><b>Prior run:</b> the sharpest move into the 60-session high, measured from the low of the 30 sessions before it. <b>Off high:</b> distance below the 60-session high. '
         '<b>ADR:</b> average daily range over 20 sessions.</li>'
         '<li><b>Patterns:</b> flag after a 30%+ move; tight 5-day range; inside day; narrowest range in 7 days; at the 10, 20 or 50 EMA; '
         'episodic pivot (6%+ gap on 3x volume in the last 5 sessions, still holding); breakout today (50-day closing high on 1.5x volume).</li></ul>')
