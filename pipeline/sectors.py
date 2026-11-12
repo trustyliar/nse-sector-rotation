@@ -114,11 +114,24 @@ for sym in bad.columns[bad.any()]:
     day = bad.index[bad[sym]][-1]
     ref = max(Ot.at[day, sym], prev.at[day, sym]) if pd.notna(Ot.at[day, sym]) else prev.at[day, sym]
     supply[sym] = bool(last[sym] < ref)
-quality = quality * (1 - 0.3 * supply)
+# Three more disqualifiers learned from the trader's rejections (none hard-coded to a stock):
+# still deep: 20%+ below the high, so the pullback needs more time, however far it has bounced from the low;
+# wide red candles: three or more red days of 7%+ since the high, too volatile to hold a tight stop;
+# 5% circuit band: the stock cannot move more than 5% a day and has locked at the limit, so entries and exits are not dependable.
+deep = depth >= 0.20
+cc = c.pct_change(fill_method=None).tail(40)
+redbar = pd.concat([cc, (c / o.reindex(c.index) - 1).tail(40)]).groupby(level=0).min().le(-0.07).to_numpy()
+ago = np.arange(len(redbar))[::-1][:, None]                       # 0 = today
+wide = pd.Series((redbar & (ago < since.fillna(0).to_numpy()[None, :])).sum(axis=0) >= 3, index=c.columns)
+r60, c60 = c.pct_change(fill_method=None).tail(60), c.tail(60)
+locked = ((r60.abs() >= 0.048) & ((c60 == h.tail(60)) | (c60 == l.tail(60)))).sum()
+band5 = (r60.abs().max() <= 0.0505) & (locked >= 2)
+flawed = supply | deep | wide
+quality = quality * (1 - 0.3 * flawed)
 rs = stocks["rs"].reindex(c.columns)
 tstr = th.reindex(c.columns).map(now["strength"]).fillna(50)
 rank_score = 0.65 * quality + 0.20 * rs + 0.15 * tstr
-base = liquid.iloc[-1] & ((last > ma200) | ma200.isna()) & (rs >= 70) & (adr >= 0.02)      # recent listings have no 200-day average yet
+base = liquid.iloc[-1] & ((last > ma200) | ma200.isna()) & (rs >= 70) & (adr >= 0.02) & ~band5      # recent listings have no 200-day average yet
 up = (e10 >= e20) & (e20 >= e50)
 day_rng = h / l - 1
 gap = (o / c.shift(1) - 1).tail(5)
@@ -137,6 +150,8 @@ TAGS = {
     "Breakout today": (last > c.shift(1).rolling(50, min_periods=50).max().iloc[-1]) & (v.iloc[-1] >= 1.5 * v.shift(1).rolling(50, min_periods=30).mean().iloc[-1]),
     "Volume dry-up": (vdry <= 0.6) & (depth <= 0.20),
     "Overhead supply": supply,
+    "Still deep": deep,
+    "Wide red candles": wide,
 }
 # Where the stock is relative to an entry: coiled and waiting, triggered today, or already gone.
 chg = last / c.iloc[-2] - 1
@@ -146,7 +161,7 @@ st_ready = ~st_trig & ~st_ext & (last >= e20 * (1 - 0.6 * adr)) & (last <= e10 *
 trigger = hi                                             # buy-stop level for tomorrow: today's high
 stop = pd.concat([lo, trigger * (1 - 1.5 * adr)], axis=1).max(axis=1)
 stop = pd.concat([stop, trigger * (1 - 0.4 * adr)], axis=1).min(axis=1)
-ACTION = [k for k in TAGS if k not in ("Volume dry-up", "Overhead supply")]
+ACTION = [k for k in TAGS if k not in ("Volume dry-up", "Overhead supply", "Still deep", "Wide red candles")]
 tagdf = pd.DataFrame({k: m.reindex(c.columns).fillna(False).astype(bool) for k, m in TAGS.items()})
 cand = base & tagdf[ACTION].any(axis=1)
 rows = []
@@ -155,7 +170,7 @@ for s in cand[cand].index:
     rows.append({"symbol": s, "theme": th.get(s, ""), "rank_score": round(float(rank_score[s]), 1), "quality": round(q, 1),
                  "grade": "A+" if q >= 75 else "A" if q >= 65 else "B" if q >= 55 else "C",
                  "tags": "; ".join(k for k in TAGS if tagdf.at[s, k]), "setup": "; ".join(k for k in TAGS if tagdf.at[s, k]),
-                 "stage": "Building" if supply[s] else "Extended" if st_ext[s] else "Triggered today" if st_trig[s] else "Ready" if st_ready[s] else "Building",
+                 "stage": "Building" if flawed[s] else "Extended" if st_ext[s] else "Triggered today" if st_trig[s] else "Ready" if st_ready[s] else "Building",
                  "trigger": round(float(trigger[s]), 2), "stop": round(float(stop[s]), 2), "risk": round(100 * (1 - stop[s] / trigger[s]), 1),
                  "rs": int(rs[s]), "close": round(float(last[s]), 2), "adr": round(100 * adr[s], 1),
                  "runup": round(100 * runup[s], 0), "depth": round(100 * depth[s], 1), "range5": round(100 * rng5[s], 1),
