@@ -39,22 +39,29 @@ rows = "".join(
 html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>NSE market regime</title>
 <style>
-:root{{--bg:#fcfcfb;--ink:#0b0b0b;--ink2:#52514e;--mut:#898781;--grid:#e1e0d9;--s:#2a78d6;--card:#f4f4f1}}
-@media(prefers-color-scheme:dark){{:root{{--bg:#1a1a19;--ink:#f0efec;--ink2:#c3c2b7;--mut:#898781;--grid:#2c2c2a;--s:#5b9be8;--card:#232321}}}}
-*{{box-sizing:border-box}}body{{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}}
-main{{max-width:880px;margin:0 auto;padding:24px 16px 48px}}h1{{font-size:15px;font-weight:600;color:var(--ink2);margin:0}}
-h2{{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin:36px 0 12px;font-weight:600}}
-.hero{{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin:8px 0 4px}}.num{{font-size:72px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}}
-.zone{{font-size:22px;font-weight:600}}.sub{{color:var(--ink2)}}.read{{margin:12px 0 0;max-width:62ch}}
-.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}}
-.m{{background:var(--card);border-radius:10px;padding:12px 14px}}.mh{{display:flex;justify-content:space-between;gap:10px;font-weight:600}}.v{{white-space:nowrap}}
-.v{{font-variant-numeric:tabular-nums}}.v small{{color:var(--mut);font-weight:400;margin-left:6px}}
-.track{{height:8px;background:var(--grid);border-radius:4px;margin:8px 0 6px;overflow:hidden}}.fill{{height:100%;background:var(--s);border-radius:4px}}
-.d{{font-size:12.5px;color:var(--ink2)}}#chart{{position:relative}}svg{{display:block;width:100%;height:auto}}
-#tip{{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:4px 8px;border-radius:6px;font-size:12.5px;white-space:nowrap;display:none;transform:translate(-50%,-130%)}}
-table{{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}}th,td{{text-align:right;padding:6px 8px;border-bottom:1px solid var(--grid)}}
-th{{color:var(--mut);font-weight:600;font-size:12.5px}}th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){{text-align:left}}
-.tw{{overflow-x:auto}}.note{{color:var(--ink2);font-size:13.5px;max-width:70ch}}.note li{{margin:4px 0}}
+:root{{--bg:#f6f5f1;--card:#ffffff;--ink:#14161a;--ink2:#4d5158;--mut:#8b8f97;--grid:#e6e4dd;--s:#2a78d6;--soft:#eaf1fb;--shadow:0 1px 2px rgba(20,22,26,.04),0 8px 24px rgba(20,22,26,.05)}}
+@media(prefers-color-scheme:dark){{:root{{--bg:#0e1014;--card:#161920;--ink:#eef0f3;--ink2:#b4b9c2;--mut:#7d838e;--grid:#262a33;--s:#5b9be8;--soft:#18243a;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25)}}}}
+*{{box-sizing:border-box}}html{{-webkit-text-size-adjust:100%}}
+body{{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}}
+main{{max-width:960px;margin:0 auto;padding:20px 20px 64px}}
+h1{{font-size:26px;line-height:1.2;font-weight:750;letter-spacing:-.02em;margin:6px 0 2px;color:var(--ink)}}
+h2{{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);margin:38px 0 12px;font-weight:700}}
+.hero{{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin:18px 0 6px;padding:22px 24px;background:var(--card);border:1px solid var(--grid);border-radius:18px;box-shadow:var(--shadow)}}
+.num{{font-size:84px;font-weight:800;line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums}}
+.zone{{font-size:22px;font-weight:700;letter-spacing:-.01em}}.sub{{color:var(--ink2);margin-top:2px}}.read{{margin:14px 0 0;max-width:68ch;color:var(--ink2);font-size:15.5px}}
+.grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}}
+.m{{background:var(--card);border:1px solid var(--grid);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}}
+.mh{{display:flex;justify-content:space-between;gap:10px;font-weight:650}}.v{{font-variant-numeric:tabular-nums;white-space:nowrap}}.v small{{color:var(--mut);font-weight:500;margin-left:6px}}
+.track{{height:8px;background:var(--grid);border-radius:99px;margin:10px 0 8px;overflow:hidden}}.fill{{height:100%;background:var(--s);border-radius:99px}}
+.d{{font-size:12.5px;color:var(--ink2);line-height:1.45}}
+#chart{{position:relative;background:var(--card);border:1px solid var(--grid);border-radius:14px;padding:14px 10px 6px;box-shadow:var(--shadow)}}svg{{display:block;width:100%;height:auto}}
+#tip{{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:5px 9px;border-radius:8px;font-size:12.5px;font-weight:600;white-space:nowrap;display:none;transform:translate(-50%,-130%)}}
+.tw{{overflow-x:auto;background:var(--card);border:1px solid var(--grid);border-radius:14px;box-shadow:var(--shadow)}}
+table{{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}}
+th,td{{text-align:right;padding:9px 12px;border-bottom:1px solid var(--grid)}}tbody tr:last-child td{{border-bottom:0}}tbody tr:hover td{{background:var(--soft)}}
+th{{color:var(--mut);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;background:var(--card);white-space:nowrap}}
+th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){{text-align:left}}
+.note{{color:var(--ink2);font-size:13.5px;max-width:78ch;padding-left:18px}}.note li{{margin:6px 0}}
 </style></head><body><main>
 <h1>NSE market regime &middot; close of {r.index[-1]:%A %d %B %Y}</h1>{prov}
 <div class="hero"><div class="num">{last['score']:.0f}</div><div><div class="zone">{icon} {last['zone']}</div>

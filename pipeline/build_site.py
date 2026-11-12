@@ -12,11 +12,15 @@ from common import DATA, load_prices
 docs = DATA / "docs"
 index = (docs / "index.html").read_text()
 css = re.search(r"<style>.*?</style>", index, re.S).group(0).replace("</style>", """
-nav{display:flex;gap:18px;margin:0 0 18px;font-weight:600}nav a{color:var(--ink2);text-decoration:none;padding-bottom:4px}
-nav a.on{color:var(--ink);border-bottom:2px solid var(--s)}td.l,th.l{text-align:left}td.up{color:var(--ink)}td.sm{font-size:12.5px;color:var(--ink2)}
-select,input,button{font:inherit;padding:6px 8px;border:1px solid var(--grid);border-radius:6px;background:var(--bg);color:var(--ink);margin:0 8px 12px 0}button{cursor:pointer}
-main.wide{max-width:1600px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
-main a{color:inherit;text-decoration:underline dotted;text-underline-offset:3px}th{cursor:pointer;user-select:none}th[data-d]::after{content:" \2195"}
+nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 -20px 14px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--grid)}
+nav b{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-right:14px}nav b i{font-style:normal;color:var(--s)}
+nav a{color:var(--ink2);text-decoration:none;padding:6px 12px;border-radius:99px;font-weight:600;font-size:14px}nav a:hover{background:var(--soft);color:var(--ink)}
+nav a.on{background:var(--ink);color:var(--bg)}td.l,th.l{text-align:left}td.sm{font-size:12.5px;color:var(--ink2)}
+select,input,button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--grid);border-radius:10px;background:var(--card);color:var(--ink);margin:0 8px 12px 0}
+input:focus,select:focus{outline:2px solid var(--s);outline-offset:1px}button{cursor:pointer;font-weight:600}button:hover{background:var(--soft)}
+#add,#dx,#dt,#frm button[type=submit]{background:var(--s);border-color:var(--s);color:#fff}#add:hover,#dx:hover,#dt:hover{filter:brightness(1.08);background:var(--s)}
+main.wide{max-width:1640px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
+main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}main nav a{border-bottom:0}th{cursor:pointer;user-select:none}th[data-d]::after{content:" \2195"}
 .bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style>""")
 day = re.search(r"close of ([^<]+)</h1>", index).group(1)
 
@@ -29,7 +33,7 @@ SORT = ('<script>document.querySelectorAll("th").forEach((th,i)=>{th.title="Clic
 
 def nav(on):
     items = (("index.html", "Regime"), ("sectors.html", "Sectors"), ("setups.html", "Setups"), ("fundamentals.html", "Fundamentals"), ("journal.html", "Journal"))
-    return "<nav>" + "".join(f'<a href="{h}"{" class=on" if t == on else ""}>{t}</a>' for h, t in items) + "</nav>"
+    return "<nav><b>Swing<i>Desk</i></b>" + "".join(f'<a href="{h}"{" class=on" if t == on else ""}>{t}</a>' for h, t in items) + "</nav>"
 
 
 def page(title, on, body, script=""):
