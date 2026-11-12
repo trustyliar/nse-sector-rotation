@@ -1,5 +1,7 @@
 """Stock relative strength, theme (sector) rankings and setup scans. Run nightly after regime.py."""
+import os
 import sys
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -9,7 +11,10 @@ from common import DATA, load_prices
 from regime import wide, MIN_TURNOVER
 from themes import theme
 
-w = wide(load_prices(pd.Timestamp.today() - pd.Timedelta(days=560)))
+ASOF = os.environ.get("ASOF")                      # research: score the market as of a past date
+END = pd.Timestamp(ASOF) if ASOF else pd.Timestamp.today()
+OUT = Path(os.environ.get("OUT_DIR", DATA / "derived"))
+w = {k: x.loc[:END] for k, x in wide(load_prices(END - pd.Timedelta(days=560))).items()}
 c, h, l, v, tv = w["close"], w["high"], w["low"], w["volume"], w["turnover"]
 cl = pd.read_csv(DATA / "meta" / "classification.csv")
 th = pd.Series({r.symbol: theme(r.symbol, r.yahoo_industry, r.name) for r in cl.itertuples()})
@@ -56,7 +61,7 @@ now["top"] = [", ".join(stocks[stocks["theme"] == t].index[:4]) for t in now.ind
 # ---- setups: Kullamagi-style quality score on leaders (liquid, price >= 40, above 200-day, RS >= 70)
 # What is scored: a strong prior move, an orderly shallow consolidation, tightening ranges,
 # price riding the 10/20 EMA, and volume drying up. Tags describe what the chart is doing today.
-o = load_prices(pd.Timestamp.today() - pd.Timedelta(days=40)).pivot(index="date", columns="symbol", values="open").reindex(columns=c.columns)
+o = load_prices(END - pd.Timedelta(days=40)).pivot(index="date", columns="symbol", values="open").loc[:END].reindex(columns=c.columns)
 e10, e20, e50 = (c.ewm(span=n, min_periods=n).mean().iloc[-1] for n in (10, 20, 50))
 last, lo, hi = c.iloc[-1], l.iloc[-1], h.iloc[-1]
 ma200 = c.rolling(200, min_periods=150).mean().iloc[-1]
@@ -84,20 +89,20 @@ sc_move = clip((runup - 0.15) / 0.45)
 sc_tight = 0.7 * clip((3.2 - rng5 / adr) / 1.9) + 0.3 * clip((0.75 - rng10 / rng30) / 0.40)
 E20 = c.ewm(span=20, min_periods=20).mean()
 rising20 = E20.iloc[-1] > E20.iloc[-6]
-align = ((last >= e20).astype(int) + (e10 >= e20) + (e20 >= e50) + (e50 >= ma200) + rising20) / 5
+align = ((last >= e20 * (1 - 0.5 * adr)).astype(int) + (e10 >= e20) + (e20 >= e50) + (e50 >= ma200) + rising20) / 5
 near = pd.concat([(last / e10 - 1).abs(), (last / e20 - 1).abs()], axis=1).min(axis=1)   # the EMAs have caught up with price
 sc_trend = 0.6 * align + 0.4 * clip(1 - near / (1.5 * adr))
 basevol = pd.Series(basevol).reindex(c.columns)
 sc_dry = clip((1.0 - basevol.fillna(vdry)) / 0.6)
 sc_depth = clip((0.25 - depth) / 0.20)
 # A setup needs a base: time spent going sideways after the high. None = still running (no setup).
-sc_base = (clip((since - 3) / 4) * clip((50 - since) / 20)).fillna(0)   # full credit for a 7-30 session base
+sc_base = (clip((since - 1) / 3) * clip((50 - since) / 20)).fillna(0)   # full credit for a 4-30 session base; none while still at the high
 quality = 100 * (0.20 * sc_move + 0.25 * sc_tight + 0.20 * sc_trend + 0.10 * sc_dry + 0.10 * sc_depth + 0.15 * sc_base)
 quality = quality * (0.5 + 0.5 * sc_base.clip(lower=0.0)) * clip(adr / 0.03).clip(lower=0.7)   # no base or a sleepy stock: marked down
 rs = stocks["rs"].reindex(c.columns)
 tstr = th.reindex(c.columns).map(now["strength"]).fillna(50)
 rank_score = 0.65 * quality + 0.20 * rs + 0.15 * tstr
-base = liquid.iloc[-1] & (last > ma200) & (rs >= 70) & (adr >= 0.02)
+base = liquid.iloc[-1] & ((last > ma200) | ma200.isna()) & (rs >= 70) & (adr >= 0.02)      # recent listings have no 200-day average yet
 up = (e10 >= e20) & (e20 >= e50)
 day_rng = h / l - 1
 gap = (o / c.shift(1) - 1).tail(5)
@@ -109,7 +114,7 @@ TAGS = {
     "Inside day": up & (hi <= h.iloc[-2]) & (lo >= l.iloc[-2]) & (depth <= 0.20),
     "Narrowest in 7": up & (day_rng.iloc[-1] <= day_rng.tail(7).min()) & (depth <= 0.20),
     "At 10 EMA": up & (lo <= e10 * (1 + 0.4 * adr)) & (last >= e10 * 0.995) & (last <= e10 * (1 + adr)),
-    "At 20 EMA": up & (lo <= e20 * (1 + 0.4 * adr)) & (last >= e20 * 0.99) & (last <= e20 * (1 + adr)),
+    "At 20 EMA": (e20 >= e50) & (lo <= e20 * (1 + 0.4 * adr)) & (last >= e20 * (1 - 0.6 * adr)) & (last <= e20 * (1 + adr)),
     "At 50 EMA": (e50 > ma200) & (lo <= e50 * (1 + 0.5 * adr)) & (last >= e50 * 0.99) & (last <= e50 * (1 + 1.2 * adr)),
     "Turning up off EMA": up & (since >= 4) & (depth <= 0.20) & (l.tail(3).min() <= e20 * (1 + 0.5 * adr)) & (last > h.iloc[-2]) & (last >= e20),
     "Episodic pivot": epday.any() & (last >= ep_low),
@@ -132,9 +137,13 @@ for s in cand[cand].index:
 setups = pd.DataFrame(rows).sort_values("rank_score", ascending=False) if rows else pd.DataFrame()
 now["setups"] = (setups[setups["grade"].isin(["A+", "A"])].groupby("theme").symbol.nunique().reindex(now.index).fillna(0).astype(int)
                  if len(setups) else 0)
-(DATA / "derived").mkdir(exist_ok=True)
-now.round(1).to_csv(DATA / "derived" / "themes.csv")
-setups.to_csv(DATA / "derived" / "setups.csv", index=False)
-stocks.assign(close=last.reindex(stocks.index).round(2)).to_csv(DATA / "derived" / "stocks.csv")
+OUT.mkdir(parents=True, exist_ok=True)
+now.round(1).to_csv(OUT / "themes.csv")
+setups.to_csv(OUT / "setups.csv", index=False)
+if ASOF:
+    pd.DataFrame({"quality": quality, "rs": rs, "liquid": liquid.iloc[-1], "above200": last > ma200, "adr": adr, "eligible": base,
+                  "candidate": cand, "runup": runup, "since": since, "depth": depth, "move": sc_move, "tight": sc_tight, "trend": sc_trend,
+                  "dry": sc_dry, "depthS": sc_depth, "baseS": sc_base, "vs20": last / e20 - 1, "rng5_adr": rng5 / adr}).to_csv(OUT / "all_scores.csv")
+stocks.assign(close=last.reindex(stocks.index).round(2)).to_csv(OUT / "stocks.csv")
 print(now.head(12)[["n", "r1w", "r1m", "r3m", "above50", "leaders", "rank_change", "setups", "top"]].round(1).to_string())
 print("themes", len(now), "| setups", len(setups), setups["grade"].value_counts().to_dict(), tagdf[cand].sum().to_dict())
