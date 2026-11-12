@@ -100,15 +100,19 @@ sc_depth = clip((0.25 - depth) / 0.20)
 sc_base = (clip((since - 1) / 3) * clip((50 - since) / 20)).fillna(0)   # full credit for a 4-30 session base; none while still at the high
 quality = 100 * (0.20 * sc_move + 0.25 * sc_tight + 0.20 * sc_trend + 0.10 * sc_dry + 0.10 * sc_depth + 0.15 * sc_base)
 quality = quality * (0.5 + 0.5 * sc_base.clip(lower=0.0)) * clip(adr / 0.03).clip(lower=0.7)   # no base or a sleepy stock: marked down
-# Overhead supply: a large red candle in the last 25 sessions that price has not yet closed back above.
-# Sellers trapped there need time to be absorbed, so the base is not ready however tight it looks.
+# Overhead supply: a large red candle in the last 25 sessions that was FOLLOWED by more selling (three-session
+# fall of 12%+ or two daily ranges) and that price has not yet closed back above. A big red candle that
+# stabilised at once is normal in good bases and is not flagged (checked against the trader's past winners).
 Ot, Ct = o.reindex(c.index).tail(25), c.tail(25)
 thr = pd.concat([1.3 * adr, pd.Series(0.08, index=adr.index)], axis=1).max(axis=1)
+prev = c.shift(1)
 bad = (Ct / Ot - 1).le(-thr, axis=1) | c.pct_change(fill_method=None).tail(25).le(-thr, axis=1)
+leg3 = (c.shift(-2).ffill() / prev - 1).tail(25)          # fall from the close before the candle to two sessions after it
+bad = bad & leg3.le(-pd.concat([2 * adr, pd.Series(0.12, index=adr.index)], axis=1).max(axis=1), axis=1)
 supply = pd.Series(False, index=c.columns)
 for sym in bad.columns[bad.any()]:
     day = bad.index[bad[sym]][-1]
-    ref = max(Ot.at[day, sym], c.shift(1).at[day, sym]) if pd.notna(Ot.at[day, sym]) else c.shift(1).at[day, sym]
+    ref = max(Ot.at[day, sym], prev.at[day, sym]) if pd.notna(Ot.at[day, sym]) else prev.at[day, sym]
     supply[sym] = bool(last[sym] < ref)
 quality = quality * (1 - 0.3 * supply)
 rs = stocks["rs"].reindex(c.columns)
