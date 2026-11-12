@@ -19,6 +19,10 @@ chg = last["score"] - prev["score"]
 reading = (f"The score is {last['score']:.0f}, {'up' if chg >= 0 else 'down'} {abs(chg):.0f} points in five sessions. "
            f"Strongest part: {strong[1].lower()} ({last[strong[0]]:.0f}). "
            f"Weakest part: {weak[1].lower()} ({last[weak[0]]:.0f}).")
+import json as _j
+_st = DATA / "meta" / "state.json"
+prov = ('<p class="sub">Provisional closing prices. NSE\'s official file replaces them later this evening.</p>'
+        if _st.exists() and _j.loads(_st.read_text()).get("provisional") == str(r.index[-1].date()) else "")
 hist = r.tail(250)
 data = {"dates": [d.strftime("%d %b %Y") for d in hist.index], "score": [round(float(v), 1) for v in hist["score"]],
         "zones": [[a, b] for a, b in ZONES]}
@@ -52,7 +56,7 @@ table{{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}}th
 th{{color:var(--mut);font-weight:600;font-size:12.5px}}th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){{text-align:left}}
 .tw{{overflow-x:auto}}.note{{color:var(--ink2);font-size:13.5px;max-width:70ch}}.note li{{margin:4px 0}}
 </style></head><body><main>
-<h1>NSE market regime &middot; close of {r.index[-1]:%A %d %B %Y}</h1>
+<h1>NSE market regime &middot; close of {r.index[-1]:%A %d %B %Y}</h1>{prov}
 <div class="hero"><div class="num">{last['score']:.0f}</div><div><div class="zone">{icon} {last['zone']}</div>
 <div class="sub">{chg:+.0f} vs five sessions ago &middot; {last['universe']:.0f} liquid stocks</div></div></div>
 <p class="read">{reading}</p>

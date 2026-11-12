@@ -11,7 +11,7 @@ import time
 
 import pandas as pd
 
-from common import (DATA, COLS, fetch_bhavcopy, http_get, load_adjustments, load_raw, read_state,
+from common import (DATA, COLS, IST, fetch_bhavcopy, http_get, load_adjustments, load_raw, read_state,
                     symbols_master, today_ist, write_prices, write_state, yahoo_batch)
 
 state = read_state()
@@ -41,10 +41,15 @@ while d <= today:
         source = "nse"
     except Exception as e:                                       # noqa: BLE001
         bhav, why, source = None, f"nse_error:{type(e).__name__}", "yahoo"
-    if bhav is None and why.startswith("nse_error"):
+    # NSE publishes its official file some hours after the 3:30 pm close. For a 4 pm refresh, use Yahoo's
+    # closing prices as provisional; the next run after NSE publishes replaces them with the official ones.
+    now = dt.datetime.now(IST)
+    early = why == "not_published" and d == today and d.weekday() < 5 and now.hour * 60 + now.minute >= 15 * 60 + 40
+    if bhav is None and (str(why).startswith("nse_error") or early):
         y, _ = yahoo_batch(sorted(listed), str(d), str(d + dt.timedelta(days=1)), log=lambda *_: None)
         if len(y) > 500:
             bhav = y.assign(prev_close=float("nan"), series="EQ")
+            source = "yahoo"
             log.append(f"- {d}: NSE unreachable ({why}); used Yahoo, {len(y)} stocks")
     if bhav is None:
         if d.weekday() < 5 or why != "not_published":
@@ -149,6 +154,7 @@ if adj_rows:
     a = a.drop_duplicates(["symbol", "ex_date"], keep="last").sort_values(["ex_date", "symbol"])
     a.to_csv(DATA / "meta" / "adjustments.csv", index=False)
 
+state["provisional"] = str(done_dates[-1]) if done_dates and source == "yahoo" and done_dates[-1] == today else ""
 state["last_run"] = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
 write_state(state)
 rep = ["# Daily update report", "", f"Run: {state['last_run']}; range {first} to {today}", "", "## Days", ""] + log
