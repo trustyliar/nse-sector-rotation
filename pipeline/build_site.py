@@ -4,7 +4,10 @@ from urllib.parse import quote
 
 import pandas as pd
 
-from common import DATA
+import json
+from pathlib import Path
+
+from common import DATA, load_prices
 
 docs = DATA / "docs"
 index = (docs / "index.html").read_text()
@@ -25,7 +28,7 @@ SORT = ('<script>document.querySelectorAll("th").forEach((th,i)=>{th.title="Clic
 
 
 def nav(on):
-    items = (("index.html", "Regime"), ("sectors.html", "Sectors"), ("setups.html", "Setups"))
+    items = (("index.html", "Regime"), ("sectors.html", "Sectors"), ("setups.html", "Setups"), ("journal.html", "Journal"))
     return "<nav>" + "".join(f'<a href="{h}"{" class=on" if t == on else ""}>{t}</a>' for h, t in items) + "</nav>"
 
 
@@ -35,6 +38,7 @@ def page(title, on, body, script=""):
             f'{nav(on)}<h1>{title} &middot; close of {day}</h1>{body}</main>{SORT}{script}</body></html>')
 
 
+index = re.sub(r"<nav>.*?</nav>", "", index)
 if "<nav>" not in index:
     index = index.replace("</style>", css.split("</style>")[0].split("nav{")[1].join(["\nnav{", "</style>"]), 1) \
                  .replace("<main>", "<main>" + nav("Regime"), 1)
@@ -99,4 +103,11 @@ js = ('<script>const $=i=>document.getElementById(i),k=$("k"),t=$("t"),q=$("q"),
       '.concat(vis().map(r=>[...r.cells].map(cell).join(","))).join("\\n"),"text/csv");'
       '$("dt").onclick=()=>save("nse-setups-"+day+".txt",vis().map(r=>"NSE:"+r.cells[1].textContent.trim().replace(/[&-]/g,"_")).join(","),"text/plain")</script>')
 (docs / "setups.html").write_text(page("NSE setups", "Setups", body, js))
+# Journal: latest close for every NSE stock, and the page itself (trades stay in the visitor's browser)
+px = load_prices(pd.Timestamp.today() - pd.Timedelta(days=12)).sort_values("date")
+lastpx = px.groupby("symbol")["close"].last().round(2)
+(docs / "prices.json").write_text(json.dumps({"date": px["date"].max().strftime("%d %b %Y"), "p": lastpx.to_dict()}, separators=(",", ":")))
+jb = (Path(__file__).parent / "journal_body.html").read_text()
+jbody, jscript = jb.split("<script>", 1)
+(docs / "journal.html").write_text(page("Trade journal", "Journal", jbody, "<script>" + jscript).replace("close of " + day, "prices as of close of " + day))
 print("site built:", len(t), "themes,", len(s), "setups")
