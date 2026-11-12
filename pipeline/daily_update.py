@@ -34,6 +34,7 @@ last_close = (hist[hist["date"] < pd.Timestamp(first)].sort_values("date")
               .groupby("symbol")["close"].last().to_dict())
 adj_rows, log, done_dates, unresolved, warnings = [], [], [], [], []
 
+source = ""
 d = first
 while d <= today:
     try:
