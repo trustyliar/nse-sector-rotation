@@ -52,20 +52,22 @@ ago = len(rv.loc[trig:]) - 1 if trig is not None else 99
 if ago <= 10:
     stop = rv.loc[trig, "low10"]
     since = 100 * (x["idx"] / rv.loc[trig, "idx"] - 1)
-    state = (f"<b>&#9650; Turn signal on {trig:%d %b}</b> ({ago} sessions ago). Small caps are {since:+.1f}% since. "
-             + ("The signal has <b>failed</b>: the index closed below the low before the signal." if x["idx"] < stop
-                else "It fails if small caps close below the low set before the signal."))
-elif x["os5"] >= 60:
-    state = ("<b>&#9679; Oversold: watch for the turn day.</b> The trigger is a day when small caps gain 1%+, stocks up 4% "
+    state = (f"<b>&#9650; DEPLOY signal on {trig:%d %b}</b> ({ago} sessions ago). Small caps are {since:+.1f}% since. "
+             + ("The signal has <b>failed</b>: small caps closed below the low before the signal." if x["idx"] < stop
+                else "Exit if small caps close below the low set before the signal."))
+elif x["os5"] >= 80:
+    state = ("<b>&#9679; GET READY: deeply oversold.</b> Deploy on the turn day: small caps gain 1%+, stocks up 4% "
              "outnumber stocks down 4% by two to one, and more stocks are back above their 20-day average.")
+elif x["os5"] >= 60:
+    state = "<b>&#9679; WATCH: getting oversold.</b> No action yet; the deploy zone starts at 80."
 else:
-    state = "<b>Not oversold.</b> No reversal setup in the broad market right now."
+    state = "<b>STAND BY: not oversold.</b> No reversal setup in the broad market."
 panel = (f'<h2>Reversal watch (small caps)</h2><div class="m"><div class="mh"><span>Oversold score</span><span class="v">{x["oversold"]:.0f}</span></div>'
          f'<div class="track"><div class="fill" style="width:{x["oversold"]:.0f}%"></div></div><div>{state}</div>'
          f'<div class="d" style="margin-top:6px">Stocks above their 10-day average: {x["a10"]:.0f}% &middot; 20-day: {x["a20"]:.0f}% &middot; '
          f'50-day: {x["a50"]:.0f}% &middot; at 20-day lows: {x["lows20"]:.0f}% &middot; down share of 4% moves, 10 days: {x["dn10"]:.0f}%. '
-         'The score uses breadth only and is oversold at 60 or more; at past sell-off lows, under 20% of stocks were above their 20-day average. '
-         'Tested on 14 lows marked by hand: it flagged all 8 deep sell-offs and none of the 6 shallow dips. About a third of signals since October 2023 failed.</div></div>')
+         'Under 60: stand by. 60 to 80: watch. 80 or more: get ready, then deploy on the turn day. In tests since 2019 that rule was higher 20 sessions later about 70% of the time; the worst case fell a further 36% (March 2020), so the exit rule matters. '
+         'It catches deep sell-offs, not shallow dips.</div></div>')
 if "Reversal watch" not in index:
     index = index.replace("<h2>The five parts", panel + "<h2>The five parts", 1)
     (docs / "index.html").write_text(index)

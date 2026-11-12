@@ -29,7 +29,7 @@ F["oversold"] = 100 * pd.concat([sc(F.a20, 50, 15), sc(F.a10, 45, 12), sc(F.a50,
                                  sc(F.dn10, 50, 75)], axis=1).mean(axis=1)
 F["os5"] = F["oversold"].rolling(5).max()
 F["r1"] = 100 * idx.pct_change()
-F["turn"] = (F.os5 >= 60) & (F.r1 >= 1.0) & (F.up4 >= 2 * F.dn4.clip(lower=1)) & (F.a20 > F.a20.shift(1))
+F["turn"] = (F.os5 >= 80) & (F.r1 >= 1.0) & (F.up4 >= 2 * F.dn4.clip(lower=1)) & (F.a20 > F.a20.shift(1))
 F["first"] = F.turn & ~(F.turn.shift(1).rolling(8).max().fillna(0).astype(bool))
 F["low10"] = idx.rolling(10).min()
 (DATA / "derived").mkdir(exist_ok=True)
