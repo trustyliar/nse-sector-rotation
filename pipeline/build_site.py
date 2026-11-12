@@ -28,7 +28,7 @@ SORT = ('<script>document.querySelectorAll("th").forEach((th,i)=>{th.title="Clic
 
 
 def nav(on):
-    items = (("index.html", "Regime"), ("sectors.html", "Sectors"), ("setups.html", "Setups"), ("journal.html", "Journal"))
+    items = (("index.html", "Regime"), ("sectors.html", "Sectors"), ("setups.html", "Setups"), ("fundamentals.html", "Fundamentals"), ("journal.html", "Journal"))
     return "<nav>" + "".join(f'<a href="{h}"{" class=on" if t == on else ""}>{t}</a>' for h, t in items) + "</nav>"
 
 
@@ -145,6 +145,42 @@ js = ('<script>const $=i=>document.getElementById(i),k=$("k"),t=$("t"),q=$("q"),
       '.concat(vis().map(r=>[...r.cells].map(cell).join(","))).join("\\n"),"text/csv");'
       '$("dt").onclick=()=>save("nse-setups-"+day+".txt",vis().map(r=>"NSE:"+r.cells[1].textContent.trim().replace(/[&-]/g,"_")).join(","),"text/plain")</script>')
 (docs / "setups.html").write_text(page("NSE setups", "Setups", body, js))
+# Fundamentals: setups joined with quarterly growth numbers (a separate section; the setup scoring is untouched)
+fpath = DATA / "meta" / "fundamentals.csv"
+if fpath.exists():
+    fz = pd.read_csv(fpath, index_col=0)
+    m = pd.read_csv(DATA / "derived" / "setups.csv")
+    m = m[m["grade"] != "C"].merge(fz, left_on="symbol", right_index=True, how="left")
+    m["tf"] = 0.5 * m["rank_score"] + 0.5 * m["growth_score"]
+    m["label"] = pd.cut(m["growth_score"], [-1, 50, 70, 101], labels=["Weak", "Good", "Strong"], right=False).astype(object).fillna("No data")
+    m = m.sort_values(["tf", "rank_score"], ascending=False, na_position="last").reset_index(drop=True)
+    nn = lambda v, f="{:.0f}", suf="": "&ndash;" if pd.isna(v) else f.format(v) + suf
+    qlab = lambda q: "&ndash;" if not isinstance(q, str) or len(q) < 7 else pd.Timestamp(q).strftime("%b %Y")
+    frows = "".join(
+        f'<tr data-g="{r.label}" data-s="{r.stage}"><td>{i + 1}</td>'
+        f'<td class="l"><b><a target="_blank" rel="noopener" href="{tv_link(r.symbol)}">{r.symbol}</a></b></td><td class="l">{r.theme}</td>'
+        f'<td><b>{nn(r.tf)}</b></td><td>{r.grade}</td><td class="l">{r.stage}</td><td>{nn(r.growth_score)}</td><td class="l">{r.label}</td>'
+        f'<td class="l">{qlab(r.latest_q)}</td><td>{nn(r.rev0, "{:,.0f}")}</td><td>{nn(r.sales_yoy, "{:+.0f}", "%")}</td><td>{nn(r.sales_yoy_prev, "{:+.0f}", "%")}</td>'
+        f'<td>{nn(r.ni0, "{:,.0f}")}</td><td>{"Turnaround" if r.turnaround is True else nn(r.profit_yoy, "{:+.0f}", "%")}</td>'
+        f'<td>{nn(r.opm, "{:.0f}", "%")}</td><td>{nn(r.opm_yago, "{:.0f}", "%")}</td><td>{nn(r.roe * 100 if pd.notna(r.roe) else r.roe, "{:.0f}", "%")}</td>'
+        f'<td>{nn(r.de / 100 if pd.notna(r.de) else r.de, "{:.1f}")}</td><td>{nn(r.pe)}</td></tr>' for i, r in enumerate(m.itertuples()))
+    strong = int(((m["label"] == "Strong") & (m["stage"] == "Ready")).sum())
+    fbody = (f'<p class="read">The same {len(m)} setups, joined with each company\'s latest quarterly numbers. {strong} are both Ready and Strong on growth. '
+             'The idea is conviction: a clean setup in a company whose sales and profits are growing fast is easier to hold. Click a heading to sort.</p>'
+             '<input id="q" placeholder="Search stock or theme"><select id="g"><option value="">All growth</option><option>Strong</option><option>Good</option><option>Weak</option><option>No data</option></select>'
+             '<select id="s"><option value="">All stages</option><option>Ready</option><option>Triggered today</option><option>Building</option><option>Extended</option></select>'
+             '<div class="tw"><table><thead><tr><th>#</th><th class="l">Stock</th><th class="l">Theme</th><th>Techno-funda</th><th>Setup</th><th class="l">Stage</th><th>Growth score</th><th class="l">Growth</th>'
+             '<th class="l">Quarter</th><th>Sales (cr)</th><th>Sales YoY</th><th>Prev qtr YoY</th><th>Profit (cr)</th><th>Profit YoY</th><th>Op. margin</th><th>Year ago</th><th>ROE</th><th>Debt/equity</th><th>P/E</th>'
+             f'</tr></thead><tbody id="b">{frows}</tbody></table></div>'
+             '<ul class="note"><li><b>Growth score (0-100):</b> sales growth year on year 30%, profit growth 30%, acceleration against the previous quarter 20%, operating margin against a year ago 20%. Strong is 70+, Good is 50+.</li>'
+             '<li><b>Techno-funda</b> is the average of the setup rank score and the growth score.</li>'
+             '<li><b>Source and limits:</b> figures come from Yahoo Finance and can be wrong, late, or a mix of standalone and consolidated. A stock showing an older quarter has not had its latest results loaded yet. Check the company\'s own filing before relying on a number.</li>'
+             '<li>Order book, guidance and execution are not in this table; they need reading results and concalls stock by stock.</li></ul>')
+    fjs = ('<script>const $=i=>document.getElementById(i),q=$("q"),g=$("g"),sg=$("s"),f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display='
+           '(!g.value||r.dataset.g==g.value)&&(!sg.value||r.dataset.s==sg.value)&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");'
+           'g.onchange=sg.onchange=q.oninput=f</script>')
+    (docs / "fundamentals.html").write_text(page("NSE techno-funda", "Fundamentals", fbody, fjs))
+
 # Journal: latest close for every NSE stock, and the page itself (trades stay in the visitor's browser)
 px = load_prices(pd.Timestamp.today() - pd.Timedelta(days=12)).sort_values("date")
 lastpx = px.groupby("symbol")["close"].last().round(2)
