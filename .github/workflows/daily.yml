@@ -9,9 +9,10 @@ on:
         description: Type "reset" to clear recorded split adjustments first
         default: ""
   schedule:
-    # 19:37 and 21:07 IST on trading days, plus 08:07 IST next morning as a safety net
-    - cron: "7 14 * * 1-5"
-    - cron: "37 15 * * 1-5"
+    # GitHub starts scheduled jobs late (hours, at times), so try every half hour from 19:07 to 22:37 IST
+    # on trading days, plus 08:07 IST next morning. Runs after the first simply find nothing new.
+    - cron: "7,37 13-16 * * 1-5"
+    - cron: "7 17 * * 1-5"
     - cron: "37 2 * * 2-6"
 concurrency: data-branch
 permissions:
