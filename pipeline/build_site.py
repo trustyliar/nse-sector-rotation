@@ -62,10 +62,10 @@ else:
     state = "<b>Not oversold.</b> No reversal setup in the broad market right now."
 panel = (f'<h2>Reversal watch (small caps)</h2><div class="m"><div class="mh"><span>Oversold score</span><span class="v">{x["oversold"]:.0f}</span></div>'
          f'<div class="track"><div class="fill" style="width:{x["oversold"]:.0f}%"></div></div><div>{state}</div>'
-         f'<div class="d" style="margin-top:6px">Stocks above 20-day: {x["a20"]:.0f}% &middot; RSI: {x["rsi"]:.0f} &middot; '
-         f'from 60-day high: {x["dd"]:.1f}% &middot; stocks at 20-day lows: {x["lows20"]:.0f}%. '
-         'Oversold is 60 or more. Tested on 14 lows marked by hand: it caught all 8 deep sell-offs, usually one or two sessions after the low, '
-         'and none of the 6 shallow dips. A quarter of signals since October 2023 failed.</div></div>')
+         f'<div class="d" style="margin-top:6px">Stocks above their 10-day average: {x["a10"]:.0f}% &middot; 20-day: {x["a20"]:.0f}% &middot; '
+         f'50-day: {x["a50"]:.0f}% &middot; at 20-day lows: {x["lows20"]:.0f}% &middot; down share of 4% moves, 10 days: {x["dn10"]:.0f}%. '
+         'The score uses breadth only and is oversold at 60 or more; at past sell-off lows, under 20% of stocks were above their 20-day average. '
+         'Tested on 14 lows marked by hand: it flagged all 8 deep sell-offs and none of the 6 shallow dips. About a third of signals since October 2023 failed.</div></div>')
 if "Reversal watch" not in index:
     index = index.replace("<h2>The five parts", panel + "<h2>The five parts", 1)
     (docs / "index.html").write_text(index)

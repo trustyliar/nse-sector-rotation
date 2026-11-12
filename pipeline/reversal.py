@@ -20,8 +20,13 @@ F["lows20"] = 100 * ((c <= c.rolling(20).min()) & liq).sum(axis=1) / n
 F["up4"] = ((ret >= 0.04) & liq).sum(axis=1)
 F["dn4"] = ((ret <= -0.04) & liq).sum(axis=1)
 sc = lambda x, lo, hi: ((x - lo) / (hi - lo)).clip(0, 1)
-F["oversold"] = 100 * pd.concat([sc(F.a20, 50, 15), sc(F.rsi, 50, 30), sc(F.dd, -3, -12), sc(F.lows20.rolling(5).max(), 10, 40),
-                                 sc(F.vs20, 0, -6)], axis=1).mean(axis=1)
+F["a10"] = 100 * ((c > c.rolling(10).mean()) & liq).sum(axis=1) / n
+F["a50"] = 100 * ((c > s["ma50"]) & liq).sum(axis=1) / n
+F["dn10"] = 100 * F["dn4"].rolling(10).sum() / (F["up4"].rolling(10).sum() + F["dn4"].rolling(10).sum())
+# Pure breadth: how few stocks hold their 10, 20 and 50-day averages, how many sit at 20-day lows,
+# and how lopsided the 4% moves have been. Tested equal to a version using index RSI and drawdown.
+F["oversold"] = 100 * pd.concat([sc(F.a20, 50, 15), sc(F.a10, 45, 12), sc(F.a50, 55, 25), sc(F.lows20.rolling(5).max(), 10, 40),
+                                 sc(F.dn10, 50, 75)], axis=1).mean(axis=1)
 F["os5"] = F["oversold"].rolling(5).max()
 F["r1"] = 100 * idx.pct_change()
 F["turn"] = (F.os5 >= 60) & (F.r1 >= 1.0) & (F.up4 >= 2 * F.dn4.clip(lower=1)) & (F.a20 > F.a20.shift(1))
