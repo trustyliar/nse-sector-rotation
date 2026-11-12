@@ -68,6 +68,18 @@ panel = (f'<h2>Reversal watch (small caps)</h2><div class="m"><div class="mh"><s
          f'50-day: {x["a50"]:.0f}% &middot; at 20-day lows: {x["lows20"]:.0f}% &middot; down share of 4% moves, 10 days: {x["dn10"]:.0f}%. '
          'Under 60: stand by. 60 to 80: watch. 80 or more: get ready, then deploy on the turn day. In tests since 2019 that rule was higher 20 sessions later about 70% of the time; the worst case fell a further 36% (March 2020), so the exit rule matters. '
          'It catches deep sell-offs, not shallow dips.</div></div>')
+score_now = float(re.search(r'<div class="num">([\d.]+)</div>', index).group(1))
+live = ago <= 10 and x["idx"] >= rv.loc[trig, "low10"]
+if score_now >= 55:
+    stage = ("Stage 2: stock setups favoured", "The regime score is 55 or more. This is where breakout and pullback entries tested best.")
+elif live:
+    stage = ("Stage 1: start small through the index", "A reversal signal is live but the regime score is under 55. Tests favour index or ETF exposure here; "
+             "stock setups entered this early did no better than usual. Move to stocks as A-grade setups appear and the score reaches 55.")
+elif score_now >= 40:
+    stage = ("Stage 0: selective only", "No live reversal signal and the regime score is under 55.")
+else:
+    stage = ("Stage 0: stand by", "Weak regime and no live reversal signal.")
+panel = (f'<h2>Deployment stage</h2><div class="m"><div class="mh"><span>{stage[0]}</span></div><div class="d">{stage[1]}</div></div>' + panel)
 if "Reversal watch" not in index:
     index = index.replace("<h2>The five parts", panel + "<h2>The five parts", 1)
     (docs / "index.html").write_text(index)
