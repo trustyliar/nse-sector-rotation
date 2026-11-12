@@ -86,7 +86,8 @@ hi60 = h.tail(60).max()
 depth = 1 - last / hi60
 clip = lambda x: x.clip(0, 1)
 sc_move = clip((runup - 0.15) / 0.45)
-sc_tight = 0.7 * clip((3.2 - rng5 / adr) / 1.9) + 0.3 * clip((0.75 - rng10 / rng30) / 0.40)
+crng5 = c.tail(5).max() / c.tail(5).min() - 1          # tightness of closes: one shakeout bar should not hide a tight base
+sc_tight = 0.35 * clip((3.2 - rng5 / adr) / 1.9) + 0.35 * clip((1.6 - crng5 / adr) / 1.1) + 0.3 * clip((0.75 - rng10 / rng30) / 0.40)
 E20 = c.ewm(span=20, min_periods=20).mean()
 rising20 = E20.iloc[-1] > E20.iloc[-6]
 align = ((last >= e20 * (1 - 0.5 * adr)).astype(int) + (e10 >= e20) + (e20 >= e50) + (e50 >= ma200) + rising20) / 5
@@ -121,6 +122,14 @@ TAGS = {
     "Breakout today": (last > c.shift(1).rolling(50, min_periods=50).max().iloc[-1]) & (v.iloc[-1] >= 1.5 * v.shift(1).rolling(50, min_periods=30).mean().iloc[-1]),
     "Volume dry-up": (vdry <= 0.6) & (depth <= 0.20),
 }
+# Where the stock is relative to an entry: coiled and waiting, triggered today, or already gone.
+chg = last / c.iloc[-2] - 1
+st_ext = last > e10 * (1 + 1.5 * adr)
+st_trig = (last > h.iloc[-2]) & (chg >= 0.5 * adr) & ~st_ext
+st_ready = ~st_trig & ~st_ext & (last >= e20 * (1 - 0.6 * adr)) & (last <= e10 * (1 + adr))
+trigger = hi                                             # buy-stop level for tomorrow: today's high
+stop = pd.concat([lo, trigger * (1 - 1.5 * adr)], axis=1).max(axis=1)
+stop = pd.concat([stop, trigger * (1 - 0.4 * adr)], axis=1).min(axis=1)
 ACTION = [k for k in TAGS if k != "Volume dry-up"]
 tagdf = pd.DataFrame({k: m.reindex(c.columns).fillna(False).astype(bool) for k, m in TAGS.items()})
 cand = base & tagdf[ACTION].any(axis=1)
@@ -130,6 +139,8 @@ for s in cand[cand].index:
     rows.append({"symbol": s, "theme": th.get(s, ""), "rank_score": round(float(rank_score[s]), 1), "quality": round(q, 1),
                  "grade": "A+" if q >= 75 else "A" if q >= 65 else "B" if q >= 55 else "C",
                  "tags": "; ".join(k for k in TAGS if tagdf.at[s, k]), "setup": "; ".join(k for k in TAGS if tagdf.at[s, k]),
+                 "stage": "Extended" if st_ext[s] else "Triggered today" if st_trig[s] else "Ready" if st_ready[s] else "Building",
+                 "trigger": round(float(trigger[s]), 2), "stop": round(float(stop[s]), 2), "risk": round(100 * (1 - stop[s] / trigger[s]), 1),
                  "rs": int(rs[s]), "close": round(float(last[s]), 2), "adr": round(100 * adr[s], 1),
                  "runup": round(100 * runup[s], 0), "depth": round(100 * depth[s], 1), "range5": round(100 * rng5[s], 1),
                  "vs_ema10": round(100 * (last[s] / e10[s] - 1), 1), "vs_ema20": round(100 * (last[s] / e20[s] - 1), 1),
