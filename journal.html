@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trade journal</title><style>
+:root{--bg:#f6f5f1;--card:#ffffff;--ink:#14161a;--ink2:#4d5158;--mut:#8b8f97;--grid:#e6e4dd;--s:#2a78d6;--soft:#eaf1fb;--shadow:0 1px 2px rgba(20,22,26,.04),0 8px 24px rgba(20,22,26,.05)}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1014;--card:#161920;--ink:#eef0f3;--ink2:#b4b9c2;--mut:#7d838e;--grid:#262a33;--s:#5b9be8;--soft:#18243a;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:960px;margin:0 auto;padding:20px 20px 64px}
+h1{font-size:26px;line-height:1.2;font-weight:750;letter-spacing:-.02em;margin:6px 0 2px;color:var(--ink)}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);margin:38px 0 12px;font-weight:700}
+.hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin:18px 0 6px;padding:22px 24px;background:var(--card);border:1px solid var(--grid);border-radius:18px;box-shadow:var(--shadow)}
+.num{font-size:84px;font-weight:800;line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.zone{font-size:22px;font-weight:700;letter-spacing:-.01em}.sub{color:var(--ink2);margin-top:2px}.read{margin:14px 0 0;max-width:68ch;color:var(--ink2);font-size:15.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.m{background:var(--card);border:1px solid var(--grid);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.mh{display:flex;justify-content:space-between;gap:10px;font-weight:650}.v{font-variant-numeric:tabular-nums;white-space:nowrap}.v small{color:var(--mut);font-weight:500;margin-left:6px}
+.track{height:8px;background:var(--grid);border-radius:99px;margin:10px 0 8px;overflow:hidden}.fill{height:100%;background:var(--s);border-radius:99px}
+.d{font-size:12.5px;color:var(--ink2);line-height:1.45}
+#chart{position:relative;background:var(--card);border:1px solid var(--grid);border-radius:14px;padding:14px 10px 6px;box-shadow:var(--shadow)}svg{display:block;width:100%;height:auto}
+#tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:5px 9px;border-radius:8px;font-size:12.5px;font-weight:600;white-space:nowrap;display:none;transform:translate(-50%,-130%)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--grid);border-radius:14px;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{text-align:right;padding:9px 12px;border-bottom:1px solid var(--grid)}tbody tr:last-child td{border-bottom:0}tbody tr:hover td{background:var(--soft)}
+th{color:var(--mut);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;background:var(--card);white-space:nowrap}
+th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){text-align:left}
+.note{color:var(--ink2);font-size:13.5px;max-width:78ch;padding-left:18px}.note li{margin:6px 0}
+
+nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 -20px 14px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--grid)}
+nav b{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-right:14px}nav b i{font-style:normal;color:var(--s)}
+nav a{color:var(--ink2);text-decoration:none;padding:6px 12px;border-radius:99px;font-weight:600;font-size:14px}nav a:hover{background:var(--soft);color:var(--ink)}
+nav a.on{background:var(--ink);color:var(--bg)}td.l,th.l{text-align:left}td.sm{font-size:12.5px;color:var(--ink2)}
+select,input,button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--grid);border-radius:10px;background:var(--card);color:var(--ink);margin:0 8px 12px 0}
+input:focus,select:focus{outline:2px solid var(--s);outline-offset:1px}button{cursor:pointer;font-weight:600}button:hover{background:var(--soft)}
+#add,#dx,#dt,#frm button[type=submit]{background:var(--s);border-color:var(--s);color:#fff}#add:hover,#dx:hover,#dt:hover{filter:brightness(1.08);background:var(--s)}
+main.wide{max-width:1640px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
+main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}main nav a{border-bottom:0}th{cursor:pointer;user-select:none}th[data-d]::after{content:" 95"}
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style></head><body><main class="wide"><nav><b>Swing<i>Desk</i></b><a href="index.html">Regime</a><a href="sectors.html">Sectors</a><a href="setups.html">Setups</a><a href="fundamentals.html">Fundamentals</a><a href="journal.html" class=on>Journal</a></nav><h1>Trade journal &middot; prices as of close of Friday 13 November 2026</h1><p class="read">A private trade journal. Your trades are stored only in this browser and are never uploaded, so use Backup to keep a copy or move to another device. Prices are the latest NSE close (<span id="pd"></span>), refreshed nightly.</p>
+<div class="grid" id="tiles"></div>
+<div style="margin:18px 0 4px"><label>Capital (Rs) <input id="cap" type="number" style="width:140px"></label>
+<button id="add">+ Add trade</button><select id="st"><option value="">All trades</option><option>Open</option><option>Closed</option></select>
+<button id="csv">Download CSV</button><button id="exp">Backup</button><button id="imp">Restore</button><input type="file" id="file" accept=".json" hidden></div>
+<div class="tw"><table><thead><tr><th>#</th><th class="l">Date</th><th class="l">Stock</th><th class="l">Setup</th><th class="l">Side</th><th>Avg entry</th><th>Qty</th><th>SL</th><th>SL %</th><th>CMP</th><th>Position (Rs)</th><th>Alloc %</th><th>Open qty</th><th>Avg exit</th><th>Stock move</th><th>R</th><th>Days</th><th class="l">Status</th><th>Realised</th><th>Unrealised</th><th>PF impact</th><th>Cum PF</th><th>Risk now %</th><th class="l">Plan</th><th class="l">Exit trigger</th><th class="l">Note</th><th></th></tr></thead><tbody id="jb"></tbody></table></div>
+<ul class="note"><li><b>Avg entry</b> blends the first buy and up to two pyramids. <b>R</b> is total profit or loss divided by the initial risk (entry minus stop, times total quantity).</li>
+<li><b>PF impact</b> is realised profit as a share of capital; <b>Cum PF</b> adds it up in date order. <b>Risk now</b> is what the open quantity loses at the trailing stop (or the stop), as a share of capital.</li>
+<li><b>Win rate</b> counts fully closed trades. <b>Drawdown</b> is the fall from the peak of capital plus realised profit.</li></ul>
+<dialog id="dlg" style="max-width:760px;width:94%;border:1px solid var(--grid);border-radius:12px;background:var(--bg);color:var(--ink)"><form id="frm">
+<h2 style="margin-top:0">Trade</h2><div id="flds" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:4px 10px"></div>
+<div style="margin-top:12px"><button type="submit">Save</button><button type="button" id="cancel">Cancel</button><button type="button" id="del" style="float:right">Delete trade</button></div></form></dialog>
+<datalist id="syms"></datalist><datalist id="setups"><option>Flag after big move<option>Pullback to 10 EMA<option>Pullback to 20 EMA<option>Pullback to 50 EMA<option>Tight range<option>Episodic pivot<option>Breakout</datalist>
+<datalist id="trig"><option>Stop hit<option>Trailing stop<option>Target<option>Sold into strength<option>Time stop<option>Broke 10 EMA<option>Broke 20 EMA</datalist>
+</main><script>document.querySelectorAll("th").forEach((th,i)=>{th.title="Click to sort";th.onclick=()=>{const tb=th.closest("table").tBodies[0],d=th.dataset.d=th.dataset.d=="1"?"-1":"1",key=c=>c.dataset.v??c.textContent.trim(),num=s=>{const v=parseFloat(String(s).replace(/[^0-9.+-]/g,""));return isNaN(v)||/^[A-Za-z]/.test(s)?null:v};[...tb.rows].sort((a,b)=>{const x=key(a.cells[i]),y=key(b.cells[i]),nx=num(x),ny=num(y);return d*(nx!=null&&ny!=null?nx-ny:String(x).localeCompare(String(y)))}).forEach(r=>tb.appendChild(r))}})</script><script>
+const $=i=>document.getElementById(i),KEY="nse-journal-v1",n=v=>+v||0,inr=v=>(v<0?"-":"")+"₹"+Math.abs(Math.round(v)).toLocaleString("en-IN"),
+pct=(v,d=2)=>(v>0?"+":"")+v.toFixed(d)+"%",esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S={capital:0,trades:[]},P={},editing=null;
+try{S=JSON.parse(localStorage.getItem(KEY))||S}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const F=[["date","Entry date","date"],["name","Stock (NSE symbol)","text","syms"],["setup","Setup","text","setups"],["side","Side","select",["Buy","Sell"]],
+["entry","Entry price","number"],["qty","Quantity","number"],["sl","Stop loss","number"],["tsl","Trailing stop","number"],
+["p1p","Pyramid 1 price","number"],["p1q","Pyramid 1 qty","number"],["p1d","Pyramid 1 date","date"],["cmp","CMP override","number"],
+["p2p","Pyramid 2 price","number"],["p2q","Pyramid 2 qty","number"],["p2d","Pyramid 2 date","date"],["base","Base duration (days)","number"],
+["e1p","Exit 1 price","number"],["e1q","Exit 1 qty","number"],["e1d","Exit 1 date","date"],["plan","Plan followed","select",["","Yes","No"]],
+["e2p","Exit 2 price","number"],["e2q","Exit 2 qty","number"],["e2d","Exit 2 date","date"],["trigger","Exit trigger","text","trig"],
+["e3p","Exit 3 price","number"],["e3q","Exit 3 qty","number"],["e3d","Exit 3 date","date"],["note","Quick note","text"]];
+$("flds").innerHTML=F.map(([k,l,t,o])=>`<label style="font-size:12.5px;color:var(--ink2)">${l}<br>`+(t=="select"?`<select name="${k}" style="width:100%">${o.map(x=>`<option>${x}</option>`).join("")}</select>`
+:`<input name="${k}" type="${t}" ${t=="number"?'step="any"':""} ${o?`list="${o}"`:""} style="width:100%">`)+"</label>").join("");
+function calc(t){const dir=t.side=="Sell"?-1:1,pick=a=>a.filter(x=>n(x[0])&&n(x[1])),sum=(a,f)=>a.reduce((s,x)=>s+f(x),0),
+ins=pick([[t.entry,t.qty,t.date],[t.p1p,t.p1q,t.p1d],[t.p2p,t.p2q,t.p2d]]),outs=pick([[t.e1p,t.e1q,t.e1d],[t.e2p,t.e2q,t.e2d],[t.e3p,t.e3q,t.e3d]]),
+Q=sum(ins,x=>n(x[1])),avgE=Q?sum(ins,x=>n(x[0])*n(x[1]))/Q:0,XQ=Math.min(Q,sum(outs,x=>n(x[1]))),avgX=XQ?sum(outs,x=>n(x[0])*n(x[1]))/sum(outs,x=>n(x[1])):0,
+open=Q-XQ,sym=(t.name||"").trim().toUpperCase(),cmp=n(t.cmp)||P[sym]||0,real=dir*(avgX-avgE)*XQ,unreal=open&&cmp?dir*(cmp-avgE)*open:0,
+risk=n(t.sl)?Math.abs(n(t.entry)-n(t.sl))*Q:0,stop=n(t.tsl)||n(t.sl),openRisk=stop?Math.max(0,dir*(avgE-stop))*open:0,
+status=!Q?"":open==0?"Closed":XQ?"Partial":"Open",lastX=outs.map(x=>x[2]).filter(Boolean).sort().pop(),
+end=status=="Closed"&&lastX?new Date(lastX):new Date(),days=t.date?Math.max(0,Math.round((end-new Date(t.date))/864e5)):0,
+ref=open&&cmp?(avgX*XQ+cmp*open)/Q:avgX,move=avgE&&ref?dir*(ref/avgE-1)*100:0;
+return{sym,dir,Q,avgE,XQ,avgX,open,cmp,real,unreal,risk,R:risk?(real+unreal)/risk:null,openRisk,status,days,move,lastX:lastX||t.date,
+slp:n(t.sl)&&n(t.entry)?Math.abs(n(t.entry)-n(t.sl))/n(t.entry)*100:0,size:avgE*Q}}
+function render(){const cap=n(S.capital),rows=S.trades.map((t,i)=>({t,i,c:calc(t)})).sort((a,b)=>(a.t.date||"").localeCompare(b.t.date||""));
+let cum=0;rows.forEach(r=>{r.pf=cap?r.c.real/cap*100:0;cum+=r.pf;r.cum=cum});
+const closed=rows.filter(r=>r.c.status=="Closed"),wins=closed.filter(r=>r.c.real>0),real=rows.reduce((s,r)=>s+r.c.real,0),unreal=rows.reduce((s,r)=>s+r.c.unreal,0),
+openR=rows.filter(r=>r.c.open>0),risk=openR.reduce((s,r)=>s+r.c.openRisk,0),inv=openR.reduce((s,r)=>s+r.c.avgE*r.c.open,0),Rs=closed.filter(r=>r.c.R!=null).map(r=>r.c.R),
+avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:0;
+let eq=cap,peak=cap;[...rows].filter(r=>r.c.XQ).sort((a,b)=>(a.c.lastX||"").localeCompare(b.c.lastX||"")).forEach(r=>{eq+=r.c.real;peak=Math.max(peak,eq)});
+const dd=peak?(eq/peak-1)*100:0,tile=(k,v,d)=>`<div class="m"><div class="mh"><span>${k}</span></div><div style="font-size:24px;font-weight:700;font-variant-numeric:tabular-nums">${v}</div><div class="d">${d||""}</div></div>`;
+$("tiles").innerHTML=tile("Total trades",rows.length,closed.length+" closed")+tile("Open positions",openR.length)+tile("Win rate",closed.length?(wins.length/closed.length*100).toFixed(0)+"%":"-",wins.length+" wins, "+(closed.length-wins.length)+" losses")
++tile("Realised P/L",inr(real),cap?pct(real/cap*100)+" of capital":"")+tile("Unrealised P/L",inr(unreal),cap?pct(unreal/cap*100)+" of capital":"")+tile("Total P/L",inr(real+unreal),cap?"Equity "+inr(cap+real+unreal):"Set capital for % figures")
++tile("Capital at risk",cap?(risk/cap*100).toFixed(2)+"%":"-",inr(risk)+" at stops")+tile("% invested",cap?(inv/cap*100).toFixed(1)+"%":"-",inr(inv))
++tile("Average R",Rs.length?avg(Rs).toFixed(2)+"R":"-","Win "+avg(wins.map(r=>r.c.real)).toFixed(0)+" / loss "+avg(closed.filter(r=>r.c.real<=0).map(r=>r.c.real)).toFixed(0))+tile("Current drawdown",cap?dd.toFixed(2)+"%":"-","from peak realised equity");
+const f=$("st").value,num=(v,d=2)=>v?v.toLocaleString("en-IN",{maximumFractionDigits:d}):"";
+$("jb").innerHTML=rows.filter(r=>!f||(f=="Open"?r.c.open>0:r.c.status=="Closed")).map((r,k)=>{const t=r.t,c=r.c;return`<tr><td>${k+1}</td><td class="l">${esc(t.date)}</td>
+<td class="l"><b><a target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:${esc(c.sym.replace(/[&-]/g,"_"))}">${esc(c.sym)}</a></b></td><td class="l">${esc(t.setup)}</td><td class="l">${esc(t.side)}</td>
+<td>${num(c.avgE)}</td><td>${num(c.Q,0)}</td><td>${num(n(t.tsl)||n(t.sl))}</td><td>${c.slp?c.slp.toFixed(1)+"%":""}</td><td>${num(c.cmp)||"n/a"}</td><td>${num(c.size,0)}</td>
+<td>${cap&&c.open?(c.cmp*c.open/cap*100).toFixed(1)+"%":""}</td><td>${num(c.open,0)||0}</td><td>${num(c.avgX)}</td><td>${c.move?pct(c.move,1):""}</td><td>${c.R==null?"":c.R.toFixed(2)+"R"}</td><td>${c.days}</td><td class="l">${c.status}</td>
+<td>${c.XQ?inr(c.real):""}</td><td>${c.open?inr(c.unreal):""}</td><td>${c.XQ&&cap?pct(r.pf):""}</td><td>${cap?pct(r.cum):""}</td><td>${cap&&c.open?(c.openRisk/cap*100).toFixed(2)+"%":""}</td>
+<td class="l">${esc(t.plan)}</td><td class="l sm">${esc(t.trigger)}</td><td class="l sm">${esc(t.note)}</td><td><button data-i="${r.i}" class="ed">Edit</button></td></tr>`}).join("")
+||'<tr><td colspan="27" class="l">No trades yet. Click "+ Add trade".</td></tr>'}
+function openDlg(i){editing=i;const t=i==null?{date:new Date().toISOString().slice(0,10),side:"Buy"}:S.trades[i];F.forEach(([k])=>$("frm").elements[k].value=t[k]??"");$("del").style.display=i==null?"none":"";$("dlg").showModal()}
+$("add").onclick=()=>openDlg(null);$("cancel").onclick=()=>$("dlg").close();$("jb").onclick=e=>{if(e.target.classList.contains("ed"))openDlg(+e.target.dataset.i)};
+$("frm").onsubmit=e=>{e.preventDefault();const t={};F.forEach(([k])=>t[k]=$("frm").elements[k].value.trim());t.name=t.name.toUpperCase();if(!t.name||!n(t.entry)||!n(t.qty))return;
+editing==null?S.trades.push(t):S.trades[editing]=t;save();$("dlg").close();render()};
+$("del").onclick=()=>{if($("del").dataset.sure){S.trades.splice(editing,1);save();$("dlg").close();render();delete $("del").dataset.sure;$("del").textContent="Delete trade"}else{$("del").dataset.sure=1;$("del").textContent="Click again to delete"}};
+$("cap").value=S.capital||"";$("cap").oninput=()=>{S.capital=n($("cap").value);save();render()};$("st").onchange=render;
+const dl=(name,text,type)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click()},day=new Date().toISOString().slice(0,10);
+$("exp").onclick=()=>dl("nse-journal-backup-"+day+".json",JSON.stringify(S),"application/json");$("imp").onclick=()=>$("file").click();
+$("file").onchange=e=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(Array.isArray(d.trades)){S=d;save();$("cap").value=S.capital||"";render()}}catch(x){}};r.readAsText(e.target.files[0])};
+$("csv").onclick=()=>{const q=c=>'"'+c.textContent.trim().replace(/"/g,'""')+'"';dl("nse-journal-"+day+".csv","﻿"+[...document.querySelectorAll("table tr")].map(r=>[...r.cells].slice(0,-1).map(q).join(",")).join("\n"),"text/csv")};
+fetch("prices.json").then(r=>r.json()).then(d=>{P=d.p;$("pd").textContent=d.date;$("syms").innerHTML=Object.keys(P).map(s=>`<option>${s}`).join("");render()}).catch(()=>{$("pd").textContent="unavailable";render()});
+render();
+</script>
+</body></html>
