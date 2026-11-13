@@ -153,6 +153,8 @@ js = ('<script>const $=i=>document.getElementById(i),k=$("k"),t=$("t"),q=$("q"),
 fpath = DATA / "meta" / "fundamentals.csv"
 if fpath.exists():
     fz = pd.read_csv(fpath, index_col=0)
+    nf = Path(__file__).resolve().parent.parent / "config" / "fund_notes.json"
+    notes = json.loads(nf.read_text()) if nf.exists() else {}
     m = pd.read_csv(DATA / "derived" / "setups.csv")
     m = m[m["grade"] != "C"].merge(fz, left_on="symbol", right_index=True, how="left")
     m["tf"] = 0.5 * m["rank_score"] + 0.5 * m["growth_score"]
@@ -162,7 +164,7 @@ if fpath.exists():
     qlab = lambda q: "&ndash;" if not isinstance(q, str) or len(q) < 7 else pd.Timestamp(q).strftime("%b %Y")
     frows = "".join(
         f'<tr data-g="{r.label}" data-s="{r.stage}"><td>{i + 1}</td>'
-        f'<td class="l"><b><a target="_blank" rel="noopener" href="{tv_link(r.symbol)}">{r.symbol}</a></b></td><td class="l">{r.theme}</td>'
+        f'<td class="l"><b><a target="_blank" rel="noopener" href="{tv_link(r.symbol)}">{r.symbol}</a></b></td><td class="l">{r.theme}</td>' + (f'<td><button class="nb" data-n="{r.symbol}">Read</button></td>' if r.symbol in notes else '<td>&ndash;</td>') +
         f'<td><b>{nn(r.tf)}</b></td><td>{r.grade}</td><td class="l">{r.stage}</td><td>{nn(r.growth_score)}</td><td class="l">{r.label}</td>'
         f'<td class="l">{qlab(r.latest_q)}</td><td>{nn(r.rev0, "{:,.0f}")}</td><td>{nn(r.sales_yoy, "{:+.0f}", "%")}</td><td>{nn(r.sales_yoy_prev, "{:+.0f}", "%")}</td>'
         f'<td>{nn(r.ni0, "{:,.0f}")}</td><td>{"Turnaround" if r.turnaround is True else nn(r.profit_yoy, "{:+.0f}", "%")}</td>'
@@ -173,16 +175,26 @@ if fpath.exists():
              'The idea is conviction: a clean setup in a company whose sales and profits are growing fast is easier to hold. Click a heading to sort.</p>'
              '<input id="q" placeholder="Search stock or theme"><select id="g"><option value="">All growth</option><option>Strong</option><option>Good</option><option>Weak</option><option>No data</option></select>'
              '<select id="s"><option value="">All stages</option><option>Ready</option><option>Triggered today</option><option>Building</option><option>Extended</option></select>'
-             '<div class="tw"><table><thead><tr><th>#</th><th class="l">Stock</th><th class="l">Theme</th><th>Techno-funda</th><th>Setup</th><th class="l">Stage</th><th>Growth score</th><th class="l">Growth</th>'
+             '<div class="tw"><table><thead><tr><th>#</th><th class="l">Stock</th><th class="l">Theme</th><th>Note</th><th>Techno-funda</th><th>Setup</th><th class="l">Stage</th><th>Growth score</th><th class="l">Growth</th>'
              '<th class="l">Quarter</th><th>Sales (cr)</th><th>Sales YoY</th><th>Prev qtr YoY</th><th>Profit (cr)</th><th>Profit YoY</th><th>Op. margin</th><th>Year ago</th><th>ROE</th><th>Debt/equity</th><th>P/E</th>'
              f'</tr></thead><tbody id="b">{frows}</tbody></table></div>'
              '<ul class="note"><li><b>Growth score (0-100):</b> sales growth year on year 30%, profit growth 30%, acceleration against the previous quarter 20%, operating margin against a year ago 20%. Strong is 70+, Good is 50+.</li>'
              '<li><b>Techno-funda</b> is the average of the setup rank score and the growth score.</li>'
              '<li><b>Source and limits:</b> figures come from Yahoo Finance and can be wrong, late, or a mix of standalone and consolidated. A stock showing an older quarter has not had its latest results loaded yet. Check the company\'s own filing before relying on a number.</li>'
-             '<li>Order book, guidance and execution are not in this table; they need reading results and concalls stock by stock.</li></ul>')
+             '<li><b>Notes</b> (the Read button) are written by hand from results releases, presentations and news coverage for shortlisted stocks only, with links. They are a starting point: confirm order book and guidance in the company filing. Stocks without a button have not been researched yet.</li></ul>'
+             '<div id="dr" hidden><div class="dh"><b id="dt2"></b><button id="dx2">Close</button></div><div id="dbd"></div></div>'
+             '<style>.nb{background:var(--acc,#2457d6);color:#fff;border:0;border-radius:6px;padding:3px 10px;cursor:pointer;font-size:12px}'
+             '#dr{position:fixed;top:0;right:0;width:min(480px,100vw);height:100vh;overflow:auto;background:var(--card,#fff);color:var(--ink,#111);box-shadow:-6px 0 24px rgba(0,0,0,.25);padding:16px;z-index:50;font-size:14px;line-height:1.45}'
+             '#dr[hidden]{display:none}#dr .dh{display:flex;justify-content:space-between;align-items:center;font-size:17px;margin-bottom:8px}'
+             '#dr h4{margin:12px 0 2px;font-size:12px;text-transform:uppercase;letter-spacing:.05em;opacity:.6}#dr p{margin:0}#dr .tk{background:rgba(36,87,214,.1);padding:8px;border-radius:8px;margin-top:12px}</style>')
     fjs = ('<script>const $=i=>document.getElementById(i),q=$("q"),g=$("g"),sg=$("s"),f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display='
            '(!g.value||r.dataset.g==g.value)&&(!sg.value||r.dataset.s==sg.value)&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");'
-           'g.onchange=sg.onchange=q.oninput=f</script>')
+           'g.onchange=sg.onchange=q.oninput=f</script><script>const N=' + json.dumps(notes).replace("</", "<\\/") + ';'
+           'const E=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])),L=[["book","Order book"],["cover","Cover"],["guidance","Guidance"],["execution","Execution"],["driver","What is driving growth"],["risks","Risks"]];'
+           'document.querySelectorAll(".nb").forEach(b=>b.onclick=()=>{const n=N[b.dataset.n];$("dt2").textContent=b.dataset.n;'
+           '$("dbd").innerHTML="<p style=opacity:.6>"+E(n.asof)+"</p>"+L.map(([k,t])=>"<h4>"+t+"</h4><p>"+E(n[k])+"</p>").join("")+"<div class=tk><b>Read-through:</b> "+E(n.take)+"</div><h4>Sources</h4>"'
+           '+n.src.map(s=>"<p><a target=_blank rel=noopener href=\'"+s[1]+"\'>"+E(s[0])+"</a></p>").join("");$("dr").hidden=false});'
+           '$("dx2").onclick=()=>$("dr").hidden=true</script>')
     (docs / "fundamentals.html").write_text(page("NSE techno-funda", "Fundamentals", fbody, fjs))
 
 # Journal: latest close for every NSE stock, and the page itself (trades stay in the visitor's browser)
