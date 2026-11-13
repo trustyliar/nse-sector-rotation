@@ -1,11 +1,10 @@
 # Daily update report
 
-Run: 2026-11-13 11:14 UTC; range 2026-11-13 to 2026-11-13
+Run: 2026-11-13 14:46 UTC; range 2026-11-14 to 2026-11-13
 
 ## Days
 
-- 2026-11-13: 2627 stocks from nse; prev-close mismatches 0/2625
-- Yahoo cross-check: 2,627 stock-days compared since 2026-11-13, 0 differ >2% (0 stocks)
+- Yahoo cross-check: 0 stock-days compared since 2026-11-14, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
