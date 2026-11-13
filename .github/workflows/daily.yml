@@ -10,12 +10,12 @@ on:
         default: ""
   schedule:
     # 16:07 IST: provisional refresh from Yahoo soon after the close (16:37 as a backup slot).
-    # 19:37, 20:37, 21:37 IST: replace with NSE's official file once published. 08:07 IST next morning: safety net.
+    # 19:37, 20:37, 21:37 IST: replace with NSE's official file once published. 08:07 IST next morning (Tue-Fri only): safety net. No scheduled runs on Saturday or Sunday.
     # GitHub can start scheduled jobs late, sometimes by hours.
     - cron: "37 10 * * 1-5"
     - cron: "7 11 * * 1-5"
     - cron: "7 14,15,16 * * 1-5"
-    - cron: "37 2 * * 2-6"
+    - cron: "37 2 * * 2-5"
 concurrency: data-branch
 permissions:
   contents: write
