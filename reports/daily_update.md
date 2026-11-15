@@ -1,6 +1,6 @@
 # Daily update report
 
-Run: 2026-11-13 20:53 UTC; range 2026-11-14 to 2026-11-14
+Run: 2026-11-15 05:57 UTC; range 2026-11-14 to 2026-11-15
 
 ## Days
 
@@ -12,6 +12,7 @@ Run: 2026-11-13 20:53 UTC; range 2026-11-14 to 2026-11-14
 - 2026-11-11 EVONILE: factor 0.841493 (yahoo_crosscheck)
 - 2026-11-05 GNRL: factor 0.1 (yahoo_crosscheck)
 - 2026-11-06 KMEW: factor 0.2 (yahoo_crosscheck)
+- 2026-11-13 PASHUPATI: factor 0.4 (yahoo_crosscheck)
 - 2026-11-04 SUVIDHAA: factor 0.929793 (yahoo_crosscheck)
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)

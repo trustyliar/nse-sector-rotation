@@ -32,13 +32,15 @@ input:focus,select:focus{outline:2px solid var(--s);outline-offset:1px}button{cu
 #add,#dx,#dt,#frm button[type=submit]{background:var(--s);border-color:var(--s);color:#fff}#add:hover,#dx:hover,#dt:hover{filter:brightness(1.08);background:var(--s)}
 main.wide{max-width:1640px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
 main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}main nav a{border-bottom:0}th{cursor:pointer;user-select:none}th[data-d]::after{content:" 95"}
-.bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style></head><body><main class="wide"><nav><b>Swing<i>Desk</i></b><a href="index.html">Regime</a><a href="sectors.html">Sectors</a><a href="setups.html">Setups</a><a href="fundamentals.html">Fundamentals</a><a href="journal.html" class=on>Journal</a></nav><h1>Trade journal &middot; prices as of close of Friday 13 November 2026</h1><p class="read">A private trade journal. Your trades are stored only in this browser and are never uploaded, so use Backup to keep a copy or move to another device. Prices are the latest NSE close (<span id="pd"></span>), refreshed nightly.</p>
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style></head><body><main class="wide"><nav><b>Swing<i>Desk</i></b><a href="index.html">Regime</a><a href="sectors.html">Sectors</a><a href="setups.html">Setups</a><a href="fundamentals.html">Fundamentals</a><a href="journal.html" class=on>Journal</a></nav><h1>Trade journal &middot; prices as of close of Friday 13 November 2026</h1><p class="read">A private trade journal. Signed out, your trades stay only in this browser. Signed in with Google, they are saved to your own account and follow you to any device. Use Import broker file to pull in your buys and sells. Prices are the latest NSE close (<span id="pd"></span>), refreshed nightly.</p>
+<div style="margin:10px 0"><span id="auth"></span> <span class="sm" id="sync"></span></div>
 <div class="grid" id="tiles"></div>
 <div style="margin:18px 0 4px"><label>Capital (Rs) <input id="cap" type="number" style="width:140px"></label>
 <button id="add">+ Add trade</button><select id="st"><option value="">All trades</option><option>Open</option><option>Closed</option></select>
-<button id="csv">Download CSV</button><button id="exp">Backup</button><button id="imp">Restore</button><input type="file" id="file" accept=".json" hidden></div>
+<button id="imb" title="Zerodha Console: Reports, Tradebook, download CSV. Other brokers: any CSV with symbol, date, buy/sell, quantity, price.">Import broker file</button><input type="file" id="bfile" accept=".csv,.txt" hidden><button id="csv">Download CSV</button><button id="exp">Backup</button><button id="imp">Restore</button><input type="file" id="file" accept=".json" hidden></div>
 <div class="tw"><table><thead><tr><th>#</th><th class="l">Date</th><th class="l">Stock</th><th class="l">Setup</th><th class="l">Side</th><th>Avg entry</th><th>Qty</th><th>SL</th><th>SL %</th><th>CMP</th><th>Position (Rs)</th><th>Alloc %</th><th>Open qty</th><th>Avg exit</th><th>Stock move</th><th>R</th><th>Days</th><th class="l">Status</th><th>Realised</th><th>Unrealised</th><th>PF impact</th><th>Cum PF</th><th>Risk now %</th><th class="l">Plan</th><th class="l">Exit trigger</th><th class="l">Note</th><th></th></tr></thead><tbody id="jb"></tbody></table></div>
-<ul class="note"><li><b>Avg entry</b> blends the first buy and up to two pyramids. <b>R</b> is total profit or loss divided by the initial risk (entry minus stop, times total quantity).</li>
+<div id="impmsg" class="read" style="margin:6px 0"></div>
+<ul class="note"><li><b>Import broker file</b> reads a tradebook CSV (Zerodha: Console, Reports, Tradebook). Buys and sells are paired per stock into trades with up to three entries and three exits. Importing again updates the same trades and keeps your setup, stop, plan and notes. Include the date range from when you opened any position still held.</li><li><b>Avg entry</b> blends the first buy and up to two pyramids. <b>R</b> is total profit or loss divided by the initial risk (entry minus stop, times total quantity).</li>
 <li><b>PF impact</b> is realised profit as a share of capital; <b>Cum PF</b> adds it up in date order. <b>Risk now</b> is what the open quantity loses at the trailing stop (or the stop), as a share of capital.</li>
 <li><b>Win rate</b> counts fully closed trades. <b>Drawdown</b> is the fall from the peak of capital plus realised profit.</li></ul>
 <dialog id="dlg" style="max-width:760px;width:94%;border:1px solid var(--grid);border-radius:12px;background:var(--bg);color:var(--ink)"><form id="frm">
@@ -51,7 +53,7 @@ const $=i=>document.getElementById(i),KEY="nse-journal-v1",n=v=>+v||0,inr=v=>(v<
 pct=(v,d=2)=>(v>0?"+":"")+v.toFixed(d)+"%",esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let S={capital:0,trades:[]},P={},editing=null;
 try{S=JSON.parse(localStorage.getItem(KEY))||S}catch(e){}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+let cloudPush=null;const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(cloudPush)cloudPush(S)};
 const F=[["date","Entry date","date"],["name","Stock (NSE symbol)","text","syms"],["setup","Setup","text","setups"],["side","Side","select",["Buy","Sell"]],
 ["entry","Entry price","number"],["qty","Quantity","number"],["sl","Stop loss","number"],["tsl","Trailing stop","number"],
 ["p1p","Pyramid 1 price","number"],["p1q","Pyramid 1 qty","number"],["p1d","Pyramid 1 date","date"],["cmp","CMP override","number"],
@@ -101,6 +103,45 @@ $("exp").onclick=()=>dl("nse-journal-backup-"+day+".json",JSON.stringify(S),"app
 $("file").onchange=e=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(Array.isArray(d.trades)){S=d;save();$("cap").value=S.capital||"";render()}}catch(x){}};r.readAsText(e.target.files[0])};
 $("csv").onclick=()=>{const q=c=>'"'+c.textContent.trim().replace(/"/g,'""')+'"';dl("nse-journal-"+day+".csv","﻿"+[...document.querySelectorAll("table tr")].map(r=>[...r.cells].slice(0,-1).map(q).join(",")).join("\n"),"text/csv")};
 fetch("prices.json").then(r=>r.json()).then(d=>{P=d.p;$("pd").textContent=d.date;$("syms").innerHTML=Object.keys(P).map(s=>`<option>${s}`).join("");render()}).catch(()=>{$("pd").textContent="unavailable";render()});
+function parseCSV(t){const R=[];let r=[],c="",q=false;for(let i=0;i<t.length;i++){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=h}else if(h=='"')q=true;else if(h==","){r.push(c);c=""}else if(h=="\n"||h=="\r"){if(h=="\r"&&t[i+1]=="\n")i++;r.push(c);c="";if(r.length>1||r[0]!=="")R.push(r);r=[]}else c+=h}if(c!==""||r.length){r.push(c);R.push(r)}return R}
+const HD={s:["symbol","tradingsymbol","scrip","scripname","stock","instrument","security"],d:["tradedate","date","executiondate","orderexecutiontime","tradetime"],t:["tradetype","type","side","buysell","buy/sell","transactiontype"],q:["quantity","qty","tradedqty","tradedquantity"],p:["price","tradeprice","avgprice","rate"],g:["segment"]};
+const isoD=v=>{v=String(v).trim();let m=v.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return m[1]+"-"+m[2]+"-"+m[3];m=v.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/);return m?m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0"):""};
+const lots=a=>{const m={};a.forEach(x=>{const o=m[x.d]??={d:x.d,q:0,v:0};o.q+=x.q;o.v+=x.q*x.p});return Object.values(m).sort((a,b)=>a.d.localeCompare(b.d)).map(o=>({d:o.d,q:o.q,p:o.v/o.q}))};
+const cap3=a=>{if(a.length<=3)return a;const r=a.slice(2),q=r.reduce((s,x)=>s+x.q,0);return[a[0],a[1],{d:r[0].d,q,p:r.reduce((s,x)=>s+x.q*x.p,0)/q}]};
+function importBroker(text){const R=parseCSV(text.replace(/^﻿/,"")),key=r=>r.map(x=>x.toLowerCase().replace(/[^a-z\/]/g,"")),
+hi=R.findIndex(r=>{const k=key(r);return HD.s.some(h=>k.includes(h))&&HD.q.some(h=>k.includes(h))&&HD.p.some(h=>k.includes(h))});
+if(hi<0)return $("impmsg").textContent="Could not find symbol, quantity and price columns in that file. Use the tradebook CSV from your broker.";
+const k=key(R[hi]),col=a=>k.findIndex(x=>a.includes(x)),C={s:col(HD.s),d:col(HD.d),t:col(HD.t),q:col(HD.q),p:col(HD.p),g:col(HD.g)};
+if([C.s,C.d,C.t].some(x=>x<0))return $("impmsg").textContent="That file needs symbol, date and buy/sell columns.";
+let other=0;const ex=[];R.slice(hi+1).forEach((r,i)=>{if(C.g>=0&&r[C.g]&&!/^(eq|equity|cm)$/i.test(r[C.g].trim()))return other++;
+const sd=/^b/i.test((r[C.t]||"").trim())?"B":/^s/i.test((r[C.t]||"").trim())?"S":"",d=isoD(r[C.d]),q=+String(r[C.q]).replace(/,/g,""),p=+String(r[C.p]).replace(/,/g,""),s=(r[C.s]||"").trim().toUpperCase().replace(/-EQ$/,"");
+if(sd&&d&&q>0&&p>0&&s)ex.push({s,d,side:sd,q,p,i})});
+const by={},out=[];let orphan=0;ex.forEach(e=>(by[e.s]??=[]).push(e));
+for(const s in by){let pos=null,held=0;for(const e of by[s].sort((a,b)=>a.d.localeCompare(b.d)||a.i-b.i)){
+if(e.side=="B"){pos??={s,b:[],x:[]};pos.b.push(e);held+=e.q}else{if(!pos){orphan++;continue}const t=Math.min(held,e.q);pos.x.push({...e,q:t});held-=t;if(!held){out.push(pos);pos=null}}}if(pos)out.push(pos)}
+let add=0,upd=0;const f2=v=>String(Math.round(v*100)/100);
+out.forEach(o=>{const B=cap3(lots(o.b)),X=cap3(lots(o.x)),t={date:B[0].d,name:o.s,side:"Buy",entry:f2(B[0].p),qty:String(B[0].q),src:"broker",key:o.s+"|"+B[0].d};
+[["p1",1],["p2",2]].forEach(([n_,j])=>{t[n_+"p"]=B[j]?f2(B[j].p):"";t[n_+"q"]=B[j]?String(B[j].q):"";t[n_+"d"]=B[j]?B[j].d:""});
+[0,1,2].forEach(j=>{const n_="e"+(j+1);t[n_+"p"]=X[j]?f2(X[j].p):"";t[n_+"q"]=X[j]?String(X[j].q):"";t[n_+"d"]=X[j]?X[j].d:""});
+const i=S.trades.findIndex(x=>x.key==t.key||(x.name==t.name&&x.date==t.date&&!x.key));
+if(i<0){S.trades.push(t);add++}else{S.trades[i]={...S.trades[i],...t};upd++}});
+save();render();$("impmsg").textContent=`Imported: ${add} new, ${upd} updated`+(orphan?`. ${orphan} sell(s) had no matching buy in this file (position opened earlier); import a longer date range to include them.`:".")+(other?` ${other} non-equity rows ignored.`:"")}
+$("imb").onclick=()=>$("bfile").click();$("bfile").onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>importBroker(String(r.result));r.readAsText(fl);e.target.value=""};
+
 render();
+</script>
+<script type="module">
+const C={};
+if(C&&C.apiKey){const b="https://www.gstatic.com/firebasejs/10.12.2/",[{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut},{getFirestore,doc,getDoc,setDoc}]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-auth.js"),import(b+"firebase-firestore.js")]);
+const app=initializeApp(C),au=getAuth(app),db=getFirestore(app);let tm=null;
+const paint=u=>{$("auth").innerHTML=u?`<span class="sm">${esc(u.email)}</span> <button id="so">Sign out</button>`:`<button id="si">Sign in with Google</button>`;
+if(u)$("so").onclick=()=>signOut(au);else $("si").onclick=()=>signInWithPopup(au,new GoogleAuthProvider()).catch(e=>{$("sync").textContent="Sign-in failed: "+e.code})};
+onAuthStateChanged(au,async u=>{paint(u);cloudPush=null;$("sync").textContent="";if(!u)return;const ref=doc(db,"users",u.uid),has=x=>x&&x.trades&&x.trades.length;
+try{const sn=await getDoc(ref),c=sn.exists()?JSON.parse(sn.data().j):null;
+if(has(c)){if(has(S)&&JSON.stringify(c)!=JSON.stringify(S))dl("journal-local-backup-"+day+".json",JSON.stringify(S),"application/json");S=c;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()}
+else if(has(S)||S.capital)await setDoc(ref,{j:JSON.stringify(S),t:Date.now()});
+cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>setDoc(ref,{j:JSON.stringify(s),t:Date.now()}).then(()=>$("sync").textContent="Saved to your account "+new Date().toLocaleTimeString()).catch(e=>$("sync").textContent="Could not save: "+e.code),700)};
+$("sync").textContent="Synced with your account"}catch(e){$("sync").textContent="Could not reach your account: "+e.code}})}
+else $("auth").innerHTML='<span class="sm">Google sign-in is not switched on yet. Your journal stays in this browser.</span>';
 </script>
 </body></html>
