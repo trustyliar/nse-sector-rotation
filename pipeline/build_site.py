@@ -190,7 +190,7 @@ if fpath.exists():
     fjs = ('<script>const $=i=>document.getElementById(i),q=$("q"),g=$("g"),sg=$("s"),f=()=>document.querySelectorAll("#b tr").forEach(r=>r.style.display='
            '(!g.value||r.dataset.g==g.value)&&(!sg.value||r.dataset.s==sg.value)&&(!q.value||r.textContent.toLowerCase().includes(q.value.toLowerCase()))?"":"none");'
            'g.onchange=sg.onchange=q.oninput=f</script><script>const N=' + json.dumps(notes).replace("</", "<\\/") + ';'
-           'const E=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])),L=[["book","Order book"],["cover","Cover"],["guidance","Guidance"],["execution","Execution"],["driver","What is driving growth"],["risks","Risks"]];'
+           'const E=t=>String(t).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])),L=[["book","Order book"],["cover","Cover"],["guidance","Guidance"],["execution","Execution"],["calls","Last 2-3 concalls"],["forward","Forward guidance"],["industry","Industry outlook"],["driver","What is driving growth"],["risks","Risks"]];'
            'document.querySelectorAll(".nb").forEach(b=>b.onclick=()=>{const n=N[b.dataset.n];$("dt2").textContent=b.dataset.n;'
            '$("dbd").innerHTML="<p style=opacity:.6>"+E(n.asof)+"</p>"+L.map(([k,t])=>"<h4>"+t+"</h4><p>"+E(n[k])+"</p>").join("")+"<div class=tk><b>Read-through:</b> "+E(n.take)+"</div><h4>Sources</h4>"'
            '+n.src.map(s=>"<p><a target=_blank rel=noopener href=\'"+s[1]+"\'>"+E(s[0])+"</a></p>").join("");$("dr").hidden=false});'
