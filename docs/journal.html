@@ -128,7 +128,7 @@ if(i<0){S.trades.push(t);add++}else{S.trades[i]={...S.trades[i],...t};upd++}});
 save();render();$("impmsg").textContent=`Imported: ${add} new, ${upd} updated`+(orphan?`. ${orphan} sell(s) had no matching buy in this file (position opened earlier); import a longer date range to include them.`:".")+(other?` ${other} non-equity rows ignored.`:"")}
 $("imb").onclick=()=>$("bfile").click();$("bfile").onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>importBroker(String(r.result));r.readAsText(fl);e.target.value=""};
 
-const ZW="",f2=v=>String(Math.round(v*100)/100),zm=t=>$("impmsg").textContent=t;
+const ZW="https://swingdesk-kite.contactatsandeepyadav.workers.dev",f2=v=>String(Math.round(v*100)/100),zm=t=>$("impmsg").textContent=t;
 function putLot(t,k,e,cap){const q=cap?Math.min(e.q,cap):e.q,q0=n(t[k+"q"]),p0=n(t[k+"p"]);if(p0&&q0){t[k+"p"]=f2((p0*q0+e.p*q)/(q0+q));t[k+"q"]=String(q0+q)}else{t[k+"p"]=f2(e.p);t[k+"q"]=String(q);t[k+"d"]=e.d}}
 function applyExecs(ex){S.seen??=[];const seen=new Set(S.seen);let add=0,opened=0,short=0;
 ex.filter(e=>!seen.has(e.id)).sort((a,b)=>(a.ts||a.d).localeCompare(b.ts||b.d)).forEach(e=>{
