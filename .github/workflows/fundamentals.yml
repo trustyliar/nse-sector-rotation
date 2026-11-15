@@ -24,6 +24,7 @@ jobs:
           URL="https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}"
           git clone -q --depth 1 --branch data "$URL" data
       - run: python pipeline/fundamentals.py "${{ inputs.minutes }}"
+      - run: python pipeline/earnings.py 12
       - name: Save data
         run: |
           cd data

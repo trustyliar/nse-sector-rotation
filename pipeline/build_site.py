@@ -201,6 +201,8 @@ if fpath.exists():
 px = load_prices(pd.Timestamp.today() - pd.Timedelta(days=12)).sort_values("date")
 lastpx = px.groupby("symbol")["close"].last().round(2)
 (docs / "prices.json").write_text(json.dumps({"date": px["date"].max().strftime("%d %b %Y"), "p": lastpx.to_dict()}, separators=(",", ":")))
+import flags
+print("flags for", flags.build(docs), "stocks")
 jb = (Path(__file__).parent / "journal_body.html").read_text()
 fbp = Path(__file__).parent.parent / "config" / "firebase.json"
 zp = Path(__file__).parent.parent / "config" / "zerodha.json"

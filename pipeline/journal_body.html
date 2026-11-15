@@ -16,6 +16,11 @@
 .ch{display:flex;justify-content:space-between;align-items:flex-start}.sy{font-size:19px;font-weight:700}.chip{display:inline-block;margin-left:8px;font-size:11.5px;background:rgba(36,87,214,.12);color:#2457d6;padding:2px 9px;border-radius:999px}
 .big{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:8px 0 10px;font-variant-numeric:tabular-nums}.big small{font-size:14px;font-weight:600;margin-left:10px}
 .gr{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}.gr i{display:block;font-style:normal;font-weight:500;font-size:11px;color:var(--ink2);text-transform:uppercase;letter-spacing:.04em}
+.hr{display:flex;gap:8px;align-items:center}.hr button{margin:0}.cd{position:relative}.wf{position:static;cursor:help;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;outline:0;white-space:nowrap}
+.wf.s0{background:rgba(10,138,74,.12);color:#0a8a4a}.wf.s1{background:rgba(214,150,20,.16);color:#a86a00}.wf.s2{background:rgba(240,110,30,.16);color:#c24a00}.wf.s3{background:rgba(208,59,59,.15);color:#c02a2a}
+.wf .pop{display:none;position:absolute;left:8px;right:8px;top:58px;width:auto;background:var(--card,#fff);color:var(--ink);border:1px solid var(--grid);border-radius:12px;padding:12px 14px;box-shadow:0 14px 34px rgba(0,0,0,.22);z-index:40;font-size:13px;line-height:1.4;font-weight:400;text-align:left;white-space:normal}
+.wf:hover .pop,.wf:focus .pop{display:block}.pop b{display:block;margin-bottom:6px;font-size:13.5px}.pop p{margin:5px 0;padding-left:16px;position:relative}.pop p:before{content:"";position:absolute;left:2px;top:6px;width:8px;height:8px;border-radius:50%;background:#aaa}
+.pop p.d1:before{background:#d69614}.pop p.d2:before{background:#f06e1e}.pop p.d3:before{background:#d03b3b}.pop p.d0:before{background:#0a8a4a}.pop small{display:block;margin-top:8px;color:var(--ink2);font-size:11.5px}
 .empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--ink2);border:1px dashed var(--grid);border-radius:16px}
 </style>
 <section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Sign in with Google to keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span id="auth"></span> <span class="sm" id="sync"></span></div></div>
@@ -39,7 +44,7 @@
 <script>
 const $=i=>document.getElementById(i),KEY="nse-journal-v1",n=v=>+v||0,inr=v=>(v<0?"-":"")+"₹"+Math.abs(Math.round(v)).toLocaleString("en-IN"),
 pct=(v,d=2)=>(v>0?"+":"")+v.toFixed(d)+"%",esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-let S={capital:0,trades:[]},P={},editing=null;
+let S={capital:0,trades:[]},P={},editing=null,FL={},FLD="";
 try{S=JSON.parse(localStorage.getItem(KEY))||S}catch(e){}
 let cloudPush=null;const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(cloudPush)cloudPush(S)};
 const F=[["date","Entry date","date"],["name","Stock (NSE symbol)","text","syms"],["setup","Setup","text","setups"],["side","Side","select",["Buy","Sell"]],
@@ -61,6 +66,13 @@ end=status=="Closed"&&lastX?new Date(lastX):new Date(),days=t.date?Math.max(0,Ma
 ref=open&&cmp?(avgX*XQ+cmp*open)/Q:avgX,move=avgE&&ref?dir*(ref/avgE-1)*100:0;
 return{sym,dir,Q,avgE,XQ,avgX,open,cmp,real,unreal,risk,R:risk?(real+unreal)/risk:null,openRisk,status,days,move,lastX:lastX||t.date,
 slp:n(t.sl)&&n(t.entry)?Math.abs(n(t.entry)-n(t.sl))/n(t.entry)*100:0,size:avgE*Q}}
+function wflags(t,c){const f=[],d=FL[c.sym],cmp=c.cmp,stop=n(t.tsl)||n(t.sl);
+if(stop&&cmp){if(cmp<=stop)f.push([3,"Price is at or below your stop ("+num2(stop)+"). Exit per your plan."]);else if(cmp/stop-1<.03)f.push([2,"Only "+((cmp/stop-1)*100).toFixed(1)+"% above your stop ("+num2(stop)+")."])}else if(!stop)f.push([1,"No stop is set for this trade."]);
+if(stop&&cmp&&c.avgE&&cmp/c.avgE>=1.1&&stop<c.avgE)f.push([1,"Up "+((cmp/c.avgE-1)*100).toFixed(0)+"%: consider moving the stop to breakeven (entry "+num2(c.avgE)+")."]);
+let note="";if(d){d.f.forEach(x=>f.push(x));if(d.r){const dl=Math.round((new Date(d.r)-new Date(day))/864e5);if(dl>=0&&dl<=10)f.push([2,"Results due "+d.r+" ("+(dl==0?"today":dl+" day"+(dl>1?"s":""))+"). Overnight gap risk if you hold through it."]);else if(dl>10)note="Next results: "+d.r+".";}else note="Results date not found; check the company calendar."}else note="No price-flag data for this symbol.";
+f.sort((a,b)=>b[0]-a[0]);const w=f.length?f[0][0]:0;
+return`<span class="wf s${w}" tabindex="0">${f.length?"&#9888; "+f.length+(w==3?" urgent":" to watch"):"&#10003; Clear"}<div class="pop"><b>Risk check: ${esc(c.sym)}</b>${f.length?f.map(x=>`<p class="d${x[0]}">${esc(x[1])}</p>`).join(""):'<p class="d0">No warning triggers: price is above its 10, 20 and 50 EMA with no stop, volume or result-date alerts.</p>'}<small>${note?esc(note)+" ":""}Price flags as of close ${FLD||"n/a"}.</small></div></span>`}
+const num2=v=>v?(+v).toLocaleString("en-IN",{maximumFractionDigits:2}):"";
 function render(){const cap=n(S.capital),rows=S.trades.map((t,i)=>({t,i,c:calc(t)})).sort((a,b)=>(a.t.date||"").localeCompare(b.t.date||""));
 let cum=0;rows.forEach(r=>{r.pf=cap?r.c.real/cap*100:0;cum+=r.pf;r.cum=cum});
 const closed=rows.filter(r=>r.c.status=="Closed"),wins=closed.filter(r=>r.c.real>0),real=rows.reduce((s,r)=>s+r.c.real,0),unreal=rows.reduce((s,r)=>s+r.c.unreal,0),
@@ -73,7 +85,7 @@ $("tiles").innerHTML=`<div class="kps">`+tk("Total P/L",inr(tot),cap?pct(tot/cap
 +t2("Trades",rows.length+" ("+closed.length+" closed)")+t2("Open",openR.length)+t2("Unrealised",inr(unreal))+t2("Invested",cap?(inv/cap*100).toFixed(1)+"%":inr(inv))+t2("Avg R",Rs.length?avg(Rs).toFixed(2)+"R":"-")+t2("Drawdown",cap?dd.toFixed(2)+"%":"-")+`</div>`;
 const f=$("st").value,num=(v,d=2)=>v?v.toLocaleString("en-IN",{maximumFractionDigits:d}):"";
 $("cards").innerHTML=openR.length?[...openR].sort((x,y)=>(y.t.date||"").localeCompare(x.t.date||"")).map(r=>{const c=r.c,t=r.t,ret=c.avgE&&c.cmp?c.dir*(c.cmp/c.avgE-1)*100:0,cl=c.unreal>=0?"g":"r";
-return`<div class="cd"><div class="ch"><div><a class="sy" target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:${esc(c.sym.replace(/[&-]/g,"_"))}">${esc(c.sym)}</a><span class="chip">${esc(t.setup||"No setup")}</span></div><button data-i="${r.i}" class="ed">Edit</button></div>
+return`<div class="cd"><div class="ch"><div><a class="sy" target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:${esc(c.sym.replace(/[&-]/g,"_"))}">${esc(c.sym)}</a><span class="chip">${esc(t.setup||"No setup")}</span></div><div class="hr">${wflags(t,c)}<button data-i="${r.i}" class="ed">Edit</button></div></div>
 <div class="big ${cl}">${c.cmp?pct(ret,1):"n/a"}<small>${c.cmp?inr(c.unreal):""}</small></div>
 <div class="gr"><div><i>Qty</i>${num(c.open,0)}</div><div><i>Avg</i>${num(c.avgE)}</div><div><i>CMP</i>${num(c.cmp)||"n/a"}</div><div><i>Stop</i>${num(n(t.tsl)||n(t.sl))||"-"}</div>
 <div><i>Risk now</i>${cap?(c.openRisk/cap*100).toFixed(2)+"%":"-"}</div><div><i>R</i>${c.R==null?"-":c.R.toFixed(1)}</div><div><i>Days</i>${c.days}</div><div><i>Size</i>${cap&&c.cmp?(c.cmp*c.open/cap*100).toFixed(1)+"%":"-"}</div></div></div>`}).join(""):'<div class="empty">No open positions yet. Click <b>Sync Zerodha</b> after the close, or add a trade.</div>';
@@ -96,6 +108,7 @@ const dl=(name,text,type)=>{const a=document.createElement("a");a.href=URL.creat
 $("exp").onclick=()=>dl("nse-journal-backup-"+day+".json",JSON.stringify(S),"application/json");$("imp").onclick=()=>$("file").click();
 $("file").onchange=e=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(Array.isArray(d.trades)){S=d;save();$("cap").value=S.capital||"";render()}}catch(x){}};r.readAsText(e.target.files[0])};
 $("csv").onclick=()=>{const q=c=>'"'+c.textContent.trim().replace(/"/g,'""')+'"';dl("nse-journal-"+day+".csv","﻿"+[...document.querySelectorAll("table tr")].map(r=>[...r.cells].slice(0,-1).map(q).join(",")).join("\n"),"text/csv")};
+fetch("flags.json").then(r=>r.json()).then(d=>{FL=d.s;FLD=d.date;render()}).catch(()=>{});
 fetch("prices.json").then(r=>r.json()).then(d=>{P=d.p;$("pd").textContent=d.date;$("syms").innerHTML=Object.keys(P).map(s=>`<option>${s}`).join("");render()}).catch(()=>{$("pd").textContent="unavailable";render()});
 function parseCSV(t){const R=[];let r=[],c="",q=false;for(let i=0;i<t.length;i++){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=h}else if(h=='"')q=true;else if(h==","){r.push(c);c=""}else if(h=="\n"||h=="\r"){if(h=="\r"&&t[i+1]=="\n")i++;r.push(c);c="";if(r.length>1||r[0]!=="")R.push(r);r=[]}else c+=h}if(c!==""||r.length){r.push(c);R.push(r)}return R}
 const HD={s:["symbol","tradingsymbol","scrip","scripname","stock","instrument","security"],d:["tradedate","date","executiondate","orderexecutiontime","tradetime"],t:["tradetype","type","side","buysell","buy/sell","transactiontype"],q:["quantity","qty","tradedqty","tradedquantity"],p:["price","tradeprice","avgprice","rate"],g:["segment"]};
