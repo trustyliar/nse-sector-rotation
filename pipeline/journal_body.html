@@ -3,10 +3,10 @@
 <div class="grid" id="tiles"></div>
 <div style="margin:18px 0 4px"><label>Capital (Rs) <input id="cap" type="number" style="width:140px"></label>
 <button id="add">+ Add trade</button><select id="st"><option value="">All trades</option><option>Open</option><option>Closed</option></select>
-<button id="imb" title="Zerodha Console: Reports, Tradebook, download CSV. Other brokers: any CSV with symbol, date, buy/sell, quantity, price.">Import broker file</button><input type="file" id="bfile" accept=".csv,.txt" hidden><button id="csv">Download CSV</button><button id="exp">Backup</button><button id="imp">Restore</button><input type="file" id="file" accept=".json" hidden></div>
+<button id="zs" title="Fetch today's trades from Zerodha">Sync Zerodha</button><button id="imb" title="Zerodha Console: Reports, Tradebook, download CSV. Other brokers: any CSV with symbol, date, buy/sell, quantity, price.">Import broker file</button><input type="file" id="bfile" accept=".csv,.txt" hidden><button id="csv">Download CSV</button><button id="exp">Backup</button><button id="imp">Restore</button><input type="file" id="file" accept=".json" hidden></div>
 <div class="tw"><table><thead><tr><th>#</th><th class="l">Date</th><th class="l">Stock</th><th class="l">Setup</th><th class="l">Side</th><th>Avg entry</th><th>Qty</th><th>SL</th><th>SL %</th><th>CMP</th><th>Position (Rs)</th><th>Alloc %</th><th>Open qty</th><th>Avg exit</th><th>Stock move</th><th>R</th><th>Days</th><th class="l">Status</th><th>Realised</th><th>Unrealised</th><th>PF impact</th><th>Cum PF</th><th>Risk now %</th><th class="l">Plan</th><th class="l">Exit trigger</th><th class="l">Note</th><th></th></tr></thead><tbody id="jb"></tbody></table></div>
 <div id="impmsg" class="read" style="margin:6px 0"></div>
-<ul class="note"><li><b>Import broker file</b> reads a tradebook CSV (Zerodha: Console, Reports, Tradebook). Buys and sells are paired per stock into trades with up to three entries and three exits. Importing again updates the same trades and keeps your setup, stop, plan and notes. Include the date range from when you opened any position still held.</li><li><b>Avg entry</b> blends the first buy and up to two pyramids. <b>R</b> is total profit or loss divided by the initial risk (entry minus stop, times total quantity).</li>
+<ul class="note"><li><b>Sync Zerodha</b> pulls today's executed trades (Zerodha only shares the current day), so click it after the close each day. Buys add to an open position as pyramids, sells fill the exits, a new stock opens a new trade. Clicking twice never double counts. Zerodha asks you to log in once a day.</li><li><b>Import broker file</b> reads a tradebook CSV (Zerodha: Console, Reports, Tradebook). Buys and sells are paired per stock into trades with up to three entries and three exits. Importing again updates the same trades and keeps your setup, stop, plan and notes. Include the date range from when you opened any position still held.</li><li><b>Avg entry</b> blends the first buy and up to two pyramids. <b>R</b> is total profit or loss divided by the initial risk (entry minus stop, times total quantity).</li>
 <li><b>PF impact</b> is realised profit as a share of capital; <b>Cum PF</b> adds it up in date order. <b>Risk now</b> is what the open quantity loses at the trailing stop (or the stop), as a share of capital.</li>
 <li><b>Win rate</b> counts fully closed trades. <b>Drawdown</b> is the fall from the peak of capital plus realised profit.</li></ul>
 <dialog id="dlg" style="max-width:760px;width:94%;border:1px solid var(--grid);border-radius:12px;background:var(--bg);color:var(--ink)"><form id="frm">
@@ -93,6 +93,24 @@ const i=S.trades.findIndex(x=>x.key==t.key||(x.name==t.name&&x.date==t.date&&!x.
 if(i<0){S.trades.push(t);add++}else{S.trades[i]={...S.trades[i],...t};upd++}});
 save();render();$("impmsg").textContent=`Imported: ${add} new, ${upd} updated`+(orphan?`. ${orphan} sell(s) had no matching buy in this file (position opened earlier); import a longer date range to include them.`:".")+(other?` ${other} non-equity rows ignored.`:"")}
 $("imb").onclick=()=>$("bfile").click();$("bfile").onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>importBroker(String(r.result));r.readAsText(fl);e.target.value=""};
+
+const ZW=__ZW__,f2=v=>String(Math.round(v*100)/100),zm=t=>$("impmsg").textContent=t;
+function putLot(t,k,e,cap){const q=cap?Math.min(e.q,cap):e.q,q0=n(t[k+"q"]),p0=n(t[k+"p"]);if(p0&&q0){t[k+"p"]=f2((p0*q0+e.p*q)/(q0+q));t[k+"q"]=String(q0+q)}else{t[k+"p"]=f2(e.p);t[k+"q"]=String(q);t[k+"d"]=e.d}}
+function applyExecs(ex){S.seen??=[];const seen=new Set(S.seen);let add=0,opened=0,short=0;
+ex.filter(e=>!seen.has(e.id)).sort((a,b)=>(a.ts||a.d).localeCompare(b.ts||b.d)).forEach(e=>{
+const t=S.trades.filter(x=>(x.name||"").toUpperCase()==e.s&&calc(x).open>0).sort((a,b)=>(a.date||"").localeCompare(b.date||"")).pop();
+if(e.side=="B"){if(!t){S.trades.push({date:e.d,name:e.s,side:"Buy",entry:f2(e.p),qty:String(e.q),src:"zerodha",key:e.s+"|"+e.d});opened++}else putLot(t,["p1","p2"].find(k=>!n(t[k+"p"]))||"p2",e)}
+else if(!t){short++}else putLot(t,["e1","e2","e3"].find(k=>!n(t[k+"p"]))||"e3",e,calc(t).open);
+S.seen.push(e.id);if(e.side=="B"||t)add++});S.seen=S.seen.slice(-800);save();render();return{add,opened,short}}
+const ztok=()=>{try{const o=JSON.parse(sessionStorage.getItem("kite-token"));return o&&Date.now()-o.t<14*36e5?o.k:null}catch(e){return null}};
+async function zsync(){if(!ZW)return zm("Zerodha sync is not switched on yet.");const tk=ztok();if(!tk){location.href=ZW+"/login";return}
+zm("Fetching today's trades from Zerodha...");let r,j;try{r=await fetch(ZW+"/trades",{headers:{authorization:"Bearer "+tk}});j=await r.json()}catch(e){return zm("Could not reach the Zerodha bridge. Check the Worker address.")}
+if(j.error_type=="TokenException"){sessionStorage.removeItem("kite-token");if(sessionStorage.getItem("kite-fresh")){sessionStorage.removeItem("kite-fresh");return zm("Zerodha rejected the login: "+(j.message||""))}sessionStorage.setItem("kite-fresh","1");location.href=ZW+"/login";return}
+sessionStorage.removeItem("kite-fresh");if(j.status!="success")return zm("Zerodha said: "+(j.message||r.status));
+const ex=j.data.filter(x=>/^(NSE|BSE)$/.test(x.exchange)&&x.quantity>0).map(x=>({s:String(x.tradingsymbol).toUpperCase().replace(/-EQ$/,""),ts:String(x.fill_timestamp||x.exchange_timestamp||x.order_timestamp||""),d:isoD(x.fill_timestamp||x.exchange_timestamp||x.order_timestamp)||day,side:x.transaction_type=="BUY"?"B":"S",q:+x.quantity,p:+x.average_price,id:String(x.trade_id)}));
+const o=applyExecs(ex);zm(j.data.length?`Zerodha: ${o.add} new execution(s) added (${o.opened} new trade(s)).`+(o.short?` ${o.short} sell(s) had no open position in the journal; add or import the original buy.`:""):"No trades today so far.")}
+$("zs").onclick=zsync;
+(()=>{const h=new URLSearchParams(location.hash.slice(1));if(h.get("kt")){sessionStorage.setItem("kite-token",JSON.stringify({k:h.get("kt"),t:Date.now()}));history.replaceState(null,"",location.pathname);zsync()}else if(h.get("kerr")){history.replaceState(null,"",location.pathname);zm("Zerodha: "+h.get("kerr"))}})();
 
 render();
 </script>

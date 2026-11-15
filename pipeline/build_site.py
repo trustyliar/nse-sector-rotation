@@ -203,6 +203,8 @@ lastpx = px.groupby("symbol")["close"].last().round(2)
 (docs / "prices.json").write_text(json.dumps({"date": px["date"].max().strftime("%d %b %Y"), "p": lastpx.to_dict()}, separators=(",", ":")))
 jb = (Path(__file__).parent / "journal_body.html").read_text()
 fbp = Path(__file__).parent.parent / "config" / "firebase.json"
+zp = Path(__file__).parent.parent / "config" / "zerodha.json"
+jb = jb.replace("__ZW__", json.dumps(json.loads(zp.read_text()).get("worker", "") if zp.exists() else ""))
 jb = jb.replace("__FB__", fbp.read_text().strip() if fbp.exists() else "{}")
 jbody, jscript = jb.split("<script>", 1)
 (docs / "journal.html").write_text(page("Trade journal", "Journal", jbody, "<script>" + jscript).replace("close of " + day, "prices as of close of " + day))
