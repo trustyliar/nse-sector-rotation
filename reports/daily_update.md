@@ -1,13 +1,16 @@
 # Daily update report
 
-Run: 2026-11-15 07:08 UTC; range 2026-11-14 to 2026-11-15
+Run: 2026-11-16 10:46 UTC; range 2026-11-14 to 2026-11-16
 
 ## Days
 
-- Yahoo cross-check: 0 stock-days compared since 2026-11-14, 0 differ >2% (0 stocks)
+- 2026-11-16: NSE unreachable (not_published); used Yahoo, 2638 stocks
+- 2026-11-16: 2638 stocks from yahoo
+- Yahoo cross-check: 2,638 stock-days compared since 2026-11-14, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
+- 2026-11-16 BNAGROCHEM: factor 0.1 (yahoo_crosscheck)
 - 2026-11-04 CONCORDBIO: factor 0.5 (yahoo_crosscheck)
 - 2026-11-11 EVONILE: factor 0.841493 (yahoo_crosscheck)
 - 2026-11-05 GNRL: factor 0.1 (yahoo_crosscheck)
@@ -17,7 +20,7 @@ Run: 2026-11-15 07:08 UTC; range 2026-11-14 to 2026-11-15
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)
 
-none
+- 2026-11-16 SUVID-RE: close 0.33 -> 0.20
 
 ## Warnings
 
