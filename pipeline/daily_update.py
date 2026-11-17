@@ -48,6 +48,7 @@ while d <= today:
     early = why == "not_published" and d == today and d.weekday() < 5 and now.hour * 60 + now.minute >= 15 * 60 + 40
     if bhav is None and (str(why).startswith("nse_error") or early):
         y, _ = yahoo_batch(sorted(listed), str(d), str(d + dt.timedelta(days=1)), log=lambda *_: None)
+        y = y[y["date"] == pd.Timestamp(d)]       # Yahoo can return stray rows for other dates; write_prices would wipe those dates
         if len(y) > 500:
             bhav = y.assign(prev_close=float("nan"), series="EQ")
             source = "yahoo"
