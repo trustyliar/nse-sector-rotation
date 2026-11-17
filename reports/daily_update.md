@@ -1,12 +1,13 @@
 # Daily update report
 
-Run: 2026-11-17 10:46 UTC; range 2026-11-17 to 2026-11-17
+Run: 2026-11-17 11:01 UTC; range 2026-11-16 to 2026-11-17
 
 ## Days
 
+- 2026-11-16: 2626 stocks from nse; vs stored: 3 common, 0 differ >1%, 0 differ >5%, only-NSE 2623, only-stored 0; prev-close mismatches 0/2626
 - 2026-11-17: NSE unreachable (not_published); used Yahoo, 2629 stocks
-- 2026-11-17: 2629 stocks from yahoo
-- Yahoo cross-check: 2,626 stock-days compared since 2026-11-17, 0 differ >2% (0 stocks)
+- 2026-11-17: 2629 stocks from yahoo; vs stored: 2626 common, 0 differ >1%, 0 differ >5%, only-NSE 3, only-stored 0
+- Yahoo cross-check: 2,629 stock-days compared since 2026-11-16, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
@@ -20,7 +21,7 @@ Run: 2026-11-17 10:46 UTC; range 2026-11-17 to 2026-11-17
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)
 
-none
+- 2026-11-16 BNAGROCHEM: close 162.66 -> 17.08
 
 ## Warnings
 
