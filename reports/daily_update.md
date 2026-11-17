@@ -1,15 +1,16 @@
 # Daily update report
 
-Run: 2026-11-17 11:06 UTC; range 2026-11-17 to 2026-11-17
+Run: 2026-11-17 11:22 UTC; range 2026-11-16 to 2026-11-17
 
 ## Days
 
-- 2026-11-17: 2626 stocks from nse; vs stored: 2626 common, 0 differ >1%, 0 differ >5%, only-NSE 0, only-stored 0; prev-close mismatches 1167/2626
-- Yahoo cross-check: 2,626 stock-days compared since 2026-11-17, 0 differ >2% (0 stocks)
+- 2026-11-16: 2626 stocks from nse; vs stored: 3 common, 0 differ >1%, 0 differ >5%, only-NSE 2623, only-stored 0; prev-close mismatches 0/2626
+- 2026-11-17: 2626 stocks from nse; vs stored: 2626 common, 0 differ >1%, 0 differ >5%, only-NSE 0, only-stored 0; prev-close mismatches 0/2626
+- Yahoo cross-check: 5,252 stock-days compared since 2026-11-16, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
-- 2026-11-17 BNAGROCHEM: factor 0.1 (yahoo_crosscheck)
+- 2026-11-16 BNAGROCHEM: factor 0.1 (yahoo_crosscheck)
 - 2026-11-04 CONCORDBIO: factor 0.5 (yahoo_crosscheck)
 - 2026-11-11 EVONILE: factor 0.841493 (yahoo_crosscheck)
 - 2026-11-05 GNRL: factor 0.1 (yahoo_crosscheck)
@@ -19,12 +20,8 @@ Run: 2026-11-17 11:06 UTC; range 2026-11-17 to 2026-11-17
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)
 
-- 2026-11-17 DELPHIFX: close 6.04 -> 7.69
-- 2026-11-17 DCAL: close 172.92 -> 130.34
-- 2026-11-17 HINDADH: close 392.10 -> 304.05
-- 2026-11-17 SALASAR: close 4.55 -> 5.78
-- 2026-11-17 YATRA: close 78.13 -> 96.27
+none
 
 ## Warnings
 
-- 2026-11-17: 1167 of 2626 previous closes disagree - a session may be missing
+none
