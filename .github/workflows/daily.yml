@@ -9,12 +9,17 @@ on:
         description: Type "reset" to clear recorded split adjustments first
         default: ""
   schedule:
-    # 16:07 IST: provisional refresh from Yahoo soon after the close (16:37 as a backup slot).
-    # 19:37, 20:37, 21:37 IST: replace with NSE's official file once published. 08:07 IST next morning (Tue-Fri only): safety net. No scheduled runs on Saturday or Sunday.
-    # GitHub can start scheduled jobs late, sometimes by hours.
+    # Evidence from past runs: NSE's official file lands between ~16:30 and ~17:00 IST on most days (later on some).
+    # 16:07 IST: provisional refresh from Yahoo. 16:37 to 18:07 IST every 30 min: pick up NSE's official file as soon
+    # as it appears. 19:37 and 21:37 IST: late-publication backstops. 08:07 IST next morning (Tue-Fri): safety net.
+    # Runs are cheap once NSE data is stored. GitHub can start scheduled jobs late, sometimes by hours.
     - cron: "37 10 * * 1-5"
     - cron: "7 11 * * 1-5"
-    - cron: "7 14,15,16 * * 1-5"
+    - cron: "37 11 * * 1-5"
+    - cron: "7 12 * * 1-5"
+    - cron: "37 12 * * 1-5"
+    - cron: "7 14 * * 1-5"
+    - cron: "7 16 * * 1-5"
     - cron: "37 2 * * 2-5"
 concurrency: data-branch
 permissions:
