@@ -1,14 +1,16 @@
 # Daily update report
 
-Run: 2026-11-16 23:21 UTC; range 2026-11-17 to 2026-11-17
+Run: 2026-11-17 10:46 UTC; range 2026-11-17 to 2026-11-17
 
 ## Days
 
-- 2026-11-17: skipped (not_published)
-- Yahoo cross-check: 0 stock-days compared since 2026-11-17, 0 differ >2% (0 stocks)
+- 2026-11-17: NSE unreachable (not_published); used Yahoo, 2629 stocks
+- 2026-11-17: 2629 stocks from yahoo
+- Yahoo cross-check: 2,626 stock-days compared since 2026-11-17, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
+- 2026-11-17 BNAGROCHEM: factor 0.1 (yahoo_crosscheck)
 - 2026-11-04 CONCORDBIO: factor 0.5 (yahoo_crosscheck)
 - 2026-11-11 EVONILE: factor 0.841493 (yahoo_crosscheck)
 - 2026-11-05 GNRL: factor 0.1 (yahoo_crosscheck)
