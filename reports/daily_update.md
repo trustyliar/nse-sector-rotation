@@ -1,11 +1,11 @@
 # Daily update report
 
-Run: 2026-11-19 10:46 UTC; range 2026-11-19 to 2026-11-19
+Run: 2026-11-19 10:52 UTC; range 2026-11-19 to 2026-11-19
 
 ## Days
 
 - 2026-11-19: NSE unreachable (not_published); used Yahoo, 2622 stocks
-- 2026-11-19: 2622 stocks from yahoo
+- 2026-11-19: 2622 stocks from yahoo; vs stored: 2622 common, 0 differ >1%, 0 differ >5%, only-NSE 0, only-stored 0
 - Yahoo cross-check: 2,622 stock-days compared since 2026-11-19, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
