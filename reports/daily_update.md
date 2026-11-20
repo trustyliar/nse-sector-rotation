@@ -1,11 +1,12 @@
 # Daily update report
 
-Run: 2026-11-19 23:03 UTC; range 2026-11-20 to 2026-11-20
+Run: 2026-11-20 10:29 UTC; range 2026-11-20 to 2026-11-20
 
 ## Days
 
-- 2026-11-20: skipped (not_published)
-- Yahoo cross-check: 0 stock-days compared since 2026-11-20, 0 differ >2% (0 stocks)
+- 2026-11-20: NSE unreachable (not_published); used Yahoo, 2620 stocks
+- 2026-11-20: 2620 stocks from yahoo
+- Yahoo cross-check: 2,620 stock-days compared since 2026-11-20, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
@@ -14,6 +15,8 @@ Run: 2026-11-19 23:03 UTC; range 2026-11-20 to 2026-11-20
 - 2026-11-05 GNRL: factor 0.1 (yahoo_crosscheck)
 - 2026-11-06 KMEW: factor 0.2 (yahoo_crosscheck)
 - 2026-11-13 PASHUPATI: factor 0.4 (yahoo_crosscheck)
+- 2026-11-11 SMLMAH: factor 1.092892 (yahoo_crosscheck)
+- 2026-11-20 SMLMAH: factor 0.915003 (yahoo_crosscheck)
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)
 
