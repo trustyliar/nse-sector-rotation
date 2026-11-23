@@ -42,7 +42,7 @@ shutil.copy(HERE / "site.css", docs / "site.css")
 shutil.copy(HERE / "site.js", docs / "site.js")
 _fb = HERE.parent / "config" / "firebase.json"
 HEAD = ('<link rel="stylesheet" href="site.css"><script>try{var p=JSON.parse(localStorage.getItem("sd-prefs"));p&&p.theme&&(document.documentElement.dataset.theme=p.theme)}catch(e){}'
-        'window.SDC=' + (_fb.read_text().strip() if _fb.exists() else "{}") + ';window.SDDAY=' + json.dumps(day) + '</script>')
+        'window.SD={cbs:[],known:false,user:null,onUser:function(f){this.cbs.push(f);if(this.known)f(this.user)}};window.SDC=' + (_fb.read_text().strip() if _fb.exists() else "{}") + ';window.SDDAY=' + json.dumps(day) + '</script>')
 TAIL = '<script type="module" src="site.js"></script>'
 
 
