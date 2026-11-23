@@ -23,7 +23,7 @@
 .pop p.d1:before{background:#d69614}.pop p.d2:before{background:#f06e1e}.pop p.d3:before{background:#d03b3b}.pop p.d0:before{background:#0a8a4a}.pop small{display:block;margin-top:8px;color:var(--ink2);font-size:11.5px}
 .empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--ink2);border:1px dashed var(--grid);border-radius:16px}
 </style>
-<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Use the account menu (top right) to sign in with Google and keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span class="sm" id="sync"></span></div></div>
+<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Use the account menu (top right) to sign in with Google and keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span class="sm" id="sync"></span> <button id="sn" title="Load your saved journal from your account">Sync now</button> <button id="sp" title="Overwrite your account copy with this browser's journal">Push this browser to account</button></div></div>
 <div class="jh-r"><button id="zs" class="zbtn" title="Fetch today's executed trades from Zerodha"><span>&#9889;</span> Sync Zerodha</button><small id="zl">Pulls today's trades. Zerodha asks you to log in once a day.</small></div></section>
 <div id="tiles"></div>
 <div class="jbar"><div class="tabs"><button id="tv1" class="on">Open positions</button><button id="tv2">All trades</button></div>
@@ -157,11 +157,16 @@ if(S.lastSync)$("zl").textContent="Last synced "+S.lastSync;
 render();
 </script>
 <script type="module">
-const SD=window.SD;let tm=null;
-if(SD)SD.onUser(async u=>{cloudPush=null;$("sync").textContent="";if(!u)return;const has=x=>x&&x.trades&&x.trades.length;
+const SD=window.SD;let tm=null,cur=null;const sy=t=>$("sync").textContent=t;
+const hint=c=>c=="permission-denied"?" (Firestore rules not published or database missing)":c=="unavailable"?" (network blocked or offline)":"";
+async function cloudSync(force){if(!cur){sy("Not signed in on this browser. Use Sign in (top right).");return}
+const has=x=>x&&x.trades&&x.trades.length;sy("Syncing...");
 try{const d=await SD.load(),c=d&&d.j?JSON.parse(d.j):null;
-if(has(c)){if(has(S)&&JSON.stringify(c)!=JSON.stringify(S))dl("journal-local-backup-"+day+".json",JSON.stringify(S),"application/json");S=c;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()}
+if(has(c)&&!(force=="push")){if(has(S)&&JSON.stringify(c)!=JSON.stringify(S))dl("journal-local-backup-"+day+".json",JSON.stringify(S),"application/json");S=c;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()}
 else if(has(S)||S.capital)await SD.save({j:JSON.stringify(S),t:Date.now()});
-cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>SD.save({j:JSON.stringify(s),t:Date.now()}).then(()=>$("sync").textContent="Saved to your account "+new Date().toLocaleTimeString()).catch(e=>$("sync").textContent="Could not save: "+e.code),700)};
-$("sync").textContent="Synced with your account"}catch(e){$("sync").textContent="Could not reach your account: "+e.code}});
+cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>SD.save({j:JSON.stringify(s),t:Date.now()}).then(()=>sy("Saved to your account "+new Date().toLocaleTimeString())).catch(e=>{sy("Could not save: "+e.code+hint(e.code));SD.toast("Cloud save failed: "+e.code)}),700)};
+sy("Synced with your account ("+((S.trades||[]).length)+" trades) "+new Date().toLocaleTimeString())}
+catch(e){sy("Could not reach your account: "+e.code+hint(e.code));SD.toast("Cloud sync failed: "+e.code)}}
+if(SD){SD.onUser(u=>{cur=u;cloudPush=null;sy("");if(u)cloudSync()});
+$("sn").onclick=()=>cloudSync();$("sp").onclick=()=>cloudSync("push")}
 </script>
