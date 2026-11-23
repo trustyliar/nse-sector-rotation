@@ -36,17 +36,33 @@ def nav(on):
     return "<nav><b>Swing<i>Desk</i></b>" + "".join(f'<a href="{h}"{" class=on" if t == on else ""}>{t}</a>' for h, t in items) + "</nav>"
 
 
+import shutil
+HERE = Path(__file__).parent
+shutil.copy(HERE / "site.css", docs / "site.css")
+shutil.copy(HERE / "site.js", docs / "site.js")
+_fb = HERE.parent / "config" / "firebase.json"
+HEAD = ('<link rel="stylesheet" href="site.css"><script>try{var p=JSON.parse(localStorage.getItem("sd-prefs"));p&&p.theme&&(document.documentElement.dataset.theme=p.theme)}catch(e){}'
+        'window.SDC=' + (_fb.read_text().strip() if _fb.exists() else "{}") + ';window.SDDAY=' + json.dumps(day) + '</script>')
+TAIL = '<script type="module" src="site.js"></script>'
+
+
+def inject(h):
+    if "site.css" in h:
+        return h
+    return h.replace("</head>", HEAD + "</head>", 1).replace("</body>", TAIL + "</body>", 1)
+
+
 def page(title, on, body, script=""):
     return (f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" '
-            f'content="width=device-width,initial-scale=1"><title>{title}</title>{css}</head><body><main class="wide">'
-            f'{nav(on)}<h1>{title} &middot; close of {day}</h1>{body}</main>{SORT}{script}</body></html>')
+            f'content="width=device-width,initial-scale=1"><title>{title}</title>{css}{HEAD}</head><body><main class="wide">'
+            f'{nav(on)}<h1>{title} &middot; close of {day}</h1>{body}</main>{SORT}{script}{TAIL}</body></html>')
 
 
 index = re.sub(r"<nav>.*?</nav>", "", index)
 if "<nav>" not in index:
     index = index.replace("</style>", css.split("</style>")[0].split("nav{")[1].join(["\nnav{", "</style>"]), 1) \
                  .replace("<main>", "<main>" + nav("Regime"), 1)
-    (docs / "index.html").write_text(index)
+    (docs / "index.html").write_text(inject(index))
 
 # Reversal watch panel on the Regime page
 rv = pd.read_csv(DATA / "derived" / "reversal.csv", parse_dates=["date"]).set_index("date")
@@ -86,7 +102,7 @@ else:
 panel = (f'<h2>Deployment stage</h2><div class="m"><div class="mh"><span>{stage[0]}</span></div><div class="d">{stage[1]}</div></div>' + panel)
 if "Reversal watch" not in index:
     index = index.replace("<h2>The five parts", panel + "<h2>The five parts", 1)
-    (docs / "index.html").write_text(index)
+    (docs / "index.html").write_text(inject(index))
 
 t = pd.read_csv(DATA / "derived" / "themes.csv")
 arrow = lambda d: "" if pd.isna(d) or d == 0 else (f"&#9650; {int(d)}" if d > 0 else f"&#9660; {int(-d)}")
