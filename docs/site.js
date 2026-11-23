@@ -3,7 +3,7 @@ const ACC={blue:["#2a78d6","#5b9be8"],green:["#168a52","#3fbf80"],violet:["#6b4f
 let P={theme:"auto",accent:"blue",dense:false};try{P={...P,...JSON.parse(localStorage.getItem(LS)||"{}")}}catch(e){}
 const isDark=()=>P.theme=="dark"||(P.theme=="auto"&&matchMedia("(prefers-color-scheme:dark)").matches);
 const E=t=>String(t??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const SD=window.SD={enabled:!!SDC.apiKey,user:null,known:false,cbs:[],onUser(cb){this.cbs.push(cb);if(this.known)cb(this.user)},save:async()=>{},load:async()=>null};
+const SD=window.SD=Object.assign(window.SD||{cbs:[]},{enabled:!!SDC.apiKey,user:null,known:false,onUser(cb){this.cbs.push(cb);if(this.known)cb(this.user)},save:async()=>{},load:async()=>null});
 const toast=t=>{const e=D.createElement("div");e.className="tst";e.textContent=t;D.body.appendChild(e);setTimeout(()=>e.remove(),2600)};SD.toast=toast;
 let pushPrefs=()=>{};
 function apply(){const h=D.documentElement;h.dataset.theme=P.theme;h.dataset.dense=P.dense?1:0;h.style.setProperty("--s",ACC[P.accent][isDark()?1:0]);paintIcon()}
