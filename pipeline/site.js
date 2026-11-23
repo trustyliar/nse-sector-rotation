@@ -54,14 +54,14 @@ if(gp&&Date.now()-gp<1200){const m={r:"index",s:"sectors",u:"setups",f:"fundamen
 if(e.key=="g")gp=Date.now()});
 const ft=D.createElement("footer");ft.className="ft";ft.innerHTML=`<span>SwingDesk &middot; NSE swing desk${DAY?" &middot; close of "+E(DAY):""}</span><span><a id="fa">About</a> &middot; <a id="fk">Shortcuts</a> &middot; Not investment advice</span>`;D.querySelector("main")?.appendChild(ft);$("#fa").onclick=about;$("#fk").onclick=keys;
 apply();paint();
-if(SD.enabled){try{const b="https://www.gstatic.com/firebasejs/10.12.2/",[{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut},{getFirestore,doc,getDoc,setDoc,deleteDoc}]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-auth.js"),import(b+"firebase-firestore.js")]);
-const app=initializeApp(SDC),au=getAuth(app),db=getFirestore(app);let ref=null,pt=null;
+if(SD.enabled){try{const b="https://www.gstatic.com/firebasejs/10.12.2/",[{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut},{getFirestore,doc,getDoc,setDoc,deleteDoc,onSnapshot}]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-auth.js"),import(b+"firebase-firestore.js")]);
+const app=initializeApp(SDC),au=getAuth(app),db=getFirestore(app);let ref=null,pt=null,unsub=null,wcb=null;const sub=()=>{unsub&&unsub();unsub=null;if(ref&&wcb)unsub=onSnapshot(ref,x=>wcb(x.exists()?x.data():null,x.metadata.hasPendingWrites),e=>wcb(undefined,false,e))};SD.watch=cb=>{wcb=cb;sub()};
 signIn=()=>signInWithPopup(au,new GoogleAuthProvider()).catch(e=>{if(e.code!="auth/popup-closed-by-user"&&e.code!="auth/cancelled-popup-request")toast("Sign-in failed: "+e.code)});
 signOutF=()=>signOut(au).then(()=>toast("Signed out"));
 SD.signIn=signIn;SD.save=f=>ref?setDoc(ref,f,{merge:true}):Promise.resolve();SD.load=async()=>{if(!ref)return null;const s=await getDoc(ref);return s.exists()?s.data():null};
 delData=async()=>{try{await deleteDoc(ref);toast("Cloud data deleted")}catch(e){toast("Could not delete: "+e.code)}};
 pushPrefs=()=>{if(!ref)return;clearTimeout(pt);pt=setTimeout(()=>setDoc(ref,{p:JSON.stringify(P)},{merge:true}).catch(()=>{}),600)};
-onAuthStateChanged(au,async u=>{SD.user=u;ref=u?doc(db,"users",u.uid):null;paint();
+onAuthStateChanged(au,async u=>{SD.user=u;ref=u?doc(db,"users",u.uid):null;paint();sub();
 if(u){try{const d=await SD.load();if(d&&d.p){P={...P,...JSON.parse(d.p)};try{localStorage.setItem(LS,JSON.stringify(P))}catch(e){}apply()}else pushPrefs()}catch(e){}}
 SD.known=true;SD.cbs.forEach(cb=>cb(u))})}catch(e){SD.enabled=false;paint();SD.known=true;SD.cbs.forEach(cb=>cb(null))}}
 else{SD.known=true;SD.cbs.forEach(cb=>cb(null))}
