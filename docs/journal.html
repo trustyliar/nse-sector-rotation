@@ -32,7 +32,7 @@ input:focus,select:focus{outline:2px solid var(--s);outline-offset:1px}button{cu
 #add,#dx,#dt,#frm button[type=submit]{background:var(--s);border-color:var(--s);color:#fff}#add:hover,#dx:hover,#dt:hover{filter:brightness(1.08);background:var(--s)}
 main.wide{max-width:1640px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
 main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}main nav a{border-bottom:0}th{cursor:pointer;user-select:none}th[data-d]::after{content:" 95"}
-.bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style></head><body><main class="wide"><nav><b>Swing<i>Desk</i></b><a href="index.html">Regime</a><a href="sectors.html">Sectors</a><a href="setups.html">Setups</a><a href="fundamentals.html">Fundamentals</a><a href="journal.html" class=on>Journal</a></nav><h1>Trade journal &middot; prices as of close of Monday 23 November 2026</h1><style>
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style><link rel="stylesheet" href="site.css"><script>try{var p=JSON.parse(localStorage.getItem("sd-prefs"));p&&p.theme&&(document.documentElement.dataset.theme=p.theme)}catch(e){}window.SDC={"apiKey":"AIzaSyAnUg9SP1a3AfhMatWGCntDgdFWkhE2-N4","authDomain":"swingdesk-b6a07.firebaseapp.com","projectId":"swingdesk-b6a07","storageBucket":"swingdesk-b6a07.firebasestorage.app","messagingSenderId":"344743344419","appId":"1:344743344419:web:30fd071e382806fef67496"};window.SDDAY="Monday 23 November 2026"</script></head><body><main class="wide"><nav><b>Swing<i>Desk</i></b><a href="index.html">Regime</a><a href="sectors.html">Sectors</a><a href="setups.html">Setups</a><a href="fundamentals.html">Fundamentals</a><a href="journal.html" class=on>Journal</a></nav><h1>Trade journal &middot; prices as of close of Monday 23 November 2026</h1><style>
 .jh{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;padding:26px 28px;border-radius:18px;color:#fff;background:linear-gradient(135deg,#0f1b3d 0%,#1d3a8a 55%,#2457d6 100%);box-shadow:0 10px 30px rgba(20,40,110,.25);margin:4px 0 18px}
 .jh h2{margin:0 0 4px;font-size:26px;letter-spacing:-.02em;color:#fff}.jh p{margin:0 0 10px;opacity:.8;max-width:520px;font-size:14px}.jh .sm,.jh a{color:#cfe0ff}
 .jh-a{display:flex;gap:10px;align-items:center;font-size:13px}.jh-a button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);padding:4px 12px;margin:0}
@@ -57,7 +57,7 @@ main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}ma
 .pop p.d1:before{background:#d69614}.pop p.d2:before{background:#f06e1e}.pop p.d3:before{background:#d03b3b}.pop p.d0:before{background:#0a8a4a}.pop small{display:block;margin-top:8px;color:var(--ink2);font-size:11.5px}
 .empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--ink2);border:1px dashed var(--grid);border-radius:16px}
 </style>
-<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Sign in with Google to keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span id="auth"></span> <span class="sm" id="sync"></span></div></div>
+<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Use the account menu (top right) to sign in with Google and keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span class="sm" id="sync"></span></div></div>
 <div class="jh-r"><button id="zs" class="zbtn" title="Fetch today's executed trades from Zerodha"><span>&#9889;</span> Sync Zerodha</button><small id="zl">Pulls today's trades. Zerodha asks you to log in once a day.</small></div></section>
 <div id="tiles"></div>
 <div class="jbar"><div class="tabs"><button id="tv1" class="on">Open positions</button><button id="tv2">All trades</button></div>
@@ -191,17 +191,12 @@ if(S.lastSync)$("zl").textContent="Last synced "+S.lastSync;
 render();
 </script>
 <script type="module">
-const C={"apiKey":"AIzaSyAnUg9SP1a3AfhMatWGCntDgdFWkhE2-N4","authDomain":"swingdesk-b6a07.firebaseapp.com","projectId":"swingdesk-b6a07","storageBucket":"swingdesk-b6a07.firebasestorage.app","messagingSenderId":"344743344419","appId":"1:344743344419:web:30fd071e382806fef67496"};
-if(C&&C.apiKey){const b="https://www.gstatic.com/firebasejs/10.12.2/",[{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut},{getFirestore,doc,getDoc,setDoc}]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-auth.js"),import(b+"firebase-firestore.js")]);
-const app=initializeApp(C),au=getAuth(app),db=getFirestore(app);let tm=null;
-const paint=u=>{$("auth").innerHTML=u?`<span class="sm">${esc(u.email)}</span> <button id="so">Sign out</button>`:`<button id="si">Sign in with Google</button>`;
-if(u)$("so").onclick=()=>signOut(au);else $("si").onclick=()=>signInWithPopup(au,new GoogleAuthProvider()).catch(e=>{$("sync").textContent="Sign-in failed: "+e.code})};
-onAuthStateChanged(au,async u=>{paint(u);cloudPush=null;$("sync").textContent="";if(!u)return;const ref=doc(db,"users",u.uid),has=x=>x&&x.trades&&x.trades.length;
-try{const sn=await getDoc(ref),c=sn.exists()?JSON.parse(sn.data().j):null;
+const SD=window.SD;let tm=null;
+if(SD)SD.onUser(async u=>{cloudPush=null;$("sync").textContent="";if(!u)return;const has=x=>x&&x.trades&&x.trades.length;
+try{const d=await SD.load(),c=d&&d.j?JSON.parse(d.j):null;
 if(has(c)){if(has(S)&&JSON.stringify(c)!=JSON.stringify(S))dl("journal-local-backup-"+day+".json",JSON.stringify(S),"application/json");S=c;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()}
-else if(has(S)||S.capital)await setDoc(ref,{j:JSON.stringify(S),t:Date.now()});
-cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>setDoc(ref,{j:JSON.stringify(s),t:Date.now()}).then(()=>$("sync").textContent="Saved to your account "+new Date().toLocaleTimeString()).catch(e=>$("sync").textContent="Could not save: "+e.code),700)};
-$("sync").textContent="Synced with your account"}catch(e){$("sync").textContent="Could not reach your account: "+e.code}})}
-else $("auth").innerHTML='<span class="sm">Google sign-in is not switched on yet. Your journal stays in this browser.</span>';
+else if(has(S)||S.capital)await SD.save({j:JSON.stringify(S),t:Date.now()});
+cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>SD.save({j:JSON.stringify(s),t:Date.now()}).then(()=>$("sync").textContent="Saved to your account "+new Date().toLocaleTimeString()).catch(e=>$("sync").textContent="Could not save: "+e.code),700)};
+$("sync").textContent="Synced with your account"}catch(e){$("sync").textContent="Could not reach your account: "+e.code}});
 </script>
-</body></html>
+<script type="module" src="site.js"></script></body></html>
