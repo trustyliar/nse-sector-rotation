@@ -1,260 +1,255 @@
 symbol,theme,rank_score,quality,grade,tags,setup,stage,trigger,stop,risk,rs,close,adr,runup,depth,range5,vs_ema10,vs_ema20,vol_ratio,base_days,turnover_cr
-ATHERENERG,Automobiles,90.1,87.7,A+,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,1972.4,1913.3,3.0,98,1935.4,4.6,50.0,4.3,8.6,2.4,6.8,0.56,4,424.9
-BLUSPRING,Specialty Business Services,87.0,91.0,A+,Flag after big move; Tight range; Narrowest in 7; At 20 EMA; Volume dry-up,Flag after big move; Tight range; Narrowest in 7; At 20 EMA; Volume dry-up,Ready,160.4,156.47,2.5,97,157.47,6.1,61.0,13.4,8.2,-0.9,0.2,0.43,25,4.6
-APLLTD,Pharma,84.7,87.9,A+,Flag after big move; Tight range,Flag after big move; Tight range,Ready,1053.8,1034.9,1.8,84,1040.95,4.3,44.0,3.2,4.0,2.4,8.1,0.52,4,23.5
-CNL,Electronics & Computer Distribution,83.6,87.5,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,1383.0,1326.1,4.1,96,1348.1,7.5,59.0,13.0,12.3,-2.1,2.0,0.44,6,2.9
-CUPID,FMCG Personal Care,82.8,78.1,A+,Flag after big move; Inside day; Narrowest in 7; At 10 EMA; Volume dry-up,Flag after big move; Inside day; Narrowest in 7; At 10 EMA; Volume dry-up,Ready,369.3,362.0,2.0,99,365.65,4.2,37.0,7.0,8.4,1.4,4.2,0.49,5,310.7
-BOROLTD,Consumer Durables,82.8,88.5,A+,Flag after big move; Inside day; At 10 EMA,Flag after big move; Inside day; At 10 EMA,Ready,334.25,325.75,2.5,82,327.1,5.4,52.0,5.7,9.8,2.0,6.5,0.3,4,5.8
-SAILIFE,Diagnostics,82.8,77.6,A+,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,1829.9,1776.9,2.9,95,1800.7,4.9,44.0,7.9,12.1,1.1,5.0,0.8,5,104.6
-LUMAXTECH,Auto Ancillaries,82.6,82.1,A+,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Ready,2364.9,2312.82,2.2,90,2330.3,5.5,46.0,6.9,9.2,1.5,5.3,0.73,8,31.9
-PPLPHARMA,Pharma,82.3,85.0,A+,Flag after big move; At 10 EMA; At 20 EMA,Flag after big move; At 10 EMA; At 20 EMA,Ready,242.24,234.32,3.3,81,239.3,4.1,37.0,5.8,8.4,-0.3,2.3,0.38,4,93.5
-AARTIDRUGS,Pharma,82.0,86.4,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,503.7,481.35,4.4,75,484.5,5.6,43.0,8.2,7.1,-0.9,2.8,0.22,5,25.5
-ENTERO,Medical Distribution,81.9,85.8,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,1977.9,1881.0,4.9,93,1901.8,5.4,49.0,11.0,7.3,-1.3,2.6,0.54,8,18.9
-SATIN,NBFC,81.4,88.3,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,258.59,251.06,2.9,87,256.16,3.9,37.0,6.3,5.3,-0.3,1.7,0.26,5,5.9
-MODIS,Real Estate,80.5,82.2,A+,Tight range; Inside day; Narrowest in 7; At 10 EMA,Tight range; Inside day; Narrowest in 7; At 10 EMA,Ready,459.0,449.69,2.0,83,455.3,5.1,28.0,1.9,7.7,2.4,6.0,0.34,4,2.2
-SONACOMS,Auto Ancillaries,80.4,78.0,A+,Tight range; At 20 EMA; Volume dry-up,Tight range; At 20 EMA; Volume dry-up,Ready,902.8,884.7,2.0,92,892.5,2.9,26.0,4.5,4.8,-0.8,0.8,0.49,5,159.2
-THELEELA,Hotels,80.3,80.1,A+,Flag after big move; Tight range; Narrowest in 7; At 10 EMA,Flag after big move; Tight range; Narrowest in 7; At 10 EMA,Ready,705.2,689.6,2.2,94,698.1,4.1,35.0,1.2,6.2,2.9,5.8,0.46,11,25.2
-EMCURE,Pharma,80.2,78.8,A+,Flag after big move; Tight range,Flag after big move; Tight range,Ready,2389.0,2331.0,2.4,91,2337.8,4.0,42.0,3.8,3.5,2.3,7.0,1.47,9,33.6
-ROSSTECH,Defence,79.9,83.8,A+,Flag after big move; Tight range; At 10 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; Volume dry-up,Ready,1569.2,1513.1,3.6,97,1528.6,4.7,65.0,10.0,6.0,1.2,3.1,0.31,32,11.5
-MILKYMIST,FMCG Foods,79.9,76.4,A+,Flag after big move; Turning up off EMA; Volume dry-up,Flag after big move; Turning up off EMA; Volume dry-up,Building,325.1,310.0,4.6,97,323.65,4.7,74.0,5.5,11.1,5.2,6.5,0.06,30,19.0
-NILKAMAL,Consumer Durables,79.6,81.8,A+,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,2175.7,2077.4,4.5,88,2102.7,5.6,45.0,7.8,9.8,-1.7,1.9,0.38,4,8.6
-PDSL,Specialty Business Services,79.4,86.1,A+,Flag after big move; Tight range; Inside day; At 10 EMA; Volume dry-up,Flag after big move; Tight range; Inside day; At 10 EMA; Volume dry-up,Ready,414.45,403.55,2.6,75,408.3,4.7,33.0,3.9,5.4,1.0,4.7,0.34,6,6.3
-RATNAVEER,Steel,79.4,84.4,A+,Flag after big move; Tight range; Inside day; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; Inside day; At 10 EMA; At 20 EMA; Volume dry-up,Ready,374.5,366.3,2.2,97,370.25,4.4,31.0,5.0,5.5,1.0,2.4,0.31,12,71.5
-KROSS,Auto Ancillaries,79.2,76.5,A+,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,285.0,276.4,3.0,91,278.3,5.6,59.0,14.7,11.5,-3.1,-2.7,0.91,23,39.7
-OPTIEMUS,Electronics & Computer Distribution,79.2,81.3,A+,Flag after big move; Narrowest in 7; At 20 EMA; Volume dry-up,Flag after big move; Narrowest in 7; At 20 EMA; Volume dry-up,Ready,818.0,785.0,4.0,94,792.2,6.4,72.0,14.3,11.5,-0.8,0.7,0.31,32,26.6
-ALEMBICLTD,Real Estate,78.9,81.5,A+,Flag after big move; Tight range; At 10 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; Volume dry-up,Ready,112.3,107.89,3.9,77,108.91,5.1,42.0,7.9,8.0,-0.2,3.6,0.39,5,6.2
-GLENMARK,Pharma,78.1,78.9,A+,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,2657.7,2601.9,2.1,80,2648.0,3.4,29.0,2.4,3.5,1.6,4.4,0.69,8,159.5
-KRISHANA,Fertilisers & Agrochem,77.5,84.8,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,247.1,240.0,2.9,97,246.17,4.1,43.0,3.5,6.8,1.8,4.9,0.62,4,23.0
-KOPRAN,Pharma,77.3,73.4,A,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,267.0,260.0,2.6,94,263.16,5.6,57.0,11.0,13.0,-1.4,-0.5,0.3,35,6.3
-RAYMOND,Capital Goods,76.7,78.9,A+,Flag after big move; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1205.0,1138.0,5.6,98,1198.7,5.5,119.0,10.5,9.8,2.4,4.4,0.16,32,66.2
-DIVISLAB,Pharma,76.7,72.5,A,Flag after big move; Narrowest in 7; At 10 EMA,Flag after big move; Narrowest in 7; At 10 EMA,Ready,11198.0,11025.0,1.5,94,11180.5,3.0,34.0,5.4,5.4,1.4,5.0,1.09,8,733.2
-ALIVUS,Pharma,76.5,74.7,A,Flag after big move; Tight range; At 20 EMA; At 50 EMA,Flag after big move; Tight range; At 20 EMA; At 50 EMA,Ready,1460.0,1420.4,2.7,86,1436.9,4.8,30.0,8.7,5.5,-0.9,0.1,2.24,9,61.3
-TCPLPACK,Packaging & Containers,76.5,75.2,A+,Tight range; At 20 EMA,Tight range; At 20 EMA,Ready,4595.1,4350.0,5.3,87,4387.4,5.9,26.0,7.0,7.6,-1.2,0.3,0.75,10,4.3
-IGIL,Other Precious Metals & Mining,76.2,81.0,A+,Flag after big move; At 20 EMA; Volume dry-up,Flag after big move; At 20 EMA; Volume dry-up,Ready,436.75,418.0,4.3,80,422.2,4.6,49.0,6.9,8.4,-1.6,2.3,0.46,7,47.8
-OMAXAUTO,Auto Ancillaries,75.8,72.5,A,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,202.49,197.31,2.6,87,199.65,5.4,51.0,17.7,8.9,0.0,-0.1,1.0,27,1.1
-ACUTAAS,Specialty Chemicals,75.6,82.5,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,3970.0,3800.5,4.3,94,3833.5,5.1,36.0,7.2,8.6,-2.0,0.6,0.46,5,177.0
-SBC,Textiles,75.5,66.1,A,Inside day; Narrowest in 7; At 10 EMA,Inside day; Narrowest in 7; At 10 EMA,Ready,69.25,68.0,1.8,98,68.6,2.9,25.0,3.8,6.2,0.0,2.1,0.83,4,86.3
-NELCAST,Metal Fabrication,75.3,80.4,A+,Flag after big move; At 20 EMA; At 50 EMA; Turning up off EMA,Flag after big move; At 20 EMA; At 50 EMA; Turning up off EMA,Triggered today,147.75,137.96,6.6,81,146.3,6.2,64.0,15.1,13.1,-1.1,0.3,0.53,13,4.2
-PARAGMILK,FMCG Foods,75.3,71.3,A,Inside day; At 10 EMA,Inside day; At 10 EMA,Ready,344.13,330.92,3.8,91,336.94,6.1,51.0,4.0,9.0,2.9,8.2,0.44,3,34.6
-ARIHANTCAP,Capital Markets,75.0,73.3,A,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Ready,92.58,90.11,2.7,72,90.55,4.5,37.0,11.4,7.5,-2.4,-2.0,0.57,25,2.6
-TIPSMUSIC,Entertainment,74.6,66.6,A,Inside day; Narrowest in 7; At 10 EMA,Inside day; Narrowest in 7; At 10 EMA,Ready,819.3,804.15,1.8,89,808.05,3.9,35.0,3.2,5.5,0.7,3.1,0.38,3,30.4
-ROLEXRINGS,Metal Fabrication,74.4,76.7,A+,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,201.6,192.5,4.5,88,193.81,5.2,49.0,11.9,12.3,-3.5,-0.5,0.47,6,34.2
-AEROPLANE,Farm Products,74.4,79.4,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Ready,245.59,235.02,4.3,96,242.7,5.4,32.0,3.7,8.3,2.3,4.7,0.31,6,12.3
-MANCREDIT,NBFC,74.3,76.7,A+,Flag after big move; Inside day; Narrowest in 7; At 10 EMA,Flag after big move; Inside day; Narrowest in 7; At 10 EMA,Ready,259.9,255.23,1.8,89,259.39,4.5,44.0,11.0,14.6,0.8,4.0,0.34,4,2.5
-UNIMECH,Defence,74.2,75.7,A+,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,1841.0,1771.0,3.8,95,1782.2,5.5,39.0,12.0,10.1,-2.6,-0.7,0.62,6,31.9
-SMSPHARMA,Pharma,74.1,70.3,A,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,484.2,472.0,2.5,88,473.25,5.2,32.0,11.5,9.6,-3.4,-2.8,0.5,12,20.0
-CPPLUS,Building Products,73.6,75.4,A+,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,4058.9,3931.7,3.1,96,4026.2,4.2,39.0,12.9,5.6,-0.4,-0.2,0.84,26,70.0
-PRADPME,Metal Fabrication,73.6,80.5,A+,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,625.4,595.5,4.8,72,605.65,5.9,65.0,16.5,11.6,-1.3,-1.0,0.63,26,1.0
-NUVAMA,Asset Management,73.5,75.4,A+,Tight range; Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,1835.0,1791.3,2.4,74,1820.8,4.5,23.0,7.3,7.1,-1.4,-0.3,0.49,6,47.0
-DYNAMATECH,Auto Ancillaries,73.5,69.7,A,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,13718.0,13114.0,4.4,85,13526.0,4.3,29.0,6.7,8.1,2.6,3.9,0.68,26,16.8
-SSWL,Auto Ancillaries,73.4,65.4,A,Inside day; At 20 EMA; Volume dry-up,Inside day; At 20 EMA; Volume dry-up,Ready,554.9,522.3,5.9,98,524.8,6.2,56.0,10.9,14.0,-3.5,0.0,0.19,3,48.2
-LALPATHLAB,Diagnostics,73.3,68.8,A,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Triggered today,2028.2,1940.0,4.3,76,2006.0,3.4,16.0,3.5,4.5,1.1,2.0,0.79,8,45.9
-63MOONS,Software,73.3,80.6,A+,Tight range; Inside day; At 10 EMA; At 20 EMA,Tight range; Inside day; At 10 EMA; At 20 EMA,Ready,960.0,920.9,4.1,84,925.7,5.2,29.0,5.7,7.1,-0.3,0.8,0.47,14,25.9
-TECHNOCRAF,Infrastructure Operations,72.9,69.3,A,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Ready,497.35,482.05,3.1,93,492.2,5.9,32.0,13.4,8.0,0.5,0.5,0.78,12,72.5
-SEJALLTD,Building Products,72.9,79.0,A+,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA,Triggered today,929.25,857.2,7.8,81,922.95,7.3,74.0,9.9,14.9,3.3,6.0,0.95,25,3.5
-GRWRHITECH,Specialty Chemicals,72.7,78.1,A+,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,7890.0,7724.5,2.1,94,7779.0,4.0,41.0,3.7,10.4,0.8,3.0,0.52,7,34.0
-SWANDEF,Defence,72.6,74.7,A,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA,Ready,2979.9,2776.54,6.8,90,2860.6,4.5,31.0,5.3,10.8,1.1,1.9,0.47,27,2.0
-SOUTHBANK,Private Banks,72.6,63.0,B,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,59.64,56.92,4.6,91,58.62,3.2,36.0,6.3,9.6,-1.5,1.4,0.8,5,78.8
-GYFTR,Specialty Business Services,72.6,70.7,A,At 10 EMA,At 10 EMA,Ready,226.49,220.29,2.7,91,221.88,5.4,53.0,5.2,8.2,2.6,8.7,0.47,3,6.4
-INDOMIM,Metal Fabrication,72.3,72.9,A,Flag after big move; Inside day; At 10 EMA; At 20 EMA,Flag after big move; Inside day; At 10 EMA; At 20 EMA,Ready,1292.0,1247.9,3.4,90,1263.2,4.5,64.0,8.1,11.7,1.3,2.7,0.56,31,127.0
-PANORAMA,Entertainment,72.2,64.4,B,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,60.0,58.0,3.3,84,58.39,5.8,74.0,16.0,10.3,-1.0,-1.5,0.58,33,1.3
-MANAKCOAT,Metal Fabrication,72.2,74.0,A,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,163.1,155.84,4.5,86,157.52,6.4,60.0,14.8,13.1,-2.4,1.4,2.0,6,8.7
-ENGINERSIN,Infra & Construction,72.1,77.4,A+,Flag after big move; At 20 EMA; Volume dry-up,Flag after big move; At 20 EMA; Volume dry-up,Ready,305.0,294.9,3.3,88,296.55,4.7,37.0,8.4,8.9,-1.9,0.2,0.54,7,87.2
-LENSKART,Medical Instruments & Supplies,72.0,70.9,A,Tight range; Narrowest in 7; At 10 EMA,Tight range; Narrowest in 7; At 10 EMA,Ready,748.5,736.45,1.6,92,744.35,3.3,24.0,2.4,3.7,2.1,4.4,0.98,11,276.2
-MMFL,Metal Fabrication,71.7,71.1,A,At 10 EMA,At 10 EMA,Ready,654.4,628.4,4.0,93,648.05,5.9,53.0,7.8,11.9,1.6,6.5,0.33,3,9.2
-PERMAGN,Electricals & Power Equipment,71.6,81.9,A+,Flag after big move; Tight range; Inside day; Narrowest in 7; At 20 EMA,Flag after big move; Tight range; Inside day; Narrowest in 7; At 20 EMA,Ready,1173.55,1120.1,4.6,85,1128.75,7.7,59.0,11.7,12.6,-1.1,3.5,0.62,8,2.9
-TFCILTD,NBFC,71.4,69.5,A,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Ready,171.95,169.02,1.7,98,171.85,3.2,27.0,0.1,7.0,2.8,5.2,0.5,8,160.9
-GLAND,Pharma,71.3,64.8,B,At 10 EMA; Turning up off EMA,At 10 EMA; Turning up off EMA,Ready,3339.1,3279.7,1.8,92,3331.9,3.3,24.0,2.8,6.9,2.0,4.1,0.52,4,105.7
-MMP,Metals & Mining,71.3,76.8,A+,Flag after big move; At 20 EMA; At 50 EMA; Volume dry-up,Flag after big move; At 20 EMA; At 50 EMA; Volume dry-up,Ready,478.85,439.05,8.3,92,460.4,6.4,42.0,11.5,12.7,2.7,2.6,0.47,26,1.9
-CORONA,Pharma,71.0,67.9,A,Tight range; At 20 EMA; At 50 EMA,Tight range; At 20 EMA; At 50 EMA,Ready,2364.5,2228.0,5.8,80,2263.2,5.1,40.0,16.8,7.2,-1.3,-0.4,1.54,8,8.3
-MANBA,NBFC,71.0,76.9,A+,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Ready,145.92,141.0,3.4,72,141.44,3.3,24.0,9.3,4.2,-1.3,-1.1,0.3,16,1.0
-AURUM,Real Estate,70.7,70.8,A,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,219.5,210.0,4.3,71,216.29,4.0,25.0,19.4,6.2,0.5,0.4,0.29,24,2.0
-EIMCOELECO,Tractors & CVs,70.7,72.9,A,Flag after big move; At 20 EMA; Volume dry-up,Flag after big move; At 20 EMA; Volume dry-up,Ready,2545.8,2460.0,3.4,88,2474.2,4.8,33.0,9.7,11.4,-1.7,1.1,0.2,4,3.8
-ISGEC,Capital Goods,70.5,77.0,A+,Tight range; At 10 EMA; Volume dry-up,Tight range; At 10 EMA; Volume dry-up,Ready,999.2,968.25,3.1,73,995.4,3.3,18.0,0.5,3.8,1.3,3.5,0.49,6,3.5
-RAMBHAJO,Jewellery,69.9,68.6,A,Flag after big move; At 20 EMA; Volume dry-up,Flag after big move; At 20 EMA; Volume dry-up,Triggered today,336.05,306.65,8.7,98,334.35,5.9,68.0,17.8,15.4,4.2,2.9,0.23,22,4.4
-ADANIPORTS,Shipping,69.7,65.1,A,Tight range; At 10 EMA; Volume dry-up,Tight range; At 10 EMA; Volume dry-up,Ready,1930.2,1902.7,1.4,74,1917.0,2.5,18.0,3.1,2.9,0.6,1.9,0.51,7,403.9
-TANLA,Software,69.6,77.4,A+,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,692.9,658.1,5.0,76,660.6,4.8,54.0,10.6,11.5,-2.8,0.8,0.56,6,53.5
-MOTILALOFS,Capital Markets,69.2,60.4,B,Narrowest in 7; At 10 EMA,Narrowest in 7; At 10 EMA,Ready,1215.15,1186.8,2.3,85,1205.65,4.5,44.0,5.6,7.7,1.8,6.3,1.03,3,179.2
-ZYDUSLIFE,Pharma,69.1,66.5,A,Tight range; Narrowest in 7; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; Narrowest in 7; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1208.5,1193.5,1.2,75,1200.0,2.7,16.0,5.3,2.7,0.0,0.6,0.75,12,159.9
-NAZARA,Electronic Gaming & Multimedia,68.8,67.2,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,422.7,411.2,2.7,88,414.55,3.3,16.0,4.8,5.8,-0.7,0.6,0.49,4,34.4
-PTCIL,Metal Fabrication,68.6,67.5,A,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,24300.0,23820.0,2.0,89,24120.0,3.4,26.0,7.5,5.9,0.3,0.1,0.52,27,31.8
-SHREEJISPG,Shipping,68.5,55.8,B,At 10 EMA,At 10 EMA,Ready,916.5,902.65,1.5,98,913.8,2.9,26.0,1.2,5.1,1.8,4.4,0.63,3,70.2
-KABRAEXTRU,Capital Goods,68.2,65.5,A,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,728.95,706.45,3.1,99,720.2,4.9,83.0,19.0,8.8,-0.5,-1.0,0.2,37,2.5
-IOLCP,Pharma,68.1,59.9,B,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,194.2,183.01,5.8,92,184.12,5.8,34.0,17.8,11.3,-3.7,-3.4,0.63,31,32.9
-GESHIP,Shipping,68.0,62.7,B,Narrowest in 7; At 10 EMA; At 20 EMA,Narrowest in 7; At 10 EMA; At 20 EMA,Ready,1553.1,1528.56,1.6,73,1531.6,4.0,21.0,7.0,7.1,0.8,1.1,0.92,16,97.9
-AARTIPHARM,Pharma,67.7,61.1,B,At 10 EMA,At 10 EMA,Ready,1029.0,986.0,4.2,86,990.7,5.1,34.0,5.4,6.9,0.8,3.9,0.72,3,47.7
-KMEW,Shipping,67.6,54.7,C,At 10 EMA,At 10 EMA,Ready,724.8,700.5,3.4,97,716.7,6.0,32.0,7.3,10.4,1.6,4.9,0.6,3,39.8
-MANKIND,Pharma,67.5,65.6,A,Tight range; At 10 EMA; Turning up off EMA; Volume dry-up,Tight range; At 10 EMA; Turning up off EMA; Volume dry-up,Triggered today,2669.9,2620.2,1.9,70,2665.0,2.7,23.0,1.5,4.3,1.9,4.0,0.6,8,126.0
-JAYBARMARU,Auto Ancillaries,67.5,62.9,B,At 50 EMA,At 50 EMA,Triggered today,131.66,123.9,5.9,77,129.38,5.2,28.0,6.4,8.2,3.9,4.9,1.98,30,9.7
-LAURUSLABS,Pharma,67.4,57.6,B,Inside day; Narrowest in 7; At 20 EMA,Inside day; Narrowest in 7; At 20 EMA,Ready,2320.0,2283.81,1.6,96,2294.6,3.9,29.0,7.8,11.4,-1.2,0.4,1.35,7,596.0
-MANORAMA,FMCG Foods,67.2,61.9,B,Tight range; Inside day; At 20 EMA; At 50 EMA,Tight range; Inside day; At 20 EMA; At 50 EMA,Ready,1889.7,1852.1,2.0,81,1872.7,4.1,30.0,13.3,6.9,-1.8,-1.8,1.33,6,20.4
-BOSCHLTD,Auto Ancillaries,67.0,60.8,B,Tight range; At 10 EMA; At 20 EMA,Tight range; At 10 EMA; At 20 EMA,Ready,49795.0,48995.0,1.6,81,49360.0,2.5,23.0,5.9,3.0,-0.0,1.0,1.29,11,138.3
-MBAPL,Fertilisers & Agrochem,66.9,68.5,A,Flag after big move; At 10 EMA; Turning up off EMA,Flag after big move; At 10 EMA; Turning up off EMA,Ready,196.3,189.65,3.4,97,195.14,4.0,34.0,6.6,11.8,1.4,4.1,1.06,4,18.6
-GALAPREC,Capital Goods,66.7,66.9,A,Flag after big move; At 20 EMA; At 50 EMA,Flag after big move; At 20 EMA; At 50 EMA,Ready,1182.0,1135.5,3.9,87,1168.8,5.4,36.0,11.4,13.7,-1.9,0.4,0.77,7,3.1
-DELTACORP,Resorts & Casinos,66.6,68.1,A,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,78.65,76.06,3.3,74,76.7,5.5,72.0,13.4,15.0,-4.0,-2.6,0.37,32,19.9
-INDGN,Health Information Services,66.6,65.7,A,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,659.85,640.25,3.0,82,657.65,3.3,21.0,2.9,5.3,2.0,4.3,0.8,5,30.6
-NYKAA,Internet & E-commerce,66.2,66.8,A,Tight range; At 10 EMA; Turning up off EMA,Tight range; At 10 EMA; Turning up off EMA,Triggered today,365.5,355.0,2.9,84,364.0,2.9,18.0,1.2,4.7,1.8,3.0,0.54,4,165.5
-MACPOWER,Capital Goods,65.9,62.9,B,Narrowest in 7; At 50 EMA,Narrowest in 7; At 50 EMA,Building,2146.7,2057.2,4.2,96,2080.0,6.4,45.0,15.1,14.2,-5.3,-3.9,0.71,8,12.1
-TIMEX,Jewellery,65.7,63.0,B,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,725.1,682.15,5.9,95,690.0,5.1,32.0,10.0,10.7,-3.9,-2.3,0.65,7,25.5
-HAWKINCOOK,Consumer Durables,65.6,65.8,A,Tight range; At 10 EMA; Volume dry-up,Tight range; At 10 EMA; Volume dry-up,Ready,8513.0,8215.5,3.5,70,8396.0,3.2,19.0,4.6,3.6,1.6,3.5,0.71,5,1.1
-ORIENTHOT,Hotels,65.4,57.2,B,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Triggered today,181.66,176.05,3.1,94,179.98,3.0,32.0,1.0,5.6,2.9,6.3,0.46,3,10.2
-SANATHAN,Textiles,65.4,54.9,C,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,583.6,562.6,3.6,84,571.9,4.4,30.0,7.4,9.7,-0.9,2.0,0.47,3,3.8
-WHEELS,Auto Ancillaries,65.1,53.3,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Building,2249.6,2150.0,4.4,96,2161.3,6.1,32.0,15.2,13.9,-5.6,-5.6,0.48,6,19.7
-KISSHT,NBFC,65.0,63.6,B,At 20 EMA,At 20 EMA,Ready,361.2,336.0,7.0,85,337.8,5.5,36.0,13.0,10.0,-1.3,-0.9,0.59,33,27.4
-GROWW,Capital Markets,64.8,53.3,C,At 10 EMA,At 10 EMA,Ready,227.6,218.22,4.1,86,224.57,3.6,31.0,3.8,7.0,1.7,4.9,1.41,3,594.6
-JAMNAAUTO,Auto Ancillaries,64.8,57.8,B,Flag after big move; Inside day; Narrowest in 7; At 20 EMA; At 50 EMA,Flag after big move; Inside day; Narrowest in 7; At 20 EMA; At 50 EMA,Ready,140.28,136.61,2.6,80,137.55,4.8,30.0,11.8,16.0,-1.1,0.2,0.78,4,21.8
-SAREGAMA,Entertainment,64.7,50.2,C,Narrowest in 7; At 10 EMA,Narrowest in 7; At 10 EMA,Ready,673.6,661.18,1.8,93,666.7,4.6,45.0,3.9,5.5,2.3,7.8,0.73,2,42.9
-MAXESTATES,Real Estate,64.7,56.9,B,Flag after big move; Turning up off EMA,Flag after big move; Turning up off EMA,Triggered today,606.2,578.3,4.6,86,602.75,4.7,58.0,7.7,8.2,6.3,9.4,0.24,39,2.9
-MARSONS,Electricals & Power Equipment,63.9,73.8,A,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,160.0,148.0,7.5,73,152.56,7.4,52.0,11.7,16.7,-1.4,2.4,0.87,4,61.4
-TVSMOTOR,Automobiles,63.8,52.4,C,Narrowest in 7,Narrowest in 7,Ready,4625.0,4564.4,1.3,81,4590.0,2.8,24.0,1.0,6.1,2.4,4.5,1.3,7,321.5
-SAMBHV,Steel,63.8,63.3,B,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,163.01,156.8,3.8,88,158.06,5.0,20.0,11.6,7.2,-2.7,-2.7,0.37,11,24.1
-KAPSTON,Specialty Business Services,63.8,55.7,B,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,547.0,530.0,3.1,96,541.2,3.4,24.0,12.2,4.7,0.8,1.6,0.59,38,2.0
-GOODLUCK,Steel,63.5,65.9,A,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Building,542.75,525.15,3.2,78,528.7,4.1,37.0,14.0,9.8,-3.2,-2.9,0.4,25,18.4
-BBOX,Software,63.3,66.0,A,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Ready,912.0,890.6,2.3,82,896.4,4.5,34.0,5.8,7.3,1.9,3.8,0.99,26,41.6
-GABRIEL,Auto Ancillaries,63.2,54.4,C,Flag after big move; Inside day,Flag after big move; Inside day,Ready,1595.7,1550.0,2.9,83,1559.8,4.5,31.0,7.7,8.8,3.3,5.7,1.23,6,24.4
-CENTUM,Electronics Manufacturing,63.0,55.5,B,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,4488.0,4350.1,3.1,92,4374.5,4.5,54.0,12.5,6.3,0.8,2.5,0.74,40,24.5
-SEDEMAC,Auto Ancillaries,62.7,52.7,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,3119.9,3050.0,2.2,86,3074.7,3.8,31.0,15.8,8.5,-0.1,-0.9,0.52,33,21.0
-ADANIGREEN,Renewables,62.7,69.2,A,Tight range; At 10 EMA; Turning up off EMA,Tight range; At 10 EMA; Turning up off EMA,Ready,1443.3,1411.1,2.2,75,1435.0,3.0,26.0,3.0,4.6,1.7,3.7,1.05,7,265.4
-TEXINFRA,Real Estate,62.5,56.0,B,Inside day; Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Inside day; Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,121.63,118.51,2.6,78,120.43,4.5,20.0,9.9,8.4,-1.3,-1.3,1.38,8,4.5
-RADICO,Liquor,62.3,54.2,C,Narrowest in 7; At 10 EMA,Narrowest in 7; At 10 EMA,Ready,4666.2,4594.6,1.5,82,4665.0,3.1,17.0,0.8,4.5,1.5,3.2,0.79,3,190.6
-ASTRAMICRO,Defence,62.3,60.4,B,Tight range; Narrowest in 7; At 20 EMA; At 50 EMA,Tight range; Narrowest in 7; At 20 EMA; At 50 EMA,Ready,1669.0,1637.0,1.9,85,1642.7,4.0,25.0,10.5,6.7,-1.0,0.1,1.03,6,43.6
-KALYANKJIL,Jewellery,62.2,59.8,B,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,648.9,617.0,4.9,88,638.7,4.9,49.0,12.4,18.2,-1.2,3.4,1.42,4,587.3
-MARINE,Electricals & Power Equipment,62.1,65.2,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,424.3,399.8,5.8,92,405.0,6.5,39.0,17.5,8.8,-2.8,-3.2,0.62,31,33.7
-KARURVYSYA,Private Banks,62.1,48.6,C,At 20 EMA,At 20 EMA,Ready,386.85,374.2,3.3,85,377.0,3.4,24.0,5.2,6.3,-0.6,1.8,0.98,3,111.0
-ROTO,Capital Goods,62.0,63.9,B,Flag after big move; Narrowest in 7; At 10 EMA,Flag after big move; Narrowest in 7; At 10 EMA,Ready,72.54,70.12,3.3,73,71.57,4.5,45.0,10.4,9.8,2.0,6.2,1.57,6,2.1
-SIMPLEXINF,Infra & Construction,61.9,64.5,B,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,306.0,292.15,4.5,79,299.75,4.7,31.0,2.9,9.1,2.6,5.9,1.39,5,3.8
-AUROPHARMA,Pharma,61.8,52.9,C,At 10 EMA,At 10 EMA,Ready,1817.5,1788.1,1.6,83,1799.0,2.3,20.0,3.3,4.0,0.4,2.1,1.17,7,201.0
-ANTHEM,Biotechnology,61.7,63.9,B,At 10 EMA; Turning up off EMA; Volume dry-up,At 10 EMA; Turning up off EMA; Volume dry-up,Triggered today,954.85,929.0,2.7,80,951.05,2.9,26.0,3.8,5.2,2.5,4.6,0.78,8,28.6
-SAKAR,Pharma,61.7,49.0,C,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Triggered today,1040.0,977.8,6.0,95,1023.4,5.6,48.0,16.8,9.9,0.8,1.5,0.72,40,9.3
-BHEL,Capital Goods,61.7,61.5,B,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA,Ready,435.0,425.35,2.2,79,433.65,3.1,15.0,6.5,4.8,1.4,2.3,1.07,26,330.0
-RKFORGE,Railways,61.7,61.4,B,At 20 EMA,At 20 EMA,Ready,767.0,739.95,3.5,79,745.75,4.6,41.0,7.2,8.7,-1.0,1.8,0.45,3,71.9
-KPRMILL,Textiles,61.6,53.4,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,1205.0,1170.0,2.9,70,1191.3,3.8,26.0,4.5,7.7,0.9,3.0,1.81,3,37.0
-APOLLO,Defence,61.5,59.6,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,452.75,425.5,6.0,84,427.7,6.0,32.0,10.5,12.1,-3.4,-1.4,0.85,5,445.6
-MENONBE,Auto Ancillaries,61.3,47.1,C,At 20 EMA; At 50 EMA; Still deep,At 20 EMA; At 50 EMA; Still deep,Building,329.9,305.0,7.5,97,307.15,9.3,61.0,21.2,27.8,-6.8,-4.6,0.6,4,11.1
-MARICO,FMCG Personal Care,61.1,52.9,C,Tight range; Narrowest in 7; At 10 EMA,Tight range; Narrowest in 7; At 10 EMA,Ready,924.3,911.6,1.4,72,917.0,2.2,22.0,0.9,3.0,1.5,4.4,0.71,7,178.5
-UTTAMSUGAR,Sugar,61.0,64.6,B,Tight range; At 20 EMA; Volume dry-up; Overhead supply; Wide red candles,Tight range; At 20 EMA; Volume dry-up; Overhead supply; Wide red candles,Building,363.7,348.6,4.2,87,355.8,7.1,64.0,11.3,8.0,-1.6,-0.0,0.64,26,9.4
-SANSERA,Auto Ancillaries,60.9,46.2,C,At 10 EMA,At 10 EMA,Ready,4838.9,4651.8,3.9,98,4798.4,4.5,25.0,1.1,9.7,3.8,6.5,0.77,3,84.8
-SYRMA,Electronics Manufacturing,60.6,52.4,C,Flag after big move,Flag after big move,Ready,1535.0,1489.7,3.0,90,1515.6,4.3,31.0,16.8,7.6,1.3,0.0,0.62,34,194.6
-JYOTICNC,Capital Goods,60.5,58.5,B,Tight range; Inside day; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; Inside day; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1063.8,1031.0,3.1,83,1052.45,4.4,54.0,7.2,5.6,0.5,2.4,0.48,42,58.5
-KOVAI,Hospitals,60.5,50.0,C,Tight range; At 10 EMA,Tight range; At 10 EMA,Triggered today,6636.0,6390.0,3.7,76,6581.0,3.2,19.0,2.5,5.4,3.1,5.6,1.11,6,2.2
-TGVSL,Chemicals,60.4,64.8,B,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,127.77,121.02,5.3,77,124.45,4.5,27.0,9.7,7.4,1.1,2.8,0.54,6,1.8
-YATHARTH,Hospitals,60.3,46.3,C,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Ready,1113.4,1077.2,3.3,87,1093.25,3.6,44.0,7.7,7.3,2.4,4.9,0.48,43,22.6
-BSE,Exchanges & Depositories,60.2,51.6,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,3799.0,3694.0,2.8,73,3781.0,3.0,32.0,5.6,8.4,-0.3,2.0,0.88,3,1261.3
-IIFL,NBFC,59.9,60.2,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,633.0,610.0,3.6,71,611.95,5.0,35.0,11.9,11.8,-3.2,-1.0,3.93,7,170.6
-AETHER,Specialty Chemicals,59.9,58.6,B,Tight range; Inside day; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; Inside day; At 20 EMA; At 50 EMA; Volume dry-up,Ready,1701.0,1617.0,4.9,93,1620.3,4.7,17.0,10.7,6.8,-1.0,0.0,1.06,32,36.3
-AMANTA,Pharma,59.7,46.0,C,At 10 EMA,At 10 EMA,Ready,241.4,217.7,9.8,95,222.37,8.4,62.0,9.5,15.1,0.8,7.2,1.6,2,3.1
-AMAGI,Software,59.6,59.7,B,At 50 EMA,At 50 EMA,Ready,580.7,564.35,2.8,84,575.0,3.9,18.0,6.0,7.3,2.4,2.9,0.75,11,8.4
-ALGOQUANT,Capital Markets,59.3,43.8,C,At 10 EMA,At 10 EMA,Ready,86.39,83.25,3.6,90,84.09,4.2,32.0,3.8,7.4,0.4,3.4,0.81,2,10.1
-ANGELONE,Capital Markets,59.1,47.3,C,At 10 EMA,At 10 EMA,Triggered today,350.9,331.35,5.6,77,348.3,4.1,39.0,8.1,14.4,2.9,6.3,1.68,3,233.2
-ASKAUTOLTD,Auto Ancillaries,59.0,48.2,C,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,644.0,626.1,2.8,82,630.85,4.2,14.0,7.1,6.9,0.2,1.8,0.71,40,8.6
-KRISHNADEF,Capital Goods,59.0,56.3,B,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,1282.0,1207.0,5.9,83,1212.8,5.6,35.0,10.8,12.7,-3.7,-2.1,0.32,3,13.7
-DPABHUSHAN,Jewellery,58.9,53.2,C,At 50 EMA; Overhead supply; Still deep,At 50 EMA; Overhead supply; Still deep,Building,1889.0,1815.6,3.9,93,1855.6,5.8,93.0,25.6,12.2,-2.8,-4.5,0.21,26,3.9
-PETRONET,Oil & Gas,58.6,54.9,C,Tight range; Inside day; At 10 EMA,Tight range; Inside day; At 10 EMA,Ready,330.15,325.85,1.3,77,329.15,2.4,20.0,2.1,2.6,1.5,4.0,1.27,6,80.1
-KTKBANK,Private Banks,58.5,41.8,C,Narrowest in 7; At 20 EMA,Narrowest in 7; At 20 EMA,Ready,344.0,338.0,1.7,89,342.7,3.8,29.0,7.6,9.7,-0.7,1.6,1.03,3,63.4
-ARHAM,Electronics Manufacturing,58.3,49.5,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,211.31,197.2,6.7,88,208.31,6.0,26.0,10.9,14.0,-2.2,-2.5,1.07,11,2.8
-JSWINFRA,Shipping,58.3,46.9,C,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Ready,346.8,335.25,3.3,76,341.25,3.1,18.0,9.1,5.0,0.8,1.3,0.6,41,53.3
-JASH,Capital Goods,58.3,56.7,B,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Triggered today,542.6,510.1,6.0,78,535.25,4.6,36.0,13.6,11.2,-0.3,0.2,0.27,35,5.3
-COMSYN,Packaging & Containers,57.9,45.7,C,At 50 EMA,At 50 EMA,Ready,265.8,254.14,4.4,90,257.49,7.2,54.0,18.4,14.8,2.3,4.4,0.93,42,11.3
-QPOWER,Electricals & Power Equipment,57.7,58.7,B,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,1632.9,1527.5,6.5,91,1539.6,5.6,33.0,8.4,11.4,1.1,3.2,0.98,32,46.2
-CYIENT,Conglomerates,57.4,53.7,C,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Triggered today,1177.0,1110.51,5.6,79,1155.5,3.8,24.0,9.5,10.4,3.7,3.1,0.38,19,43.4
-CEIGALL,Infra & Construction,57.2,55.3,B,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,382.95,375.05,2.1,85,379.4,3.4,15.0,6.5,6.4,-1.8,-1.8,0.82,12,6.8
-VRLLOG,Trucking,56.3,49.5,C,Narrowest in 7; At 10 EMA,Narrowest in 7; At 10 EMA,Ready,344.9,336.29,2.5,83,340.55,6.2,42.0,2.8,5.9,2.3,6.4,0.73,2,24.8
-BHAGERIA,Specialty Chemicals,56.2,51.8,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Building,352.0,339.0,3.7,97,344.05,7.2,108.0,17.3,16.9,-4.7,-5.2,0.97,34,6.8
-TASTYBITE,FMCG Foods,55.4,44.3,C,Inside day; At 20 EMA,Inside day; At 20 EMA,Ready,10989.0,10297.0,6.3,79,10412.0,5.7,36.0,11.4,16.2,-2.8,0.2,1.03,3,4.9
-ABDL,Liquor,55.2,41.2,C,Inside day; At 10 EMA,Inside day; At 10 EMA,Ready,808.45,783.25,3.1,89,794.3,4.2,31.0,7.1,13.9,3.0,6.3,1.13,3,30.2
-DBOL,Farm Products,55.0,51.1,C,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA,Ready,144.22,136.26,5.5,91,142.78,5.9,32.0,7.3,20.3,4.0,5.7,0.91,4,2.8
-AVADHSUGAR,Sugar,54.5,51.7,C,Flag after big move; At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,Flag after big move; At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,Building,854.55,825.0,3.5,96,851.15,5.8,45.0,16.8,11.1,0.8,0.3,0.49,26,5.8
-ONEPOINT,Specialty Business Services,54.2,44.7,C,At 50 EMA; Overhead supply,At 50 EMA; Overhead supply,Building,72.26,70.07,3.0,84,70.72,5.8,64.0,19.3,14.7,-3.4,-4.0,0.6,26,13.1
-VSSL,Steel,53.9,49.5,C,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,381.95,370.6,3.0,83,380.35,4.7,41.0,11.2,4.4,1.4,2.8,0.28,44,2.9
-MOLBIO,Medical Devices,53.6,42.6,C,Tight range; At 10 EMA; Volume dry-up,Tight range; At 10 EMA; Volume dry-up,Ready,1580.0,1483.1,6.1,92,1495.5,5.7,82.0,11.3,8.4,2.8,5.5,0.33,47,72.3
-RPEL,Chemicals,53.5,48.4,C,Inside day; At 20 EMA,Inside day; At 20 EMA,Ready,1924.4,1850.0,3.9,96,1854.3,5.2,34.0,9.6,12.4,-1.7,0.4,0.98,3,14.3
-TECHM,IT Services,53.4,51.1,C,At 20 EMA,At 20 EMA,Triggered today,1776.3,1715.86,3.4,76,1746.2,2.3,29.0,6.1,5.6,-0.9,-0.6,0.52,10,374.2
-HLEGLAS,Capital Goods,53.3,50.2,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,418.45,407.1,2.7,74,410.3,4.5,59.0,15.1,8.7,-2.8,-2.4,0.34,41,3.9
-ETERNAL,Internet & E-commerce,53.1,46.6,C,Inside day; Narrowest in 7; At 10 EMA,Inside day; Narrowest in 7; At 10 EMA,Ready,365.6,360.5,1.4,84,364.0,2.7,25.0,3.7,6.0,0.1,2.4,0.81,3,825.1
-AVTNPL,Specialty Chemicals,52.8,49.0,C,At 10 EMA,At 10 EMA,Ready,105.9,101.55,4.1,89,101.96,5.2,31.0,6.0,15.4,2.0,4.1,0.49,3,3.2
-SHYAMMETL,Steel,52.6,45.1,C,At 10 EMA,At 10 EMA,Ready,1334.0,1280.5,4.0,91,1314.3,3.6,36.0,4.9,7.9,1.0,3.8,0.72,2,39.5
-PNBHOUSING,Housing Finance,52.6,47.4,C,Turning up off EMA,Turning up off EMA,Triggered today,1204.4,1145.14,4.9,72,1191.3,3.3,15.0,2.7,8.3,4.7,5.6,0.73,27,66.8
-CYIENTDLM,Defence,52.4,42.1,C,At 10 EMA; At 20 EMA; At 50 EMA; Overhead supply; Still deep,At 10 EMA; At 20 EMA; At 50 EMA; Overhead supply; Still deep,Building,841.4,812.0,3.5,95,818.25,4.9,33.0,22.9,10.5,-0.4,-0.3,0.98,26,21.0
-SUDEEPPHRM,Pharma,52.0,34.8,C,Inside day; At 10 EMA; At 20 EMA,Inside day; At 10 EMA; At 20 EMA,Ready,1223.9,1182.2,3.4,93,1191.5,5.5,72.0,13.5,11.4,0.2,2.5,0.74,51,19.8
-ACMESOLAR,Renewables,52.0,49.2,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,409.9,398.65,2.7,87,405.4,3.9,32.0,15.0,4.4,-0.7,-1.0,0.39,41,28.1
-MCX,Exchanges & Depositories,51.7,34.2,C,At 20 EMA,At 20 EMA,Ready,3605.0,3497.0,3.0,87,3535.0,3.7,26.0,6.3,7.9,-1.5,1.0,1.09,2,750.7
-WOCKPHARMA,Pharma,51.6,35.3,C,Flag after big move,Flag after big move,Building,2214.5,2145.0,3.1,89,2184.4,4.1,30.0,7.4,11.7,5.9,8.0,0.65,40,105.6
-FINEORG,Specialty Chemicals,51.3,50.6,C,At 10 EMA,At 10 EMA,Ready,5522.5,5407.0,2.1,76,5488.5,3.2,14.0,3.1,6.8,2.4,3.5,0.78,31,6.6
-RUBICON,Pharma,51.0,32.1,C,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1755.0,1691.2,3.6,97,1718.7,4.5,37.0,9.5,7.0,1.5,3.0,0.55,57,23.3
-SOMANYCERA,Building Products,50.9,48.1,C,At 50 EMA,At 50 EMA,Ready,553.0,535.4,3.2,71,551.8,4.6,24.0,12.6,8.4,1.7,0.6,0.73,32,4.7
-OAL,Specialty Chemicals,50.7,44.0,C,Flag after big move; At 50 EMA,Flag after big move; At 50 EMA,Triggered today,516.7,459.83,11.0,95,516.7,7.3,35.0,19.9,22.7,7.4,2.4,1.69,18,1.5
-TALBROAUTO,Auto Ancillaries,50.4,35.7,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,405.65,392.1,3.3,80,402.65,4.9,23.0,17.1,7.9,0.3,2.0,1.51,42,4.4
-WELENT,Infra & Construction,50.4,45.2,C,At 50 EMA,At 50 EMA,Ready,697.4,666.3,4.5,84,686.35,4.3,51.0,18.5,9.0,0.2,0.1,0.32,42,12.1
-PVRINOX,Entertainment,50.3,28.0,C,At 10 EMA,At 10 EMA,Ready,1716.0,1635.6,4.7,93,1652.2,3.9,37.0,5.4,7.5,0.6,4.5,0.97,1,142.5
-VARROC,Auto Ancillaries,50.2,35.9,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,823.35,797.05,3.2,78,798.85,4.2,15.0,12.4,9.5,-1.9,-1.5,0.49,41,14.0
-ACE,Tractors & CVs,50.0,45.1,C,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,1192.65,1165.0,2.3,75,1170.35,3.8,19.0,7.7,3.7,0.4,2.0,0.79,42,28.1
-TMB,Private Banks,49.3,28.3,C,Tight range; At 10 EMA; At 20 EMA; At 50 EMA,Tight range; At 10 EMA; At 20 EMA; At 50 EMA,Ready,891.05,861.1,3.4,87,880.35,3.5,18.0,7.7,5.9,0.7,2.3,0.33,51,12.1
-KWIL,FMCG Foods,49.2,31.0,C,Inside day; Narrowest in 7,Inside day; Narrowest in 7,Ready,44.3,43.36,2.1,91,43.58,4.8,60.0,9.3,9.4,4.8,8.4,0.4,59,35.5
-ARTEMISMED,Unclassified,48.9,40.2,C,Narrowest in 7; Volume dry-up,Narrowest in 7; Volume dry-up,Ready,343.6,335.65,2.3,76,340.8,3.9,24.0,10.0,11.2,3.5,6.3,0.3,38,4.7
-HILINFRA,Infrastructure Operations,48.5,31.2,C,Inside day; Narrowest in 7,Inside day; Narrowest in 7,Ready,85.0,81.9,3.6,95,84.11,7.8,89.0,1.0,15.6,7.2,15.2,0.94,1,2.1
-ARFIN,Metals & Mining,48.5,44.8,C,At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,Building,93.44,90.5,3.1,82,92.3,4.7,41.0,18.9,8.7,-1.0,-1.4,0.82,29,14.0
-PAYTM,Software,48.0,41.5,C,Inside day; At 50 EMA,Inside day; At 50 EMA,Building,1770.3,1710.9,3.4,85,1740.0,3.9,26.0,11.2,17.5,-3.9,-2.5,2.13,5,527.6
-UFLEX,Packaging & Containers,47.9,33.7,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,628.95,615.1,2.2,79,616.05,3.7,65.0,14.9,8.5,-0.1,1.0,0.15,54,4.5
-RACLGEAR,Auto Ancillaries,47.5,31.8,C,At 10 EMA; At 20 EMA; Still deep,At 10 EMA; At 20 EMA; Still deep,Building,1590.0,1530.0,3.8,78,1534.7,4.4,45.0,20.4,6.6,0.2,2.0,0.29,44,2.9
-WELSPUNLIV,Textiles,46.9,22.5,C,At 10 EMA; Breakout today,At 10 EMA; Breakout today,Triggered today,274.0,250.16,8.7,97,268.78,5.8,34.0,1.9,12.6,5.6,9.0,1.11,0,92.4
-ORCHPHARMA,Pharma,46.9,32.4,C,At 50 EMA,At 50 EMA,Ready,970.15,943.85,2.7,75,960.4,4.7,24.0,16.0,8.8,4.3,5.6,0.86,41,5.7
-UNITEDPOLY,Textiles,46.7,23.6,C,Inside day; At 10 EMA; At 20 EMA,Inside day; At 10 EMA; At 20 EMA,Ready,58.0,53.82,7.2,92,54.67,8.5,37.0,8.3,19.9,2.7,4.3,1.43,1,1.7
-HINDOILEXP,Oil & Gas,46.7,32.9,C,Inside day; Narrowest in 7,Inside day; Narrowest in 7,Building,221.23,213.12,3.7,89,216.82,6.2,65.0,9.2,27.7,8.1,16.2,5.45,2,5.3
-SPORTKING,Textiles,46.5,23.0,C,Inside day; At 10 EMA,Inside day; At 10 EMA,Ready,229.66,217.6,5.3,93,221.28,6.1,23.0,7.6,15.7,3.9,5.8,0.59,55,7.9
-BLSE,Specialty Business Services,46.4,33.3,C,At 50 EMA,At 50 EMA,Ready,149.65,146.3,2.2,82,149.27,3.9,13.0,12.1,7.1,1.2,0.9,0.69,41,3.7
-CHEMPLASTS,Chemicals,46.3,45.3,C,Narrowest in 7; At 10 EMA; Volume dry-up,Narrowest in 7; At 10 EMA; Volume dry-up,Ready,252.35,245.2,2.8,70,250.06,6.8,45.0,3.7,13.1,4.4,10.0,0.56,2,6.9
-VIJAYA,Diagnostics,46.3,25.1,C,Turning up off EMA; Breakout today,Turning up off EMA; Breakout today,Triggered today,1587.0,1500.3,5.5,83,1572.3,4.0,15.0,1.3,13.8,5.5,7.1,0.84,40,15.6
-SANGAMIND,Textiles,46.2,24.1,C,Inside day,Inside day,Ready,687.55,671.05,2.4,88,673.75,4.2,25.0,5.5,12.0,3.7,6.4,4.54,2,2.2
-NITINSPIN,Textiles,46.1,22.1,C,Breakout today,Breakout today,Ready,724.95,693.45,4.3,94,704.7,4.2,23.0,2.8,8.8,3.5,5.7,1.81,0,6.9
-MAHABANK,PSU Banks,45.4,19.3,C,Breakout today,Breakout today,Extended,99.6,95.68,3.9,90,99.45,3.1,37.0,0.2,9.1,6.6,11.3,1.55,0,158.6
-CHENNPETRO,Oil & Gas,44.9,31.9,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,1438.4,1408.0,2.1,83,1426.1,4.3,37.0,15.0,4.7,-0.7,-1.7,0.9,47,177.4
-NPST,Software,44.8,37.8,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,1746.9,1662.7,4.8,81,1730.6,4.7,37.0,10.5,12.3,0.5,0.4,0.38,45,3.1
-AXISCADES,Infra & Construction,44.6,40.2,C,At 20 EMA; Still deep,At 20 EMA; Still deep,Building,1953.0,1860.0,4.8,71,1873.3,4.3,52.0,20.6,13.3,-0.6,-1.3,0.57,33,21.0
-AYMSYNTEX,Textiles,44.2,22.4,C,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,Building,275.0,267.51,2.7,84,270.89,6.2,41.0,17.9,9.4,0.4,1.3,0.69,50,1.1
-PNB,PSU Banks,44.2,17.8,C,Inside day; Breakout today,Inside day; Breakout today,Extended,155.41,151.13,2.8,89,155.33,3.0,42.0,0.7,9.4,7.3,13.5,2.05,1,371.9
-PGIL,Textiles,43.9,18.7,C,At 10 EMA; Breakout today,At 10 EMA; Breakout today,Ready,1470.0,1382.8,5.9,94,1435.5,5.3,26.0,2.3,13.7,4.6,7.5,1.67,0,12.9
-TIRUPATIFL,Metal Fabrication,43.8,27.6,C,Flag after big move,Flag after big move,Building,75.89,70.45,7.2,95,73.21,4.8,32.0,11.0,23.7,6.9,7.6,0.81,39,1.4
-XTRANET,IT Services,43.3,29.5,C,At 20 EMA; Still deep,At 20 EMA; Still deep,Building,268.05,253.55,5.4,96,262.05,5.8,151.0,26.9,14.2,0.2,-2.2,0.2,41,8.7
-STYLAMIND,Consumer Durables,43.2,27.9,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,3314.2,3233.0,2.5,81,3252.4,4.2,12.0,9.9,6.8,0.8,2.0,0.31,59,8.4
-QUESS,Staffing & Employment Services,43.2,27.6,C,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA,Ready,345.9,333.05,3.7,89,335.1,5.0,34.0,13.8,8.3,-0.4,0.4,0.29,56,5.3
-INDNIPPON,Auto Ancillaries,43.1,23.8,C,At 20 EMA; At 50 EMA; Still deep,At 20 EMA; At 50 EMA; Still deep,Building,1198.0,1153.0,3.8,82,1167.9,4.7,51.0,25.3,5.2,-0.3,-0.3,0.33,48,2.3
-ARVIND,Textiles,43.0,22.6,C,At 50 EMA,At 50 EMA,Ready,534.0,518.45,2.9,77,526.0,3.5,20.0,13.4,5.4,2.4,3.0,0.82,49,20.3
-SPAL,Textiles,43.0,23.8,C,At 50 EMA,At 50 EMA,Ready,936.1,918.75,1.9,73,928.25,4.6,26.0,15.1,12.4,1.5,2.7,0.36,51,3.3
-GCSL,Capital Markets,42.8,15.9,C,Narrowest in 7,Narrowest in 7,Extended,849.0,840.5,1.0,98,848.3,2.1,25.0,0.1,4.0,3.5,7.0,0.67,0,20.0
-KRBL,FMCG Foods,42.7,26.0,C,At 10 EMA; Turning up off EMA,At 10 EMA; Turning up off EMA,Triggered today,434.9,417.75,3.9,75,431.0,4.2,33.0,4.8,7.4,3.8,6.4,0.86,59,14.1
-GHCLTEXTIL,Textiles,42.5,17.0,C,Inside day; Breakout today,Inside day; Breakout today,Building,146.25,136.81,6.5,93,143.57,5.2,33.0,4.1,16.6,6.2,9.1,2.97,1,5.7
-RBA,QSR & Restaurants,42.3,36.7,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,91.24,88.31,3.2,76,89.84,5.0,68.0,15.8,6.4,-0.4,-0.7,0.22,59,29.1
-MINDACORP,Auto Ancillaries,41.9,23.1,C,Inside day,Inside day,Ready,761.6,738.0,3.1,78,749.3,4.4,32.0,1.8,8.7,4.0,7.0,1.14,1,18.9
-INDIANB,PSU Banks,41.1,18.8,C,At 10 EMA; Breakout today,At 10 EMA; Breakout today,Ready,964.45,933.8,3.2,70,950.0,2.4,19.0,1.5,4.2,2.2,4.7,1.2,0,132.0
-MOTHERSON,Auto Ancillaries,41.1,21.3,C,At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Ready,167.22,162.45,2.9,80,166.53,3.6,20.0,2.4,7.1,1.9,2.7,0.76,56,252.4
-CRAFTSMAN,Auto Ancillaries,41.0,18.3,C,Inside day,Inside day,Ready,12084.0,11665.0,3.5,89,11723.0,4.6,22.0,4.0,11.1,4.2,6.3,0.72,1,42.9
-SGMART,Industrial Distribution,40.7,20.9,C,Breakout today,Breakout today,Extended,1107.6,1026.19,7.4,98,1097.05,4.9,52.0,1.0,16.1,11.6,18.3,1.62,0,42.7
-UNIONBANK,PSU Banks,40.6,12.9,C,Breakout today,Breakout today,Extended,219.1,211.23,3.6,87,218.85,2.4,31.0,0.1,7.9,6.7,10.9,1.09,0,260.4
-TMCV,Automobiles,40.6,17.9,C,Turning up off EMA,Turning up off EMA,Triggered today,458.75,440.25,4.0,77,456.75,3.5,22.0,6.2,8.5,3.8,5.7,0.88,59,301.5
-GRANULES,Pharma,40.0,21.9,C,At 50 EMA,At 50 EMA,Triggered today,831.95,795.7,4.4,75,822.65,4.2,13.0,10.9,5.5,1.6,1.3,1.1,46,99.7
-URBANCO,Software,39.9,29.6,C,At 10 EMA,At 10 EMA,Ready,175.92,167.0,5.1,83,168.95,4.4,45.0,8.2,11.2,1.2,3.8,0.49,52,68.8
-CUB,Private Banks,39.5,14.8,C,Breakout today,Breakout today,Extended,251.0,235.02,6.4,82,248.8,4.2,22.0,0.9,9.7,6.8,8.8,2.03,0,72.8
-DIFFNKG,Capital Goods,39.4,28.8,C,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Ready,439.0,419.75,4.4,74,422.75,4.6,46.0,18.7,7.3,-2.3,-1.2,0.23,52,2.3
-KPL,Pharma,39.3,21.6,C,At 10 EMA,At 10 EMA,Ready,4282.0,4106.5,4.1,72,4128.4,5.9,33.0,4.0,15.5,2.7,6.5,1.34,1,13.8
-NRL,Waste Management,38.8,17.7,C,At 10 EMA,At 10 EMA,Ready,189.0,180.0,4.8,99,184.36,5.1,32.0,7.8,15.7,1.9,5.7,2.52,1,1.1
-WESTLIFE,QSR & Restaurants,38.8,29.7,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,677.0,653.35,3.5,81,658.3,4.3,41.0,9.0,11.3,-0.4,2.4,0.73,1,13.7
-GREAVESCOT,Capital Goods,38.6,22.4,C,Breakout today,Breakout today,Extended,281.01,261.0,7.1,91,268.31,5.7,64.0,4.5,27.5,11.4,18.6,3.99,0,33.9
-KSHINTL,Electricals & Power Equipment,38.6,31.1,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1054.75,1000.0,5.2,85,1009.35,4.8,47.0,15.7,9.2,-1.7,-0.2,0.71,49,16.4
-MWL,Steel,37.9,22.8,C,Turning up off EMA,Turning up off EMA,Extended,44.5,41.77,6.1,90,43.86,4.8,34.0,8.6,16.5,7.4,9.3,0.61,46,1.5
-ALICON,Metal Fabrication,36.6,17.4,C,Breakout today,Breakout today,Extended,1112.0,1015.29,8.7,92,1075.75,5.8,44.0,3.3,19.2,11.4,17.1,1.92,0,1.5
-POONAWALLA,NBFC,36.6,24.0,C,Breakout today,Breakout today,Triggered today,522.0,489.0,6.3,72,518.4,4.3,32.0,0.7,8.2,5.1,8.2,0.94,0,68.7
-DALMIASUG,Sugar,36.0,29.4,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,463.0,445.0,3.9,76,447.55,5.4,47.0,12.5,11.1,-3.7,-2.6,0.43,56,7.6
-APOLLOHOSP,Hospitals,35.6,13.2,C,Breakout today,Breakout today,Extended,9282.5,8941.37,3.7,71,9200.0,2.4,24.0,0.9,8.8,5.4,7.7,1.18,0,427.0
-ADANIENSOL,Power,35.2,21.0,C,At 10 EMA,At 10 EMA,Ready,1497.9,1462.9,2.3,75,1491.8,3.2,7.0,8.9,6.9,2.3,4.6,1.05,59,184.2
-GRAPHITE,Electricals & Power Equipment,35.1,29.8,C,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Ready,786.45,760.0,3.4,72,765.55,3.7,37.0,12.4,6.3,-1.3,-0.6,0.54,49,46.6
-XPROINDIA,Specialty Chemicals,35.1,27.2,C,At 10 EMA,At 10 EMA,Ready,1258.6,1210.0,3.9,71,1220.4,5.3,42.0,13.4,11.0,2.3,6.3,0.51,51,6.0
-SHADOWFAX,Logistics,35.0,17.2,C,At 10 EMA,At 10 EMA,Ready,315.25,296.75,5.9,90,307.25,5.1,20.0,2.5,12.0,3.5,5.3,1.19,0,115.7
-MSTCLTD,Conglomerates,34.6,17.9,C,Narrowest in 7; At 20 EMA; At 50 EMA,Narrowest in 7; At 20 EMA; At 50 EMA,Ready,673.7,653.0,3.1,81,656.55,5.9,41.0,18.4,22.3,-2.4,0.2,1.07,50,16.3
-AXISBANK,Private Banks,34.6,9.1,C,Breakout today,Breakout today,Extended,1450.0,1403.81,3.2,76,1446.0,2.1,21.0,0.3,8.8,6.6,9.6,1.44,0,877.8
-GAIL,Gas Distribution,34.5,17.2,C,At 10 EMA,At 10 EMA,Ready,191.44,188.84,1.4,71,191.44,2.3,20.0,0.4,3.7,1.9,4.3,1.15,1,211.6
-COFORGE,IT Services,34.4,19.7,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Triggered today,2177.8,2063.63,5.2,83,2086.7,3.5,21.0,4.2,10.2,2.0,3.2,1.41,0,431.2
-STEELCAS,Steel,34.1,18.1,C,Inside day; At 10 EMA; At 20 EMA,Inside day; At 10 EMA; At 20 EMA,Ready,385.5,367.05,4.8,86,370.1,5.3,27.0,7.2,16.9,-0.1,1.1,1.32,1,3.1
-APOLLOPIPE,Building Products,33.5,19.2,C,At 50 EMA,At 50 EMA,Ready,554.65,532.05,4.1,78,535.0,5.8,41.0,19.9,17.1,2.7,3.8,0.52,58,7.7
-ADANIPOWER,Power,32.2,17.6,C,At 10 EMA; Turning up off EMA,At 10 EMA; Turning up off EMA,Ready,213.49,208.51,2.3,71,211.95,2.6,8.0,2.5,4.9,2.5,4.4,0.96,58,308.0
-ARIS,Infra & Construction,31.9,17.7,C,Breakout today,Breakout today,Extended,166.23,157.06,5.5,81,164.97,5.4,32.0,0.8,15.8,8.8,11.6,2.11,0,25.4
-AEROENTER,Capital Goods,30.7,14.2,C,At 20 EMA; Still deep,At 20 EMA; Still deep,Building,137.5,127.07,7.6,78,126.21,5.1,35.0,20.9,10.3,-3.3,-2.1,1.04,50,8.7
+CNL,Electronics & Computer Distribution,88.9,95.6,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1413.9,1348.1,4.7,96,1370.0,7.3,59.0,11.6,9.6,-0.4,3.3,0.41,7,2.9
+PARAGMILK,FMCG Foods,87.9,90.4,A+,Flag after big move; Tight range; Narrowest in 7; At 10 EMA,Flag after big move; Tight range; Narrowest in 7; At 10 EMA,Ready,347.0,337.33,2.8,91,343.57,6.0,51.0,2.1,7.3,4.0,9.2,0.44,4,41.7
+SAILIFE,Diagnostics,86.7,83.3,A+,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Ready,1818.1,1783.61,1.9,96,1809.1,4.7,44.0,7.5,5.3,1.3,5.0,0.71,6,104.6
+TIPSMUSIC,Entertainment,86.4,85.3,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,820.0,797.0,2.8,88,805.2,3.8,35.0,3.5,5.2,0.3,2.5,0.34,4,30.4
+THELEELA,Hotels,86.0,83.9,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,696.5,677.7,2.7,93,686.35,4.1,35.0,2.9,5.5,0.9,3.6,0.48,12,29.7
+GYFTR,Specialty Business Services,86.0,90.8,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,224.21,218.0,2.8,90,220.18,5.3,53.0,5.9,7.3,1.4,7.1,0.42,4,5.9
+BOROLTD,Consumer Durables,85.5,93.2,A+,Flag after big move; Tight range; At 10 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; Volume dry-up,Ready,330.9,320.0,3.3,82,323.5,5.4,52.0,6.8,7.2,0.7,4.8,0.26,5,5.8
+CUPID,FMCG Personal Care,85.4,82.0,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,368.0,357.75,2.8,99,362.15,4.1,37.0,7.8,5.7,0.3,2.9,0.47,6,289.5
+ATHERENERG,Automobiles,85.1,81.0,A+,Flag after big move; Narrowest in 7; Turning up off EMA; Volume dry-up,Flag after big move; Narrowest in 7; Turning up off EMA; Volume dry-up,Triggered today,1983.8,1936.0,2.4,98,1979.2,3.7,50.0,2.1,6.6,3.8,8.2,0.53,5,419.7
+BLUSPRING,Specialty Business Services,84.4,86.1,A+,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Ready,160.6,152.01,5.3,97,153.15,6.1,61.0,15.8,8.2,-3.0,-2.3,0.43,26,4.6
+LUMAXTECH,Auto Ancillaries,83.6,83.4,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,2344.6,2285.2,2.5,90,2326.3,5.2,46.0,7.1,8.5,1.1,4.6,0.68,9,30.1
+APLLTD,Pharma,83.4,88.2,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,1045.35,1008.95,3.5,83,1016.8,4.4,44.0,5.4,5.3,-0.0,5.0,0.54,5,26.8
+PPLPHARMA,Pharma,82.2,87.0,A+,Flag after big move; Tight range; Inside day; Narrowest in 7; At 20 EMA; Volume dry-up,Flag after big move; Tight range; Inside day; Narrowest in 7; At 20 EMA; Volume dry-up,Ready,241.5,236.28,2.2,81,236.89,4.1,37.0,6.7,5.8,-1.0,1.1,0.34,5,93.5
+AARTIDRUGS,Pharma,80.6,86.0,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,490.75,480.0,2.2,76,483.8,5.5,43.0,8.3,6.5,-0.9,2.4,0.21,6,25.5
+KMEW,Shipping,80.1,72.5,A,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,748.9,706.1,5.7,97,709.4,6.0,32.0,8.3,10.4,0.4,3.4,0.53,4,39.8
+EMCURE,Pharma,80.0,80.5,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,2366.2,2278.1,3.7,91,2309.9,4.1,42.0,4.9,5.4,0.8,5.1,1.42,10,37.7
+KROSS,Auto Ancillaries,79.9,77.1,A+,Tight range; Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,281.3,275.3,2.1,92,277.0,5.3,59.0,15.1,6.3,-2.9,-2.8,0.88,24,37.5
+MANCREDIT,NBFC,79.7,85.7,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,261.5,254.0,2.9,90,257.0,4.4,44.0,11.8,6.3,-0.1,2.8,0.36,5,2.2
+SATIN,NBFC,79.7,86.6,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,257.33,250.27,2.7,87,252.17,3.9,37.0,7.8,4.6,-1.5,0.1,0.25,6,5.9
+KRISHANA,Fertilisers & Agrochem,78.9,86.2,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA,Flag after big move; Tight range; At 10 EMA; At 20 EMA,Ready,251.78,237.5,5.7,97,241.26,4.1,43.0,5.4,6.0,-0.2,2.5,0.7,5,25.4
+ENTERO,Medical Distribution,78.8,81.4,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,1947.8,1850.8,5.0,92,1883.7,5.5,49.0,11.9,9.0,-1.8,1.5,0.6,9,20.7
+SANATHAN,Textiles,78.6,75.5,A+,Flag after big move; At 20 EMA; Volume dry-up,Flag after big move; At 20 EMA; Volume dry-up,Ready,584.0,566.8,2.9,86,570.15,4.3,30.0,7.7,9.7,-1.0,1.5,0.4,4,3.8
+MOTILALOFS,Capital Markets,78.3,75.4,A+,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Triggered today,1244.55,1195.7,3.9,87,1235.0,4.4,44.0,3.3,7.7,3.5,8.0,1.08,4,195.3
+ROSSTECH,Defence,78.2,81.4,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1557.0,1481.9,4.8,97,1528.3,4.7,65.0,10.0,6.6,1.0,2.8,0.31,33,12.2
+IGIL,Other Precious Metals & Mining,78.1,83.1,A+,Flag after big move; Inside day; At 10 EMA; Volume dry-up,Flag after big move; Inside day; At 10 EMA; Volume dry-up,Ready,432.85,422.1,2.5,83,431.1,4.4,49.0,5.0,8.4,0.4,4.0,0.43,8,45.9
+SAREGAMA,Entertainment,78.0,70.8,A,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Ready,666.5,647.7,2.8,93,657.6,4.5,45.0,5.2,7.1,0.7,5.7,0.22,3,42.9
+SONACOMS,Auto Ancillaries,77.6,73.6,A,Tight range; At 20 EMA,Tight range; At 20 EMA,Ready,899.8,879.85,2.2,92,886.0,2.8,26.0,5.2,4.2,-1.2,0.0,0.62,6,159.2
+GRWRHITECH,Specialty Chemicals,77.2,83.7,A+,Flag after big move; At 10 EMA; Turning up off EMA,Flag after big move; At 10 EMA; Turning up off EMA,Ready,7991.0,7715.5,3.4,93,7895.0,3.9,41.0,2.3,6.7,1.9,4.1,0.53,8,32.7
+KOPRAN,Pharma,77.2,75.0,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,268.99,260.0,3.3,95,265.35,5.5,57.0,10.3,6.2,-0.4,0.3,0.29,36,6.2
+ROLEXRINGS,Metal Fabrication,77.1,81.7,A+,Inside day; Narrowest in 7; At 20 EMA; Volume dry-up,Inside day; Narrowest in 7; At 20 EMA; Volume dry-up,Ready,197.7,192.91,2.4,89,193.51,4.9,49.0,12.0,10.0,-3.0,-0.6,0.44,7,34.2
+GLENMARK,Pharma,77.0,78.4,A+,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,2678.8,2626.5,2.0,83,2657.0,3.2,29.0,2.1,3.5,1.6,4.3,0.68,9,137.7
+DYNAMATECH,Auto Ancillaries,76.9,75.6,A+,Inside day; At 10 EMA; At 20 EMA,Inside day; At 10 EMA; At 20 EMA,Ready,13584.0,13201.0,2.8,82,13294.0,4.3,29.0,8.3,7.4,0.7,1.9,0.66,27,15.5
+MMFL,Metal Fabrication,76.8,80.7,A+,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,647.65,611.25,5.6,91,620.75,5.9,53.0,11.7,15.0,-2.2,1.8,0.37,4,9.7
+NELCAST,Metal Fabrication,76.6,81.9,A+,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA,Triggered today,154.67,144.44,6.6,86,153.02,6.2,64.0,11.2,12.1,2.8,4.5,0.56,14,5.0
+ACUTAAS,Specialty Chemicals,76.6,82.5,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,3912.0,3720.2,4.9,94,3875.0,5.0,36.0,6.2,8.1,-0.8,1.5,0.49,6,176.4
+DIVISLAB,Pharma,76.4,74.0,A,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,11375.0,11185.5,1.7,94,11203.0,2.9,34.0,5.3,3.7,1.3,4.7,1.17,9,780.7
+GLAND,Pharma,76.2,74.5,A,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Ready,3368.7,3275.9,2.8,92,3297.4,3.3,24.0,3.8,5.8,0.8,2.7,0.5,5,96.4
+SBC,Textiles,76.2,68.2,A,At 20 EMA,At 20 EMA,Ready,69.35,67.83,2.2,98,68.07,2.8,25.0,4.5,5.3,-0.6,1.2,0.8,5,86.3
+AARTIPHARM,Pharma,76.0,75.0,A+,Flag after big move; Tight range; At 10 EMA,Flag after big move; Tight range; At 10 EMA,Ready,1046.85,986.0,5.8,89,1020.65,5.2,34.0,2.5,6.8,3.1,6.3,0.85,4,49.5
+SEJALLTD,Building Products,75.8,84.2,A+,Flag after big move; Tight range; Inside day; At 10 EMA; At 20 EMA,Flag after big move; Tight range; Inside day; At 10 EMA; At 20 EMA,Ready,927.0,886.05,4.4,79,892.5,7.1,74.0,12.9,10.2,-0.1,2.2,0.92,26,3.1
+AEROPLANE,Farm Products,75.7,80.1,A+,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Flag after big move; Tight range; At 20 EMA; Volume dry-up,Ready,242.7,233.91,3.6,96,235.55,5.3,32.0,6.5,8.3,-0.6,1.4,0.28,7,12.1
+RAYMOND,Capital Goods,75.5,76.8,A+,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Ready,1221.9,1174.1,3.9,98,1205.2,5.4,119.0,10.0,9.8,2.4,4.5,0.16,33,60.9
+SOUTHBANK,Private Banks,74.8,66.4,A,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,60.13,57.78,3.9,92,58.87,3.2,36.0,5.9,9.6,-0.9,1.7,0.83,6,78.8
+RKFORGE,Railways,74.6,81.3,A+,Flag after big move; Inside day; Narrowest in 7; At 10 EMA; At 20 EMA,Flag after big move; Inside day; Narrowest in 7; At 10 EMA; At 20 EMA,Ready,759.95,743.6,2.2,82,749.35,4.4,41.0,6.8,8.7,-0.4,2.1,0.44,4,71.9
+OPTIEMUS,Electronics & Computer Distribution,74.3,73.8,A,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,805.0,766.15,4.8,94,778.55,6.4,72.0,15.8,13.6,-2.1,-1.0,0.31,33,23.8
+FILATEX,Textiles,74.1,64.9,B,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,111.58,107.1,4.0,98,108.01,6.0,42.0,9.8,15.2,2.4,5.5,1.13,4,13.7
+TANLA,Software,73.7,80.6,A+,Flag after big move; Inside day; At 10 EMA; At 20 EMA; Volume dry-up,Flag after big move; Inside day; At 10 EMA; At 20 EMA; Volume dry-up,Ready,683.85,663.95,2.9,80,680.5,4.7,54.0,7.9,10.1,0.1,3.4,0.55,7,53.5
+NILKAMAL,Consumer Durables,73.7,73.8,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,2111.7,2010.0,4.8,86,2020.3,5.3,45.0,11.4,13.2,-4.6,-1.9,0.41,5,7.5
+MILKYMIST,FMCG Foods,73.5,66.3,A,Flag after big move; Turning up off EMA; Volume dry-up,Flag after big move; Turning up off EMA; Volume dry-up,Extended,339.8,316.26,6.9,97,339.45,4.6,74.0,0.9,16.1,8.3,10.5,0.06,31,19.1
+SANSERA,Auto Ancillaries,73.5,65.4,A,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,4849.0,4583.1,5.5,98,4619.3,4.4,25.0,4.8,9.7,-0.1,2.2,0.74,4,82.2
+OMAXAUTO,Auto Ancillaries,73.4,68.9,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,200.0,192.25,3.9,86,194.24,5.2,51.0,20.0,8.9,-2.2,-2.5,0.97,28,1.1
+RADICO,Liquor,73.3,70.7,A,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,4689.0,4587.2,2.2,82,4636.5,3.0,17.0,1.4,4.5,0.7,2.3,0.82,4,180.0
+SWANDEF,Defence,73.3,76.1,A+,Flag after big move; Inside day; At 10 EMA; At 20 EMA; At 50 EMA,Flag after big move; Inside day; At 10 EMA; At 20 EMA; At 50 EMA,Ready,2880.0,2800.0,2.8,90,2864.6,4.4,31.0,5.1,9.9,1.0,1.8,0.46,28,1.9
+MANAKCOAT,Metal Fabrication,73.3,76.8,A+,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,162.76,153.27,5.8,86,155.54,6.5,60.0,15.8,15.0,-3.0,0.1,1.8,7,8.9
+SSWL,Auto Ancillaries,73.2,64.9,B,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Building,523.9,479.82,8.4,98,490.45,5.6,56.0,16.7,24.9,-8.1,-5.9,0.28,4,48.2
+ALIVUS,Pharma,72.9,71.2,A,Tight range; At 20 EMA; At 50 EMA,Tight range; At 20 EMA; At 50 EMA,Ready,1445.4,1405.2,2.8,86,1410.3,4.8,30.0,10.4,6.6,-2.2,-1.6,2.06,10,61.3
+ALEMBICLTD,Real Estate,72.7,72.9,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,109.83,104.11,5.2,72,104.73,5.2,42.0,11.4,11.7,-3.3,-0.3,0.37,6,6.2
+ENGINERSIN,Infra & Construction,72.6,77.6,A+,Flag after big move; Inside day; At 20 EMA; Volume dry-up,Flag after big move; Inside day; At 20 EMA; Volume dry-up,Ready,304.15,295.5,2.8,89,298.4,4.7,37.0,7.8,8.9,-1.1,0.7,0.51,8,87.2
+KPRMILL,Textiles,72.3,69.2,A,Narrowest in 7; At 10 EMA; Turning up off EMA,Narrowest in 7; At 10 EMA; Turning up off EMA,Ready,1215.3,1184.0,2.6,75,1206.9,3.9,26.0,3.2,6.6,1.8,3.9,1.86,4,40.9
+CPPLUS,Building Products,72.2,73.2,A,Flag after big move; Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Flag after big move; Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Ready,4110.0,3991.6,2.9,97,4074.1,4.2,39.0,11.8,5.4,0.6,0.9,0.83,27,70.0
+MBAPL,Fertilisers & Agrochem,72.0,75.6,A+,Flag after big move; Tight range; At 10 EMA; At 20 EMA,Flag after big move; Tight range; At 10 EMA; At 20 EMA,Ready,198.7,190.55,4.1,97,192.2,4.1,34.0,8.0,6.5,-0.1,2.3,1.01,5,18.6
+INDOMIM,Metal Fabrication,71.9,72.8,A,Flag after big move; At 10 EMA; At 20 EMA,Flag after big move; At 10 EMA; At 20 EMA,Ready,1287.0,1235.0,4.0,92,1281.5,4.5,64.0,6.8,8.8,2.2,3.8,0.55,32,119.3
+MMP,Metals & Mining,71.9,77.4,A+,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Flag after big move; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,483.95,450.5,6.9,93,463.85,6.6,42.0,10.8,13.9,2.8,3.1,0.48,27,1.9
+RAMBHAJO,Jewellery,71.9,72.2,A,Flag after big move; At 20 EMA; Volume dry-up,Flag after big move; At 20 EMA; Volume dry-up,Ready,336.0,325.05,3.3,98,330.2,5.9,68.0,18.8,15.4,2.3,1.5,0.23,23,4.0
+LAURUSLABS,Pharma,71.4,65.4,A,At 10 EMA; At 20 EMA; Turning up off EMA,At 10 EMA; At 20 EMA; Turning up off EMA,Triggered today,2382.3,2287.1,4.0,97,2370.7,3.8,29.0,4.7,7.6,1.7,3.3,1.3,8,596.0
+AGARWALEYE,Medical Instruments & Supplies,71.4,76.7,A+,Tight range; At 10 EMA; Volume dry-up,Tight range; At 10 EMA; Volume dry-up,Ready,566.3,543.85,4.0,70,550.6,3.7,27.0,3.7,5.9,1.2,3.8,0.51,6,8.1
+GESHIP,Shipping,71.3,65.6,A,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1550.1,1525.0,1.6,76,1538.3,3.8,21.0,6.6,4.3,1.0,1.4,0.88,17,97.9
+VRLLOG,Trucking,70.9,71.7,A,At 10 EMA,At 10 EMA,Ready,348.6,332.3,4.7,84,336.55,6.1,42.0,3.9,5.4,0.9,4.7,0.3,3,24.8
+TCPLPACK,Packaging & Containers,70.7,67.4,A,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,4435.0,4201.0,5.3,88,4308.8,5.8,26.0,8.7,11.4,-2.4,-1.3,0.74,11,4.3
+AVTNPL,Specialty Chemicals,70.7,75.3,A+,Flag after big move; Narrowest in 7; At 10 EMA; At 20 EMA,Flag after big move; Narrowest in 7; At 10 EMA; At 20 EMA,Ready,102.64,100.06,2.5,88,100.59,5.0,31.0,7.2,12.5,0.5,2.5,0.42,4,3.2
+SMSPHARMA,Pharma,70.7,66.5,A,Tight range; Narrowest in 7; At 50 EMA; Volume dry-up,Tight range; Narrowest in 7; At 50 EMA; Volume dry-up,Building,473.25,461.75,2.4,90,466.0,5.2,32.0,12.9,8.1,-4.0,-3.9,0.48,13,20.0
+KARURVYSYA,Private Banks,70.4,60.9,B,At 10 EMA,At 10 EMA,Ready,388.5,371.0,4.5,88,384.1,3.4,24.0,3.5,7.2,1.1,3.4,1.03,4,113.6
+CORONA,Pharma,70.3,67.4,A,Flag after big move; Tight range; Inside day; At 10 EMA; At 20 EMA,Flag after big move; Tight range; Inside day; At 10 EMA; At 20 EMA,Ready,2320.0,2260.7,2.6,85,2316.6,5.1,40.0,14.8,6.5,0.8,1.8,1.43,9,8.3
+INDGN,Health Information Services,69.6,70.0,A,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,665.0,648.0,2.6,83,651.8,3.0,21.0,3.7,4.4,0.9,3.0,0.76,6,27.8
+ADANIPORTS,Shipping,69.4,62.6,B,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,1952.9,1906.6,2.4,76,1919.0,2.4,18.0,3.0,3.5,0.5,1.9,0.52,8,407.4
+UNIMECH,Defence,68.7,67.7,A,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,1798.1,1715.1,4.6,94,1750.2,5.5,39.0,13.6,12.3,-3.5,-2.2,0.6,7,30.0
+KABRAEXTRU,Capital Goods,68.5,65.7,A,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,750.0,709.0,5.5,99,724.25,4.7,83.0,18.5,6.2,0.0,-0.4,0.19,38,2.5
+BSE,Exchanges & Depositories,68.5,65.5,A,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,3816.4,3723.3,2.4,74,3757.0,2.9,32.0,6.2,8.4,-0.8,1.2,0.81,4,1174.1
+GROWW,Capital Markets,68.4,61.8,B,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,222.97,214.75,3.7,82,216.46,3.5,31.0,7.3,8.7,-1.6,1.0,1.54,4,701.2
+NAZARA,Electronic Gaming & Multimedia,68.3,66.4,A,Narrowest in 7; At 20 EMA; Volume dry-up,Narrowest in 7; At 20 EMA; Volume dry-up,Ready,416.9,406.3,2.5,88,409.95,3.3,16.0,5.8,7.1,-1.5,-0.5,0.44,5,33.4
+LTTS,IT Services,68.3,72.9,A,Flag after big move; At 10 EMA; Turning up off EMA; Volume dry-up,Flag after big move; At 10 EMA; Turning up off EMA; Volume dry-up,Triggered today,4238.4,4092.5,3.4,76,4222.6,2.9,42.0,2.9,6.2,1.5,2.9,0.23,15,54.9
+KRISHNADEF,Capital Goods,68.2,70.2,A,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,1233.8,1201.5,2.6,83,1206.1,5.5,35.0,11.3,13.2,-3.5,-2.4,0.29,4,13.7
+PTCIL,Metal Fabrication,68.1,67.6,A,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA,Ready,24540.0,23825.0,2.9,90,24425.0,3.4,26.0,6.4,4.6,1.2,1.3,0.53,28,31.8
+ANGELONE,Capital Markets,68.1,63.7,B,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,353.0,336.0,4.8,74,337.0,4.2,39.0,11.1,14.4,-0.3,2.6,1.42,4,233.2
+TECHNOCRAF,Infrastructure Operations,68.1,57.1,B,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Flag after big move; At 10 EMA; At 20 EMA; Turning up off EMA; Volume dry-up,Triggered today,523.9,497.25,5.1,94,519.1,5.9,32.0,8.7,11.8,4.8,5.4,0.79,13,72.5
+PRADPME,Metal Fabrication,67.9,71.3,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,609.0,589.55,3.2,77,591.7,5.6,65.0,18.4,9.8,-2.9,-3.0,0.61,27,1.0
+ABDL,Liquor,67.9,60.3,B,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,806.8,783.0,2.9,89,802.85,4.2,31.0,6.1,9.7,3.4,6.7,1.0,4,32.9
+TIMEX,Jewellery,67.9,66.9,A,Flag after big move; Inside day; At 20 EMA; Volume dry-up,Flag after big move; Inside day; At 20 EMA; Volume dry-up,Ready,710.8,684.45,3.7,95,706.8,4.9,32.0,7.8,10.7,-1.3,0.1,0.64,8,24.3
+LENSKART,Medical Instruments & Supplies,67.7,64.9,B,At 20 EMA,At 20 EMA,Ready,752.0,714.76,5.0,90,714.5,3.3,24.0,6.3,5.8,-1.7,0.2,0.99,12,291.6
+EIMCOELECO,Tractors & CVs,67.6,67.5,A,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,2529.7,2401.0,5.1,87,2408.4,4.7,33.0,12.1,11.1,-3.6,-1.5,0.21,5,3.6
+MANKIND,Pharma,67.1,66.9,A,Tight range; At 10 EMA; Volume dry-up,Tight range; At 10 EMA; Volume dry-up,Ready,2673.0,2601.5,2.7,71,2615.1,2.6,23.0,3.3,3.4,-0.0,1.8,0.56,9,117.0
+NYKAA,Internet & E-commerce,66.9,66.0,A,Tight range; At 10 EMA; At 20 EMA,Tight range; At 10 EMA; At 20 EMA,Ready,367.0,357.0,2.7,82,357.0,2.8,18.0,3.1,4.3,-0.1,1.0,0.57,5,165.5
+JAYBARMARU,Auto Ancillaries,66.8,61.9,B,At 50 EMA,At 50 EMA,Ready,132.59,125.08,5.7,76,129.22,5.4,28.0,6.6,8.5,3.1,4.3,2.06,31,10.4
+LALPATHLAB,Diagnostics,66.7,57.5,B,At 10 EMA; Turning up off EMA; Breakout today,At 10 EMA; Turning up off EMA; Breakout today,Triggered today,2074.0,2006.0,3.3,80,2040.5,3.4,16.0,1.9,6.9,2.4,3.3,0.92,9,45.9
+HAWKINCOOK,Consumer Durables,66.5,67.3,A,Tight range; Inside day; At 10 EMA; Volume dry-up,Tight range; Inside day; At 10 EMA; Volume dry-up,Ready,8459.5,8279.5,2.1,71,8342.5,3.2,19.0,5.2,3.6,0.8,2.6,0.73,6,1.1
+MARSONS,Electricals & Power Equipment,66.4,76.5,A+,Flag after big move; At 10 EMA; At 20 EMA,Flag after big move; At 10 EMA; At 20 EMA,Ready,164.0,152.07,7.3,76,158.69,7.4,52.0,8.2,16.5,2.1,5.8,0.8,5,61.4
+ALGOQUANT,Capital Markets,66.1,56.4,B,At 10 EMA,At 10 EMA,Ready,84.94,82.91,2.4,88,83.36,4.1,32.0,4.6,7.4,-0.4,2.2,0.85,3,10.1
+JAMNAAUTO,Auto Ancillaries,66.1,60.5,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,139.59,134.05,4.0,77,134.83,4.7,30.0,13.6,9.4,-2.5,-1.6,0.74,5,21.8
+KTKBANK,Private Banks,66.0,53.2,C,At 20 EMA,At 20 EMA,Ready,347.9,335.0,3.7,91,341.25,3.7,29.0,8.0,10.7,-0.9,1.1,1.13,4,69.3
+BOSCHLTD,Auto Ancillaries,65.9,59.2,B,Tight range; At 20 EMA,Tight range; At 20 EMA,Ready,49620.0,48635.0,2.0,80,48800.0,2.5,23.0,7.0,2.4,-1.0,-0.1,1.25,12,138.3
+GABRIEL,Auto Ancillaries,64.6,56.6,B,Flag after big move; At 10 EMA; At 20 EMA,Flag after big move; At 10 EMA; At 20 EMA,Ready,1570.0,1501.6,4.4,82,1507.9,4.5,31.0,10.8,8.8,-0.1,2.0,1.12,7,26.6
+KALYANKJIL,Jewellery,64.6,63.3,B,Flag after big move; At 10 EMA; Turning up off EMA,Flag after big move; At 10 EMA; Turning up off EMA,Ready,670.9,640.1,4.6,90,652.9,4.9,49.0,10.5,15.9,0.8,5.1,1.49,5,852.7
+KOVAI,Hospitals,64.5,56.3,B,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,6642.0,6471.0,2.6,78,6619.0,3.2,19.0,1.9,5.2,3.0,5.6,1.06,7,2.4
+TVSMOTOR,Automobiles,64.3,54.2,C,At 10 EMA,At 10 EMA,Ready,4624.9,4520.0,2.3,81,4528.2,2.7,24.0,2.3,6.1,0.9,2.8,1.25,8,321.5
+RPEL,Chemicals,64.2,64.6,B,Flag after big move; Narrowest in 7; At 20 EMA,Flag after big move; Narrowest in 7; At 20 EMA,Ready,1880.0,1843.11,2.0,95,1863.7,4.9,34.0,9.1,12.4,-1.0,0.8,0.84,4,14.3
+AMANTA,Pharma,64.2,56.2,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,221.27,201.45,9.0,91,204.97,8.6,62.0,16.6,22.0,-5.9,-1.1,0.71,3,4.0
+ZYDUSLIFE,Pharma,64.1,60.7,B,Tight range; Narrowest in 7; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; Narrowest in 7; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1207.2,1193.4,1.1,76,1199.5,2.4,16.0,5.3,2.4,-0.0,0.5,0.73,13,145.6
+ROTO,Capital Goods,63.7,65.7,A,Flag after big move; At 10 EMA,Flag after big move; At 10 EMA,Ready,73.09,70.5,3.5,75,71.3,4.3,45.0,10.8,9.8,1.3,5.2,1.4,7,2.7
+ARHAM,Electronics Manufacturing,63.6,56.0,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,216.0,202.93,6.1,88,209.22,6.0,26.0,10.5,11.4,-1.5,-1.9,1.35,12,3.3
+KAPSTON,Specialty Business Services,63.5,54.3,C,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; Inside day; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,546.5,536.2,1.9,96,539.35,3.2,24.0,12.5,4.0,0.4,1.1,0.58,39,2.0
+BPLPHARMA,Pharma,63.2,53.5,C,At 10 EMA,At 10 EMA,Ready,2394.9,2200.0,8.1,95,2223.3,7.5,51.0,10.8,15.9,1.8,7.5,0.51,3,1.5
+TGVSL,Chemicals,62.9,67.6,A,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,129.0,122.03,5.4,79,125.39,4.5,27.0,9.1,7.4,1.5,3.2,0.54,7,1.8
+KILITCH,Pharma,62.9,56.4,B,Narrowest in 7; At 20 EMA; At 50 EMA,Narrowest in 7; At 20 EMA; At 50 EMA,Ready,220.0,211.0,4.1,84,215.69,6.9,66.0,19.5,16.6,-2.5,-0.8,1.24,32,1.0
+FAZE3Q,Textiles,62.8,53.7,C,At 10 EMA,At 10 EMA,Ready,603.1,577.95,4.2,78,583.95,6.8,76.0,14.9,24.7,2.9,9.0,1.0,3,2.9
+AMAGI,Software,62.6,62.3,B,At 50 EMA,At 50 EMA,Ready,588.8,559.75,4.9,84,566.25,3.9,18.0,7.4,7.6,0.7,1.2,0.75,12,8.4
+ASTRAMICRO,Defence,62.4,60.6,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1644.0,1612.1,1.9,86,1623.3,3.9,25.0,11.5,7.4,-1.8,-0.9,0.95,7,41.2
+SEDEMAC,Auto Ancillaries,62.2,51.0,C,Flag after big move; At 20 EMA; At 50 EMA; Volume dry-up,Flag after big move; At 20 EMA; At 50 EMA; Volume dry-up,Ready,3150.0,3065.8,2.7,88,3118.4,3.8,31.0,14.6,6.7,1.1,0.5,0.51,34,21.0
+MAXESTATES,Real Estate,62.2,52.4,C,Flag after big move,Flag after big move,Ready,622.2,591.1,5.0,86,597.7,4.4,58.0,8.4,11.0,4.4,7.6,0.25,40,2.9
+APOLLO,Defence,61.8,60.3,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,439.4,422.65,3.8,84,425.35,5.6,32.0,11.0,12.6,-3.2,-1.7,0.82,6,426.4
+AUROPHARMA,Pharma,61.6,54.4,C,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,1819.4,1782.4,2.0,84,1796.5,2.3,20.0,3.4,2.3,0.2,1.7,1.17,8,213.7
+MARICO,FMCG Personal Care,61.4,52.4,C,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,924.0,905.15,2.0,75,919.5,2.2,22.0,0.6,2.3,1.4,4.2,0.74,8,180.5
+SIMPLEXINF,Infra & Construction,61.3,64.5,B,Flag after big move; At 20 EMA,Flag after big move; At 20 EMA,Ready,298.75,285.1,4.6,75,286.6,4.8,31.0,7.1,9.1,-1.6,1.2,1.28,6,4.7
+YATHARTH,Hospitals,61.0,48.2,C,Tight range; Inside day; At 10 EMA; Volume dry-up,Tight range; Inside day; At 10 EMA; Volume dry-up,Ready,1108.55,1082.25,2.4,87,1085.05,3.6,44.0,8.4,5.4,1.4,3.7,0.47,44,22.6
+ETERNAL,Internet & E-commerce,61.0,56.2,B,At 10 EMA,At 10 EMA,Ready,368.9,360.35,2.3,84,362.1,2.6,25.0,4.2,6.0,-0.3,1.7,0.75,4,747.3
+AERONEU,Packaging & Containers,60.9,57.8,B,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Flag after big move; Tight range; Inside day; Narrowest in 7; At 10 EMA,Ready,91.93,90.11,2.0,70,91.84,5.0,48.0,2.3,4.0,2.9,8.0,2.53,39,1.3
+DBOL,Farm Products,60.7,58.2,B,Flag after big move; Inside day; Narrowest in 7; At 10 EMA,Flag after big move; Inside day; Narrowest in 7; At 10 EMA,Ready,143.5,140.01,2.4,92,142.71,5.6,32.0,7.3,12.7,3.2,5.1,0.79,5,2.8
+ADANIGREEN,Renewables,60.6,65.8,A,At 20 EMA,At 20 EMA,Ready,1455.3,1391.06,4.4,72,1391.0,2.9,26.0,5.9,5.1,-1.2,0.5,1.09,8,281.0
+MARINE,Electricals & Power Equipment,60.1,61.9,B,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,410.85,388.55,5.4,92,406.95,6.5,39.0,17.1,11.9,-1.9,-2.5,0.61,32,34.0
+MCX,Exchanges & Depositories,60.0,48.1,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,3594.4,3455.0,3.9,88,3581.6,3.7,26.0,5.1,9.2,-0.1,2.1,1.13,3,750.7
+ANTHEM,Biotechnology,59.9,59.6,B,At 10 EMA; Turning up off EMA,At 10 EMA; Turning up off EMA,Ready,964.9,941.5,2.4,83,957.35,2.9,26.0,3.2,6.3,2.6,4.8,0.78,9,30.9
+TEXINFRA,Real Estate,59.4,51.1,C,At 20 EMA; Volume dry-up,At 20 EMA; Volume dry-up,Ready,122.0,117.27,3.9,76,118.53,4.3,20.0,11.4,5.4,-2.4,-2.6,1.25,9,2.9
+SHYAMMETL,Steel,59.2,55.5,B,At 20 EMA,At 20 EMA,Ready,1326.3,1264.5,4.7,90,1276.2,3.7,36.0,7.6,9.3,-1.6,0.7,0.75,3,39.5
+JYOTICNC,Capital Goods,58.7,55.9,B,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; Volume dry-up,Ready,1075.0,1040.0,3.3,82,1042.95,4.3,54.0,8.1,5.2,-0.3,1.3,0.47,43,58.5
+IIFL,NBFC,58.5,59.3,B,Narrowest in 7; At 20 EMA; At 50 EMA,Narrowest in 7; At 20 EMA; At 50 EMA,Ready,625.0,604.0,3.4,70,615.0,5.0,35.0,11.4,12.9,-2.2,-0.5,3.61,8,217.5
+GALAPREC,Capital Goods,58.5,54.6,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1180.0,1118.5,5.2,85,1126.2,5.3,36.0,14.7,15.4,-4.5,-3.0,0.74,8,3.1
+PVRINOX,Entertainment,58.2,40.1,C,At 10 EMA,At 10 EMA,Ready,1733.0,1654.9,4.5,94,1699.7,4.0,37.0,2.7,7.1,2.9,6.7,1.11,2,145.1
+MACPOWER,Capital Goods,58.1,50.6,C,At 50 EMA,At 50 EMA,Building,2089.9,1958.7,6.3,96,2032.4,6.1,45.0,17.0,20.0,-6.2,-5.5,0.74,9,11.6
+BBOX,Software,57.8,57.1,B,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,904.9,845.65,6.5,77,854.05,4.6,34.0,10.3,10.4,-2.4,-1.0,0.97,27,41.6
+SAKAR,Pharma,57.7,45.0,C,Inside day; At 20 EMA; At 50 EMA; Volume dry-up,Inside day; At 20 EMA; At 50 EMA; Volume dry-up,Ready,1029.8,990.85,3.8,95,997.15,5.1,48.0,18.9,9.9,-1.4,-1.0,0.7,41,8.8
+PETRONET,Oil & Gas,57.6,53.6,C,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,330.4,326.05,1.3,77,326.05,2.3,20.0,3.0,1.8,0.4,2.7,1.2,7,80.1
+TASTYBITE,FMCG Foods,57.3,48.6,C,At 50 EMA,At 50 EMA,Building,10533.0,9900.0,6.0,74,9935.5,5.8,36.0,15.4,18.7,-6.0,-4.0,0.92,4,4.9
+UTTAMSUGAR,Sugar,57.1,57.8,B,At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply; Wide red candles,At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply; Wide red candles,Building,354.95,334.65,5.7,87,348.5,6.5,64.0,13.1,12.2,-3.0,-1.9,0.63,27,8.1
+ASKAUTOLTD,Auto Ancillaries,56.9,45.1,C,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 20 EMA; At 50 EMA; Volume dry-up,Ready,634.45,616.75,2.8,81,623.5,4.2,14.0,8.1,6.3,-0.8,0.6,0.69,41,8.5
+GUFICBIO,Pharma,56.4,47.6,C,Tight range,Tight range,Building,426.45,412.95,3.2,80,415.05,4.9,31.0,16.0,8.2,-4.2,-4.1,1.27,8,2.8
+LGEINDIA,Electronics Manufacturing,55.7,48.4,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,1804.5,1735.0,3.9,73,1777.5,3.2,16.0,3.2,7.9,2.5,3.0,1.38,12,73.8
+UNITEDPOLY,Textiles,55.5,38.4,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,55.43,52.85,4.7,91,53.23,8.4,37.0,10.8,15.5,-0.0,1.4,0.98,2,1.7
+AVADHSUGAR,Sugar,55.5,52.6,C,At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,At 20 EMA; At 50 EMA; Volume dry-up; Overhead supply,Building,851.15,830.4,2.4,96,843.8,5.5,45.0,17.5,9.4,-0.1,-0.6,0.48,27,5.3
+JASH,Capital Goods,55.5,52.2,C,Inside day; At 20 EMA; At 50 EMA; Volume dry-up,Inside day; At 20 EMA; At 50 EMA; Volume dry-up,Ready,537.15,519.35,3.3,78,529.4,4.5,36.0,14.5,11.2,-1.2,-0.9,0.26,36,5.1
+BHEL,Capital Goods,55.5,52.8,C,Tight range; At 20 EMA,Tight range; At 20 EMA,Ready,435.8,415.51,4.7,76,415.7,3.1,15.0,10.4,4.9,-2.3,-1.7,1.07,27,331.0
+CEIGALL,Infra & Construction,55.3,52.2,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Building,379.8,370.3,2.5,85,376.3,3.2,15.0,7.3,5.6,-2.1,-2.4,0.79,13,6.8
+RACLGEAR,Auto Ancillaries,55.1,43.5,C,Tight range; Inside day; At 10 EMA; Volume dry-up,Tight range; Inside day; At 10 EMA; Volume dry-up,Ready,1590.0,1536.2,3.4,77,1546.7,4.3,45.0,19.8,4.9,0.8,2.5,0.29,45,3.2
+SHREEPUSHK,Specialty Chemicals,54.9,51.0,C,At 50 EMA; Still deep,At 50 EMA; Still deep,Building,522.0,498.05,4.6,88,514.9,6.6,53.0,21.1,10.7,-3.0,-4.0,0.55,14,3.3
+UNOMINDA,Auto Ancillaries,54.7,44.5,C,At 10 EMA,At 10 EMA,Ready,1396.2,1356.9,2.8,72,1356.9,3.6,37.0,3.7,5.6,0.4,4.5,1.31,2,150.5
+AETHER,Specialty Chemicals,54.4,49.3,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1630.0,1565.1,4.0,91,1596.9,4.5,17.0,12.0,8.8,-2.0,-1.3,1.07,33,36.3
+CENTUM,Electronics Manufacturing,53.8,40.3,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,4402.4,4120.0,6.4,90,4147.0,4.5,54.0,17.1,11.0,-3.7,-2.5,0.75,41,27.0
+PNBHOUSING,Housing Finance,53.7,51.0,C,Inside day; At 10 EMA,Inside day; At 10 EMA,Ready,1201.9,1153.8,4.0,73,1180.2,3.3,15.0,3.6,7.8,3.0,4.2,0.73,28,72.5
+ASAHIINDIA,Auto Ancillaries,53.5,38.6,C,Inside day,Inside day,Building,1186.9,1164.2,1.9,85,1178.45,3.5,38.0,1.7,5.5,4.0,9.2,1.18,2,20.4
+TECHM,IT Services,53.5,49.2,C,At 10 EMA; At 20 EMA; Turning up off EMA,At 10 EMA; At 20 EMA; Turning up off EMA,Triggered today,1808.7,1757.0,2.9,79,1777.5,2.3,29.0,4.4,6.5,0.7,1.1,0.56,11,374.2
+COMSYN,Packaging & Containers,53.2,38.7,C,Turning up off EMA,Turning up off EMA,Triggered today,289.97,257.74,11.1,94,282.51,7.4,54.0,10.4,14.1,9.8,13.0,0.97,43,11.3
+SASKEN,IT Services,52.9,51.0,C,Flag after big move; Tight range; At 10 EMA; Turning up off EMA; Overhead supply,Flag after big move; Tight range; At 10 EMA; Turning up off EMA; Overhead supply,Building,1899.0,1828.0,3.7,70,1881.2,5.4,30.0,5.6,8.1,4.0,6.0,0.73,17,6.6
+VSSL,Steel,52.5,46.7,C,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,388.75,362.0,6.9,85,380.15,4.8,41.0,11.2,7.4,1.1,2.4,0.28,45,3.1
+SOMANYCERA,Building Products,52.4,50.3,C,At 50 EMA,At 50 EMA,Ready,559.0,545.0,2.5,72,555.1,4.4,24.0,12.1,9.6,1.9,1.1,0.73,33,4.7
+KDDL,Jewellery,52.1,42.9,C,Narrowest in 7,Narrowest in 7,Ready,4738.4,4580.0,3.3,94,4604.0,5.8,48.0,11.4,33.1,3.8,8.4,1.46,3,10.9
+SANGAMIND,Textiles,52.0,33.4,C,Breakout today,Breakout today,Triggered today,705.0,671.1,4.8,90,696.1,4.3,25.0,2.4,11.9,5.7,8.9,1.84,3,2.6
+ACMESOLAR,Renewables,51.9,47.4,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,421.0,405.3,3.7,88,411.6,3.9,32.0,13.7,5.6,0.7,0.5,0.39,42,28.1
+JSWINFRA,Shipping,51.1,33.6,C,Turning up off EMA,Turning up off EMA,Triggered today,355.1,337.97,4.8,79,353.55,3.2,18.0,5.8,7.5,3.6,4.5,0.61,42,59.4
+WOCKPHARMA,Pharma,50.8,36.2,C,Narrowest in 7,Narrowest in 7,Ready,2185.5,2131.0,2.5,89,2152.3,4.1,30.0,8.8,11.2,3.5,5.8,0.65,41,104.8
+SHREEJISPG,Shipping,50.8,27.3,C,At 10 EMA,At 10 EMA,Ready,937.95,905.25,3.5,98,910.0,2.8,27.0,3.0,6.6,1.1,3.5,0.66,0,64.2
+MINDACORP,Auto Ancillaries,50.8,37.5,C,At 10 EMA,At 10 EMA,Ready,762.0,720.4,5.5,75,727.2,4.5,32.0,4.7,8.7,0.8,3.5,1.16,2,18.9
+QPOWER,Electricals & Power Equipment,50.3,47.3,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1562.6,1431.4,8.4,90,1468.5,5.6,33.0,12.6,16.2,-2.9,-1.4,1.01,33,46.2
+OAL,Specialty Chemicals,49.9,40.8,C,Flag after big move; At 50 EMA,Flag after big move; At 50 EMA,Building,543.7,484.07,11.0,96,528.6,7.3,35.0,18.0,29.1,7.9,4.3,1.94,19,1.5
+ARTEMISMED,Unclassified,49.5,42.1,C,At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,342.65,322.49,5.9,73,327.15,3.9,24.0,13.6,9.4,-0.5,1.9,0.3,39,4.7
+KWIL,FMCG Foods,49.4,32.4,C,At 10 EMA,At 10 EMA,Ready,43.98,42.05,4.4,87,42.27,4.9,59.0,11.7,9.4,1.3,4.6,0.39,59,35.5
+KPL,Pharma,49.2,35.6,C,At 10 EMA,At 10 EMA,Ready,4199.0,4029.1,4.0,83,4166.3,5.7,33.0,3.1,8.0,3.0,6.7,1.02,2,13.4
+ACE,Tractors & CVs,49.2,42.4,C,Tight range; At 10 EMA; At 20 EMA,Tight range; At 10 EMA; At 20 EMA,Ready,1193.95,1165.75,2.4,77,1187.45,3.7,19.0,6.4,3.7,1.6,3.2,0.79,43,28.1
+RUBICON,Pharma,49.2,31.6,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1775.0,1660.0,6.5,96,1675.7,4.6,37.0,11.8,8.2,-0.9,0.4,0.56,58,23.3
+PAYTM,Software,49.0,40.8,C,Inside day; At 50 EMA,Inside day; At 50 EMA,Building,1759.9,1713.7,2.6,86,1730.6,3.8,26.0,11.7,15.5,-3.6,-2.7,1.96,6,549.5
+STYLEBAAZA,Apparel Retail,48.9,36.2,C,At 10 EMA,At 10 EMA,Ready,514.0,475.15,7.6,91,503.35,5.8,56.0,7.6,14.7,3.9,11.6,1.94,2,97.5
+ARFIN,Metals & Mining,48.8,46.2,C,At 20 EMA; Volume dry-up; Overhead supply,At 20 EMA; Volume dry-up; Overhead supply,Building,92.8,88.01,5.2,79,91.31,4.7,41.0,19.8,9.1,-1.7,-2.2,0.81,30,14.1
+FINEORG,Specialty Chemicals,48.7,44.4,C,Turning up off EMA,Turning up off EMA,Triggered today,5649.5,5421.0,4.0,78,5602.5,3.3,14.0,1.1,7.7,3.6,5.1,0.78,32,6.9
+MODIS,Real Estate,48.6,32.7,C,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Ready,470.2,455.35,3.2,82,460.25,4.8,30.0,2.1,4.5,2.9,6.4,0.54,0,2.2
+SUDEEPPHRM,Pharma,48.6,31.4,C,At 10 EMA; Turning up off EMA,At 10 EMA; Turning up off EMA,Triggered today,1280.5,1210.0,5.5,94,1250.0,5.5,72.0,9.3,15.1,4.1,6.7,0.75,52,19.8
+WELENT,Infra & Construction,48.2,42.9,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,691.05,675.0,2.3,80,684.7,4.3,51.0,18.7,9.0,-0.0,-0.1,0.32,43,12.1
+SUNTV,Broadcasting,47.9,34.8,C,At 10 EMA,At 10 EMA,Ready,701.3,667.5,4.8,89,678.8,4.8,26.0,4.9,9.7,1.9,5.2,0.68,2,31.7
+WELSPUNLIV,Textiles,47.4,24.2,C,At 10 EMA; Breakout today,At 10 EMA; Breakout today,Ready,278.99,262.0,6.1,97,270.76,6.0,36.0,2.9,14.3,5.2,8.8,1.4,0,101.7
+TALBROAUTO,Auto Ancillaries,47.4,32.3,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,409.1,395.45,3.3,75,398.1,4.8,23.0,18.1,7.6,-0.7,0.8,1.48,43,4.4
+NRL,Waste Management,47.3,30.8,C,At 10 EMA,At 10 EMA,Ready,188.0,179.02,4.8,99,181.11,5.3,32.0,9.4,11.8,0.1,3.5,2.21,2,1.1
+CRAFTSMAN,Auto Ancillaries,47.3,27.8,C,At 10 EMA,At 10 EMA,Ready,11858.0,11304.0,4.7,89,11649.0,4.6,22.0,4.6,11.1,2.9,5.1,0.88,2,44.6
+PDSL,Specialty Business Services,46.7,33.3,C,At 10 EMA,At 10 EMA,Ready,425.0,407.1,4.2,80,413.25,4.6,33.0,2.8,6.4,1.8,5.4,0.63,0,7.0
+NAVINFLUOR,Chemicals,46.7,38.7,C,Inside day,Inside day,Ready,10298.5,10013.5,2.8,92,10154.0,3.9,38.0,2.0,6.2,3.1,7.5,1.34,2,221.3
+NITINSPIN,Textiles,46.4,23.6,C,At 10 EMA,At 10 EMA,Ready,711.95,686.2,3.6,94,699.2,4.2,23.0,3.6,7.6,2.2,4.4,1.78,1,7.4
+TMB,Private Banks,46.4,24.6,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,885.95,848.35,4.2,86,857.9,3.5,18.0,10.1,7.0,-1.6,-0.3,0.33,52,12.1
+ORCHPHARMA,Pharma,46.2,33.5,C,At 50 EMA,At 50 EMA,Ready,975.0,930.65,4.5,75,952.25,4.7,24.0,16.7,7.4,2.8,4.2,0.85,42,5.2
+NPST,Software,46.2,38.4,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,1738.5,1685.2,3.1,80,1698.7,4.6,37.0,12.2,5.7,-1.1,-1.3,0.37,46,2.8
+AXISCADES,Infra & Construction,46.2,42.5,C,At 20 EMA; Still deep,At 20 EMA; Still deep,Building,1887.7,1845.0,2.3,71,1866.2,4.2,52.0,20.9,7.1,-0.8,-1.5,0.57,34,20.7
+SGFIN,Capital Markets,46.2,24.3,C,At 10 EMA,At 10 EMA,Ready,875.0,789.5,9.8,93,787.7,6.5,46.0,10.0,18.9,2.3,6.9,2.07,0,19.1
+WEWORK,Real Estate,45.6,31.4,C,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Tight range; At 10 EMA; At 20 EMA; At 50 EMA; Volume dry-up,Ready,696.0,679.6,2.4,71,690.25,3.3,8.0,2.8,4.5,0.5,1.6,0.41,57,5.9
+MANOMAY,Textiles,45.2,23.9,C,At 10 EMA,At 10 EMA,Ready,278.54,264.02,5.2,87,272.5,3.5,21.0,2.2,6.3,2.3,4.9,1.29,0,4.8
+UFLEX,Packaging & Containers,44.4,30.0,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,623.25,591.55,5.1,78,598.55,3.8,65.0,17.3,8.5,-2.4,-1.7,0.15,55,4.8
+VARROC,Auto Ancillaries,44.3,26.6,C,At 20 EMA,At 20 EMA,Ready,803.0,776.05,3.4,78,790.85,4.1,15.0,13.3,12.4,-2.4,-2.3,0.48,42,13.2
+KMCSHIL,Hospitals,44.2,22.0,C,At 10 EMA,At 10 EMA,Ready,205.5,188.47,8.3,88,189.94,5.5,52.0,9.7,24.6,2.6,8.4,3.86,1,5.1
+CHENNPETRO,Oil & Gas,44.1,30.3,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,1450.0,1416.0,2.3,85,1443.8,4.0,37.0,13.9,3.7,0.4,-0.5,0.89,48,171.1
+HMAAGRO,FMCG Foods,43.9,21.1,C,Breakout today,Breakout today,Extended,40.69,36.04,11.4,96,40.03,7.6,79.0,1.6,56.5,31.1,40.9,6.18,0,4.3
+FORCEMOT,Automobiles,43.8,26.0,C,At 10 EMA,At 10 EMA,Ready,20483.0,19860.0,3.0,70,20098.0,3.8,27.0,2.2,6.5,1.8,5.2,1.0,1,148.1
+SPAL,Textiles,43.6,26.5,C,At 50 EMA,At 50 EMA,Ready,945.0,915.0,3.2,70,917.7,4.6,26.0,16.1,8.3,0.2,1.4,0.36,52,3.3
+TIRUPATIFL,Metal Fabrication,43.4,28.1,C,Flag after big move; At 50 EMA,Flag after big move; At 50 EMA,Ready,75.0,70.0,6.7,95,71.79,5.1,32.0,12.7,23.7,3.9,4.9,0.82,40,1.6
+LODHA,Real Estate,43.4,28.1,C,Tight range; At 10 EMA,Tight range; At 10 EMA,Ready,1231.0,1202.1,2.3,71,1219.0,4.0,14.0,4.6,5.4,2.1,4.9,0.76,59,131.0
+STYLAMIND,Consumer Durables,43.2,27.7,C,At 50 EMA; Volume dry-up,At 50 EMA; Volume dry-up,Ready,3284.2,3218.5,2.0,83,3263.1,4.0,12.0,9.5,6.6,0.9,2.1,0.31,59,8.4
+QUESS,Staffing & Employment Services,42.9,27.1,C,Narrowest in 7; At 20 EMA; At 50 EMA,Narrowest in 7; At 20 EMA; At 50 EMA,Ready,339.8,330.25,2.8,89,331.5,4.8,34.0,14.7,8.3,-1.2,-0.6,0.29,57,5.1
+TMCV,Automobiles,42.9,22.5,C,Inside day; At 10 EMA,Inside day; At 10 EMA,Ready,456.75,444.5,2.7,77,453.8,3.3,22.0,6.2,6.8,2.5,4.6,0.87,59,300.9
+PGIL,Textiles,42.8,17.7,C,Breakout today,Breakout today,Triggered today,1535.0,1425.1,7.2,95,1479.4,5.5,32.0,3.6,18.7,6.3,9.7,1.96,0,17.6
+NEOGEN,Specialty Chemicals,42.8,29.9,C,At 10 EMA,At 10 EMA,Ready,2920.2,2765.1,5.3,96,2787.7,5.3,47.0,6.1,11.7,1.2,5.7,1.35,1,45.4
+MOLBIO,Medical Devices,42.3,26.7,C,Tight range; At 10 EMA; At 20 EMA; Volume dry-up; Overhead supply,Tight range; At 10 EMA; At 20 EMA; Volume dry-up; Overhead supply,Building,1509.9,1441.0,4.6,87,1446.9,5.7,82.0,14.2,9.6,-0.4,1.9,0.32,48,72.3
+UNIONBANK,PSU Banks,42.3,16.5,C,At 10 EMA,At 10 EMA,Ready,219.72,211.3,3.8,84,208.2,2.6,31.0,5.2,7.6,1.3,4.9,1.18,0,265.1
+KRBL,FMCG Foods,42.1,26.4,C,Narrowest in 7,Narrowest in 7,Ready,435.3,426.05,2.1,70,427.85,4.1,32.0,4.3,7.5,2.5,5.0,0.83,59,14.6
+WESTLIFE,QSR & Restaurants,42.0,38.3,C,At 20 EMA,At 20 EMA,Ready,675.5,642.2,4.9,81,652.7,4.2,41.0,9.8,12.7,-1.1,1.3,0.86,2,13.7
+SPORTKING,Textiles,42.0,16.4,C,Breakout today,Breakout today,Extended,244.38,220.88,9.6,95,239.18,6.4,33.0,2.1,17.2,9.8,12.8,1.65,0,8.3
+STEELCAS,Steel,41.9,30.1,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,373.7,356.15,4.7,86,365.4,5.2,27.0,8.4,13.9,-1.1,-0.2,0.87,2,3.1
+ISGEC,Capital Goods,41.6,31.4,C,At 10 EMA; Volume dry-up,At 10 EMA; Volume dry-up,Ready,1005.35,981.3,2.4,76,1000.7,3.1,18.0,0.5,4.2,1.5,3.7,0.45,0,3.5
+MOTHERSON,Auto Ancillaries,41.5,21.7,C,Inside day; Narrowest in 7; At 10 EMA; At 20 EMA,Inside day; Narrowest in 7; At 10 EMA; At 20 EMA,Ready,166.53,164.24,1.4,80,165.76,3.4,20.0,2.9,7.0,1.2,2.0,0.76,57,252.4
+MEESHO,Internet & E-commerce,41.0,25.2,C,At 10 EMA,At 10 EMA,Ready,265.0,252.0,4.9,85,253.11,3.6,27.0,4.5,6.4,0.9,3.9,1.07,0,318.9
+URBANCO,Software,40.6,29.8,C,At 10 EMA; At 20 EMA,At 10 EMA; At 20 EMA,Ready,169.92,163.34,3.9,80,168.68,4.4,45.0,8.3,11.2,0.8,3.3,0.5,53,73.3
+DIFFNKG,Capital Goods,40.0,28.7,C,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Narrowest in 7; At 20 EMA; At 50 EMA; Volume dry-up,Ready,431.0,417.6,3.1,77,424.05,4.5,46.0,18.4,7.8,-1.6,-0.8,0.22,53,2.3
+FEDERALBNK,Private Banks,39.8,15.3,C,At 10 EMA,At 10 EMA,Ready,376.2,362.0,3.8,83,359.8,2.5,17.0,4.4,5.3,-0.1,1.8,1.04,0,206.1
+VIJAYA,Diagnostics,39.5,14.4,C,Breakout today,Breakout today,Building,1637.0,1546.0,5.6,84,1572.6,4.2,23.0,3.9,12.4,4.5,6.4,2.15,0,15.6
+ICICIBANK,Private Banks,39.4,16.2,C,At 10 EMA,At 10 EMA,Ready,1644.8,1593.41,3.1,78,1585.5,2.1,24.0,3.6,4.2,0.2,3.2,1.16,1,2022.6
+AJMERA,Real Estate,39.1,18.6,C,Breakout today,Breakout today,Extended,169.77,153.57,9.5,80,162.62,6.4,49.0,4.2,29.6,15.4,19.6,6.36,0,4.9
+ARVIND,Textiles,39.0,16.1,C,At 50 EMA,At 50 EMA,Triggered today,543.1,524.4,3.4,81,537.7,3.5,20.0,11.4,7.1,3.8,4.8,0.81,50,24.2
+RATNAVEER,Steel,38.4,21.1,C,Breakout today,Breakout today,Extended,406.8,378.19,7.0,98,403.3,4.7,32.0,0.9,14.0,8.0,10.3,0.66,0,78.5
+GRANULES,Pharma,38.0,19.7,C,At 50 EMA,At 50 EMA,Ready,842.85,811.6,3.7,79,837.75,4.1,13.0,9.3,6.9,2.8,2.8,1.12,47,101.9
+SHADOWFAX,Logistics,37.8,19.5,C,Inside day; At 10 EMA,Inside day; At 10 EMA,Ready,311.8,299.8,3.8,91,306.95,5.0,20.0,2.6,9.4,2.8,4.7,1.27,1,111.1
+63MOONS,Software,37.7,24.3,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1005.0,925.82,7.9,83,912.6,5.3,32.0,9.2,11.4,-1.4,-0.5,1.19,0,25.9
+ABB,Capital Goods,37.1,26.3,C,At 50 EMA,At 50 EMA,Ready,6999.0,6860.0,2.0,70,6868.5,3.0,9.0,10.7,4.2,-0.2,0.4,0.73,59,155.3
+LICHSGFIN,Housing Finance,36.9,24.4,C,Inside day,Inside day,Ready,623.6,606.0,2.8,75,606.0,3.1,29.0,3.2,5.0,2.3,6.2,1.34,1,166.5
+KSHINTL,Electricals & Power Equipment,36.7,28.4,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,1023.25,985.0,3.7,84,1012.85,4.6,47.0,15.5,10.8,-1.1,0.2,0.71,50,15.3
+SHALPAINTS,Specialty Chemicals,36.6,20.6,C,Episodic pivot; Breakout today,Episodic pivot; Breakout today,Triggered today,116.8,106.05,9.2,95,103.97,6.1,56.0,11.0,24.7,9.1,15.2,5.38,0,1.0
+ALICON,Metal Fabrication,36.6,19.1,C,Inside day,Inside day,Ready,1100.0,1021.0,7.2,90,1028.85,5.6,44.0,7.5,17.7,5.3,10.7,1.69,1,1.5
+PERMAGN,Electricals & Power Equipment,36.6,25.0,C,Breakout today,Breakout today,Extended,1354.5,1186.78,12.4,94,1335.9,8.3,68.0,1.4,21.1,13.5,20.0,2.18,0,2.9
+THOMASCOOK,Travel Services,36.2,21.3,C,Breakout today,Breakout today,Extended,131.49,121.57,7.5,74,129.39,5.0,54.0,1.6,19.5,14.9,21.1,5.74,0,10.8
+INOXINDIA,Capital Goods,35.9,18.0,C,Inside day,Inside day,Ready,2145.6,2074.8,3.3,91,2088.0,4.6,28.0,10.8,14.6,2.7,4.4,0.8,49,27.0
+TRENT,Apparel Retail,35.8,22.1,C,At 10 EMA,At 10 EMA,Ready,3280.0,3196.5,2.5,71,3208.0,2.5,23.0,2.2,4.2,0.9,3.2,0.9,0,240.6
+GRAPHITE,Electricals & Power Equipment,35.7,28.6,C,At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,At 10 EMA; At 20 EMA; At 50 EMA; Turning up off EMA; Volume dry-up,Triggered today,792.9,760.15,4.1,78,789.9,3.4,37.0,9.7,6.3,1.5,2.4,0.54,50,46.6
+FREDUN,Pharma,35.7,17.1,C,At 10 EMA,At 10 EMA,Ready,1710.4,1626.1,4.9,76,1661.2,5.1,32.0,4.3,16.1,3.9,7.5,1.12,1,8.5
+ADANIENSOL,Power,35.5,24.7,C,At 10 EMA,At 10 EMA,Ready,1524.5,1468.1,3.7,74,1470.0,3.1,6.0,9.1,5.6,0.7,2.8,1.0,59,189.0
+EICHERMOT,Automobiles,35.5,12.4,C,Breakout today,Breakout today,Extended,8275.0,8126.0,1.8,73,8172.5,2.6,22.0,1.2,8.7,4.2,6.6,1.48,0,400.5
+FLUOROCHEM,Specialty Chemicals,34.9,22.0,C,At 10 EMA,At 10 EMA,Ready,4994.8,4841.7,3.1,82,4895.0,3.7,23.0,2.5,7.6,1.8,4.2,1.41,1,47.6
+WINDMACHIN,Capital Goods,34.4,19.3,C,Episodic pivot; Breakout today,Episodic pivot; Breakout today,Extended,375.95,349.46,7.0,79,354.7,4.7,48.0,5.7,29.6,13.8,17.2,5.01,0,1.3
+DALMIASUG,Sugar,33.8,25.1,C,At 20 EMA; At 50 EMA; Volume dry-up,At 20 EMA; At 50 EMA; Volume dry-up,Ready,449.15,435.15,3.1,77,443.75,5.3,47.0,13.2,12.1,-3.7,-3.1,0.43,57,7.6
+MSTCLTD,Conglomerates,33.7,17.9,C,At 20 EMA; At 50 EMA,At 20 EMA; At 50 EMA,Ready,669.9,643.7,3.9,80,655.2,5.9,41.0,18.6,19.5,-2.2,0.0,1.07,51,16.6
+COFORGE,IT Services,32.9,15.7,C,Inside day; Breakout today,Inside day; Breakout today,Building,2155.0,2105.1,2.3,85,2142.3,3.1,21.0,1.6,9.3,3.8,5.3,1.71,1,431.2
+SAMBHV,Steel,32.8,13.7,C,Breakout today,Breakout today,Triggered today,179.8,165.12,8.2,94,176.9,5.4,20.0,1.6,14.7,7.2,8.0,1.12,0,27.1
+ADANIPOWER,Power,30.4,18.1,C,At 10 EMA,At 10 EMA,Ready,216.16,207.98,3.8,70,207.9,2.5,8.0,4.4,6.1,0.5,2.1,0.97,59,308.0
+PERSISTENT,IT Services,27.3,10.4,C,Breakout today,Breakout today,Extended,6339.5,6136.0,3.2,74,6282.5,2.6,15.0,0.9,9.9,4.1,5.2,1.35,0,257.6
+BLUESTARCO,Building Products,26.8,11.6,C,Inside day; Narrowest in 7,Inside day; Narrowest in 7,Extended,1818.0,1782.2,2.0,70,1785.1,4.0,23.0,1.9,15.0,6.3,9.2,2.0,1,68.4

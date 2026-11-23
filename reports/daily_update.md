@@ -1,11 +1,12 @@
 # Daily update report
 
-Run: 2026-11-20 22:41 UTC; range 2026-11-21 to 2026-11-21
+Run: 2026-11-23 10:47 UTC; range 2026-11-21 to 2026-11-23
 
 ## Days
 
-- 2026-11-21: skipped (nse_error:BadZipFile)
-- Yahoo cross-check: 0 stock-days compared since 2026-11-21, 0 differ >2% (0 stocks)
+- 2026-11-23: NSE unreachable (not_published); used Yahoo, 2632 stocks
+- 2026-11-23: 2632 stocks from yahoo
+- Yahoo cross-check: 2,632 stock-days compared since 2026-11-21, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
@@ -13,11 +14,13 @@ Run: 2026-11-20 22:41 UTC; range 2026-11-21 to 2026-11-21
 - 2026-11-11 EVONILE: factor 0.841493 (yahoo_crosscheck)
 - 2026-11-06 KMEW: factor 0.2 (yahoo_crosscheck)
 - 2026-11-13 PASHUPATI: factor 0.4 (yahoo_crosscheck)
+- 2026-11-23 ROLLT: factor 0.961686 (yahoo_crosscheck)
 - 2026-11-11 SMLMAH: factor 1.092892 (yahoo_crosscheck)
+- 2026-11-20 SMLMAH: factor 0.915003 (yahoo_crosscheck)
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)
 
-none
+- 2026-11-23 APLAPOLLO: close 2121.60 -> 1670.00
 
 ## Warnings
 
