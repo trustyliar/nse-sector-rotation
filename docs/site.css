@@ -9,7 +9,7 @@ main>h1{font-size:24px;font-weight:800;letter-spacing:-.02em;color:var(--ink);ma
 h2{display:flex;align-items:center;gap:8px;color:var(--ink2)}h2::before{content:"";width:4px;height:14px;border-radius:2px;background:var(--s)}
 .m,.kp,.k2{box-shadow:var(--sh)}.m{border:1px solid var(--grid);border-radius:var(--rad);transition:transform .15s,box-shadow .15s}.m:hover{transform:translateY(-2px)}
 .fill,.bar{background:linear-gradient(90deg,var(--s),color-mix(in srgb,var(--s) 60%,#fff))}
-table{border-radius:12px}tbody tr{transition:background .12s}tbody tr:hover td{background:var(--soft)}th{background:color-mix(in srgb,var(--card) 70%,transparent);position:sticky;top:50px;z-index:1}
+table{border-radius:12px}tbody tr{transition:background .12s}tbody tr:hover td{background:var(--soft)}th{background:transparent;position:static}
 .tw,.tbl{border-radius:var(--rad)}
 nav{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:4px}nav::-webkit-scrollbar{display:none}nav a{white-space:nowrap;transition:background .12s}
 nav b{background:linear-gradient(135deg,var(--s),color-mix(in srgb,var(--s) 55%,#8b5cf6));-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}nav b i{color:inherit}
