@@ -57,7 +57,7 @@ main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}ma
 .pop p.d1:before{background:#d69614}.pop p.d2:before{background:#f06e1e}.pop p.d3:before{background:#d03b3b}.pop p.d0:before{background:#0a8a4a}.pop small{display:block;margin-top:8px;color:var(--ink2);font-size:11.5px}
 .empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--ink2);border:1px dashed var(--grid);border-radius:16px}
 </style>
-<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Use the account menu (top right) to sign in with Google and keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span class="sm" id="sync"></span> <button id="sn" title="Load your saved journal from your account">Sync now</button> <button id="sp" title="Overwrite your account copy with this browser's journal">Push this browser to account</button></div></div>
+<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Use the account menu (top right) to sign in with Google and keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span class="sm" id="sync"></span></div></div>
 <div class="jh-r"><button id="zs" class="zbtn" title="Fetch today's executed trades from Zerodha"><span>&#9889;</span> Sync Zerodha</button><small id="zl">Pulls today's trades. Zerodha asks you to log in once a day.</small></div></section>
 <div id="tiles"></div>
 <div class="jbar"><div class="tabs"><button id="tv1" class="on">Open positions</button><button id="tv2">All trades</button></div>
@@ -80,7 +80,7 @@ const $=i=>document.getElementById(i),KEY="nse-journal-v1",n=v=>+v||0,inr=v=>(v<
 pct=(v,d=2)=>(v>0?"+":"")+v.toFixed(d)+"%",esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let S={capital:0,trades:[]},P={},editing=null,FL={},FLD="";
 try{S=JSON.parse(localStorage.getItem(KEY))||S}catch(e){}
-let cloudPush=null;const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(cloudPush)cloudPush(S)};
+let cloudPush=null;const save=()=>{S.trades.forEach(t=>t._id??=Math.random().toString(36).slice(2,10));S.u=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(cloudPush)cloudPush(S)};
 const F=[["date","Entry date","date"],["name","Stock (NSE symbol)","text","syms"],["setup","Setup","text","setups"],["side","Side","select",["Buy","Sell"]],
 ["entry","Entry price","number"],["qty","Quantity","number"],["sl","Stop loss","number"],["tsl","Trailing stop","number"],
 ["p1p","Pyramid 1 price","number"],["p1q","Pyramid 1 qty","number"],["p1d","Pyramid 1 date","date"],["cmp","CMP override","number"],
@@ -191,17 +191,25 @@ if(S.lastSync)$("zl").textContent="Last synced "+S.lastSync;
 render();
 </script>
 <script type="module">
-const SD=window.SD;let tm=null,cur=null;const sy=t=>$("sync").textContent=t;
-const hint=c=>c=="permission-denied"?" (Firestore rules not published or database missing)":c=="unavailable"?" (network blocked or offline)":"";
-async function cloudSync(force){if(!cur){sy("Not signed in on this browser. Use Sign in (top right).");return}
-const has=x=>x&&x.trades&&x.trades.length;sy("Syncing...");
-try{const d=await SD.load(),c=d&&d.j?JSON.parse(d.j):null;
-if(has(c)&&!(force=="push")){if(has(S)&&JSON.stringify(c)!=JSON.stringify(S))dl("journal-local-backup-"+day+".json",JSON.stringify(S),"application/json");S=c;try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()}
-else if(has(S)||S.capital)await SD.save({j:JSON.stringify(S),t:Date.now()});
-cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>SD.save({j:JSON.stringify(s),t:Date.now()}).then(()=>sy("Saved to your account "+new Date().toLocaleTimeString())).catch(e=>{sy("Could not save: "+e.code+hint(e.code));SD.toast("Cloud save failed: "+e.code)}),700)};
-sy("Synced with your account ("+((S.trades||[]).length)+" trades) "+new Date().toLocaleTimeString())}
-catch(e){sy("Could not reach your account: "+e.code+hint(e.code));SD.toast("Cloud sync failed: "+e.code)}}
-if(SD){SD.onUser(u=>{cur=u;cloudPush=null;sy("");if(u)cloudSync()});
-$("sn").onclick=()=>cloudSync();$("sp").onclick=()=>cloudSync("push")}
+const SD=window.SD,sy=t=>$("sync").textContent=t,has=x=>x&&x.trades&&x.trades.length,idof=t=>t._id||t.key||JSON.stringify([t.date,t.name,t.entry,t.qty]);
+let cur=null,tm=null,first=true;
+const hint=c=>c=="permission-denied"?" (Firestore rules not published or database missing)":c=="unavailable"?" (offline or blocked)":"";
+const adopt=r=>{S=r;S.trades??=[];try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()};
+const push=()=>SD.save({j:JSON.stringify(S),t:Date.now()});
+if(SD){
+SD.onUser(u=>{const was=cur;cur=u;cloudPush=null;first=true;
+if(!u){sy("");if(was){try{localStorage.removeItem(KEY)}catch(e){}S={capital:0,trades:[],seen:[]};$("cap").value="";render()}return}
+sy("Connecting to your account...");
+SD.watch((d,pending,err)=>{if(err){sy("Account sync problem: "+err.code+hint(err.code));return}
+if(pending)return;let r=null;try{r=d&&d.j?JSON.parse(d.j):null}catch(e){}
+if(first){first=false;const mk="sd-merged-"+u.uid;let done=false;try{done=localStorage.getItem(mk)}catch(e){}
+if(has(r)){let extra=[];if(!done)extra=(S.trades||[]).filter(t=>!new Set(r.trades.map(idof)).has(idof(t)));
+if(extra.length){r.trades=r.trades.concat(extra);r.seen=[...new Set([...(r.seen||[]),...(S.seen||[])])].slice(-800)}
+adopt(r);if(extra.length){save();push()}}
+else if(has(S)||S.capital){save();push()}
+try{localStorage.setItem(mk,"1")}catch(e){}
+cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>{tm=null;SD.save({j:JSON.stringify(s),t:Date.now()}).then(()=>sy("\u2713 Saved to your account "+new Date().toLocaleTimeString())).catch(e=>{sy("Could not save: "+e.code+hint(e.code));SD.toast("Cloud save failed: "+e.code)})},600)};
+sy("\u2713 Synced with your account ("+(S.trades||[]).length+" trades)");return}
+if(tm)return;if(r&&JSON.stringify(r)!=JSON.stringify(S)){adopt(r);sy("\u2713 Updated from your account "+new Date().toLocaleTimeString())}})})}
 </script>
 <script type="module" src="site.js"></script></body></html>
