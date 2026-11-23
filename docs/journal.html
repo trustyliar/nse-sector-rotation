@@ -191,7 +191,7 @@ if(S.lastSync)$("zl").textContent="Last synced "+S.lastSync;
 render();
 </script>
 <script type="module">
-const C={};
+const C={"apiKey":"AIzaSyAnUg9SP1a3AfhMatWGCntDgdFWkhE2-N4","authDomain":"swingdesk-b6a07.firebaseapp.com","projectId":"swingdesk-b6a07","storageBucket":"swingdesk-b6a07.firebasestorage.app","messagingSenderId":"344743344419","appId":"1:344743344419:web:30fd071e382806fef67496"};
 if(C&&C.apiKey){const b="https://www.gstatic.com/firebasejs/10.12.2/",[{initializeApp},{getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut},{getFirestore,doc,getDoc,setDoc}]=await Promise.all([import(b+"firebase-app.js"),import(b+"firebase-auth.js"),import(b+"firebase-firestore.js")]);
 const app=initializeApp(C),au=getAuth(app),db=getFirestore(app);let tm=null;
 const paint=u=>{$("auth").innerHTML=u?`<span class="sm">${esc(u.email)}</span> <button id="so">Sign out</button>`:`<button id="si">Sign in with Google</button>`;
