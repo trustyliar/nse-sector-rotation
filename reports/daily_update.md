@@ -1,6 +1,6 @@
 # Daily update report
 
-Run: 2026-11-24 02:53 UTC; range 2026-11-24 to 2026-11-24
+Run: 2026-11-24 10:46 UTC; range 2026-11-24 to 2026-11-24
 
 ## Days
 
@@ -12,7 +12,7 @@ Run: 2026-11-24 02:53 UTC; range 2026-11-24 to 2026-11-24
 - 2026-11-16 BNAGROCHEM: factor 0.1 (yahoo_crosscheck)
 - 2026-11-11 EVONILE: factor 0.841493 (yahoo_crosscheck)
 - 2026-11-13 PASHUPATI: factor 0.4 (yahoo_crosscheck)
-- 2026-11-20 ROLLT: factor 1.039841 (yahoo_crosscheck)
+- 2026-11-23 ROLLT: factor 0.961686 (yahoo_crosscheck)
 - 2026-11-11 SMLMAH: factor 1.092892 (yahoo_crosscheck)
 - 2026-11-20 SMLMAH: factor 0.915003 (yahoo_crosscheck)
 
