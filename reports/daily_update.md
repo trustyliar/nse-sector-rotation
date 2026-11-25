@@ -1,9 +1,10 @@
 # Daily update report
 
-Run: 2026-11-25 14:37 UTC; range 2026-11-26 to 2026-11-25
+Run: 2026-11-25 20:12 UTC; range 2026-11-26 to 2026-11-26
 
 ## Days
 
+- 2026-11-26: skipped (not_published)
 - Yahoo cross-check: 0 stock-days compared since 2026-11-26, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
