@@ -1,11 +1,10 @@
 # Daily update report
 
-Run: 2026-11-26 11:30 UTC; range 2026-11-26 to 2026-11-26
+Run: 2026-11-26 14:37 UTC; range 2026-11-27 to 2026-11-26
 
 ## Days
 
-- 2026-11-26: 2626 stocks from nse; vs stored: 2626 common, 0 differ >1%, 0 differ >5%, only-NSE 0, only-stored 0; prev-close mismatches 0/2623
-- Yahoo cross-check: 2,625 stock-days compared since 2026-11-26, 0 differ >2% (0 stocks)
+- Yahoo cross-check: 0 stock-days compared since 2026-11-27, 0 differ >2% (0 stocks)
 
 ## Corporate-action adjustments recorded
 
