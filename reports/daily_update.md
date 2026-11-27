@@ -1,6 +1,6 @@
 # Daily update report
 
-Run: 2026-11-27 14:37 UTC; range 2026-11-28 to 2026-11-27
+Run: 2026-11-27 19:41 UTC; range 2026-11-28 to 2026-11-28
 
 ## Days
 
@@ -14,7 +14,6 @@ Run: 2026-11-27 14:37 UTC; range 2026-11-28 to 2026-11-27
 - 2026-11-13 PASHUPATI: factor 0.4 (yahoo_crosscheck)
 - 2026-11-23 ROLLT: factor 0.961686 (yahoo_crosscheck)
 - 2026-11-20 SMLMAH: factor 0.915003 (yahoo_crosscheck)
-- 2026-11-27 VGL: factor 0.4 (yahoo_crosscheck)
 
 ## Moves beyond 21% with no split found (genuine move, listing pop, or check manually)
 
