@@ -1,0 +1,215 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trade journal</title><style>
+:root{--bg:#f6f5f1;--card:#ffffff;--ink:#14161a;--ink2:#4d5158;--mut:#8b8f97;--grid:#e6e4dd;--s:#2a78d6;--soft:#eaf1fb;--shadow:0 1px 2px rgba(20,22,26,.04),0 8px 24px rgba(20,22,26,.05)}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1014;--card:#161920;--ink:#eef0f3;--ink2:#b4b9c2;--mut:#7d838e;--grid:#262a33;--s:#5b9be8;--soft:#18243a;--shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25)}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:960px;margin:0 auto;padding:20px 20px 64px}
+h1{font-size:26px;line-height:1.2;font-weight:750;letter-spacing:-.02em;margin:6px 0 2px;color:var(--ink)}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);margin:38px 0 12px;font-weight:700}
+.hero{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin:18px 0 6px;padding:22px 24px;background:var(--card);border:1px solid var(--grid);border-radius:18px;box-shadow:var(--shadow)}
+.num{font-size:84px;font-weight:800;line-height:.95;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.zone{font-size:22px;font-weight:700;letter-spacing:-.01em}.sub{color:var(--ink2);margin-top:2px}.read{margin:14px 0 0;max-width:68ch;color:var(--ink2);font-size:15.5px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.m{background:var(--card);border:1px solid var(--grid);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.mh{display:flex;justify-content:space-between;gap:10px;font-weight:650}.v{font-variant-numeric:tabular-nums;white-space:nowrap}.v small{color:var(--mut);font-weight:500;margin-left:6px}
+.track{height:8px;background:var(--grid);border-radius:99px;margin:10px 0 8px;overflow:hidden}.fill{height:100%;background:var(--s);border-radius:99px}
+.d{font-size:12.5px;color:var(--ink2);line-height:1.45}
+#chart{position:relative;background:var(--card);border:1px solid var(--grid);border-radius:14px;padding:14px 10px 6px;box-shadow:var(--shadow)}svg{display:block;width:100%;height:auto}
+#tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);padding:5px 9px;border-radius:8px;font-size:12.5px;font-weight:600;white-space:nowrap;display:none;transform:translate(-50%,-130%)}
+.tw{overflow-x:auto;background:var(--card);border:1px solid var(--grid);border-radius:14px;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{text-align:right;padding:9px 12px;border-bottom:1px solid var(--grid)}tbody tr:last-child td{border-bottom:0}tbody tr:hover td{background:var(--soft)}
+th{color:var(--mut);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;background:var(--card);white-space:nowrap}
+th:first-child,td:first-child,th:nth-child(3),td:nth-child(3){text-align:left}
+.note{color:var(--ink2);font-size:13.5px;max-width:78ch;padding-left:18px}.note li{margin:6px 0}
+
+nav{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:0 -20px 14px;padding:10px 20px;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--grid)}
+nav b{font-size:15px;font-weight:800;letter-spacing:-.01em;margin-right:14px}nav b i{font-style:normal;color:var(--s)}
+nav a{color:var(--ink2);text-decoration:none;padding:6px 12px;border-radius:99px;font-weight:600;font-size:14px}nav a:hover{background:var(--soft);color:var(--ink)}
+nav a.on{background:var(--ink);color:var(--bg)}td.l,th.l{text-align:left}td.sm{font-size:12.5px;color:var(--ink2)}
+select,input,button{font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--grid);border-radius:10px;background:var(--card);color:var(--ink);margin:0 8px 12px 0}
+input:focus,select:focus{outline:2px solid var(--s);outline-offset:1px}button{cursor:pointer;font-weight:600}button:hover{background:var(--soft)}
+#add,#dx,#dt,#frm button[type=submit]{background:var(--s);border-color:var(--s);color:#fff}#add:hover,#dx:hover,#dt:hover{filter:brightness(1.08);background:var(--s)}
+main.wide{max-width:1640px}main.wide td,main.wide th{white-space:nowrap}main.wide td.sm.l{white-space:normal;min-width:220px}
+main a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--mut)}main nav a{border-bottom:0}th{cursor:pointer;user-select:none}th[data-d]::after{content:" 95"}
+.bar{display:inline-block;height:8px;border-radius:4px;background:var(--s);vertical-align:middle;margin-right:6px}</style><link rel="stylesheet" href="site.css"><script>try{var p=JSON.parse(localStorage.getItem("sd-prefs"));p&&p.theme&&(document.documentElement.dataset.theme=p.theme)}catch(e){}window.SD={cbs:[],known:false,user:null,onUser:function(f){this.cbs.push(f);if(this.known)f(this.user)}};window.SDC={"apiKey":"AIzaSyAnUg9SP1a3AfhMatWGCntDgdFWkhE2-N4","authDomain":"swingdesk-b6a07.firebaseapp.com","projectId":"swingdesk-b6a07","storageBucket":"swingdesk-b6a07.firebasestorage.app","messagingSenderId":"344743344419","appId":"1:344743344419:web:30fd071e382806fef67496"};window.SDDAY="Friday 27 November 2026"</script></head><body><main class="wide"><nav><b>Swing<i>Desk</i></b><a href="index.html">Regime</a><a href="sectors.html">Sectors</a><a href="setups.html">Setups</a><a href="fundamentals.html">Fundamentals</a><a href="journal.html" class=on>Journal</a></nav><h1>Trade journal &middot; prices as of close of Friday 27 November 2026</h1><style>
+.jh{display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;padding:26px 28px;border-radius:18px;color:#fff;background:linear-gradient(135deg,#0f1b3d 0%,#1d3a8a 55%,#2457d6 100%);box-shadow:0 10px 30px rgba(20,40,110,.25);margin:4px 0 18px}
+.jh h2{margin:0 0 4px;font-size:26px;letter-spacing:-.02em;color:#fff}.jh p{margin:0 0 10px;opacity:.8;max-width:520px;font-size:14px}.jh .sm,.jh a{color:#cfe0ff}
+.jh-a{display:flex;gap:10px;align-items:center;font-size:13px}.jh-a button{background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);padding:4px 12px;margin:0}
+.jh-r{text-align:center}.zbtn{display:inline-flex;align-items:center;gap:10px;font-size:19px;font-weight:700;color:#fff;border:0;border-radius:14px;padding:16px 34px;margin:0;cursor:pointer;background:linear-gradient(135deg,#ff7a18,#ff3d54);box-shadow:0 8px 24px rgba(255,80,60,.45);transition:transform .12s,box-shadow .12s}
+.zbtn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(255,80,60,.55)}.zbtn span{font-size:22px}.jh-r small{display:block;margin-top:9px;opacity:.75;font-size:12.5px}
+.kps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:12px}.kp{background:var(--card,#fff);border:1px solid var(--grid);border-radius:14px;padding:16px 18px}
+.kp span{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink2)}.kp b{display:block;font-size:30px;font-weight:700;letter-spacing:-.02em;margin:4px 0 2px;font-variant-numeric:tabular-nums}.kp i{font-style:normal;font-size:12.5px;color:var(--ink2)}
+.kps2{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}.k2{background:var(--card,#fff);border:1px solid var(--grid);border-radius:999px;padding:6px 14px;font-size:13px;color:var(--ink2)}.k2 b{color:var(--ink);margin-left:6px;font-variant-numeric:tabular-nums}
+.g{color:#0a8a4a}.r{color:#d03b3b}
+.jbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:14px}.tabs{display:inline-flex;background:var(--card,#fff);border:1px solid var(--grid);border-radius:12px;padding:4px}
+.tabs button{border:0;background:none;margin:0;padding:8px 18px;border-radius:9px;font-weight:600;color:var(--ink2)}.tabs button.on{background:var(--ink);color:var(--bg)}
+.acts{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.acts button,.acts select{margin:0}.pri{background:var(--ink);color:var(--bg);border-color:var(--ink)}.ghost button{background:none;border:1px solid var(--grid);color:var(--ink2);font-size:13px;padding:5px 10px}
+.cp{font-size:13px;color:var(--ink2)}.cp input{width:120px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}.cd{background:var(--card,#fff);border:1px solid var(--grid);border-radius:16px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.ch{display:flex;justify-content:space-between;align-items:flex-start}.sy{font-size:19px;font-weight:700}.chip{display:inline-block;margin-left:8px;font-size:11.5px;background:rgba(36,87,214,.12);color:#2457d6;padding:2px 9px;border-radius:999px}
+.big{font-size:34px;font-weight:800;letter-spacing:-.02em;margin:8px 0 10px;font-variant-numeric:tabular-nums}.big small{font-size:14px;font-weight:600;margin-left:10px}
+.gr{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 6px;font-size:14px;font-weight:600;font-variant-numeric:tabular-nums}.gr i{display:block;font-style:normal;font-weight:500;font-size:11px;color:var(--ink2);text-transform:uppercase;letter-spacing:.04em}
+.hr{display:flex;gap:8px;align-items:center}.hr button{margin:0}.cd{position:relative}.wf{position:static;cursor:help;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;outline:0;white-space:nowrap}
+.wf.s0{background:rgba(10,138,74,.12);color:#0a8a4a}.wf.s1{background:rgba(214,150,20,.16);color:#a86a00}.wf.s2{background:rgba(240,110,30,.16);color:#c24a00}.wf.s3{background:rgba(208,59,59,.15);color:#c02a2a}
+.wf .pop{display:none;position:absolute;left:8px;right:8px;top:58px;width:auto;background:var(--card,#fff);color:var(--ink);border:1px solid var(--grid);border-radius:12px;padding:12px 14px;box-shadow:0 14px 34px rgba(0,0,0,.22);z-index:40;font-size:13px;line-height:1.4;font-weight:400;text-align:left;white-space:normal}
+.wf:hover .pop,.wf:focus .pop{display:block}.pop b{display:block;margin-bottom:6px;font-size:13.5px}.pop p{margin:5px 0;padding-left:16px;position:relative}.pop p:before{content:"";position:absolute;left:2px;top:6px;width:8px;height:8px;border-radius:50%;background:#aaa}
+.pop p.d1:before{background:#d69614}.pop p.d2:before{background:#f06e1e}.pop p.d3:before{background:#d03b3b}.pop p.d0:before{background:#0a8a4a}.pop small{display:block;margin-top:8px;color:var(--ink2);font-size:11.5px}
+.empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--ink2);border:1px dashed var(--grid);border-radius:16px}
+</style>
+<section class="jh"><div><h2>Trade journal</h2><p>Signed out, your trades stay in this browser. Use the account menu (top right) to sign in with Google and keep them across devices. Prices: latest NSE close (<span id="pd"></span>).</p><div class="jh-a"><span class="sm" id="sync"></span></div></div>
+<div class="jh-r"><button id="zs" class="zbtn" title="Fetch today's executed trades from Zerodha"><span>&#9889;</span> Sync Zerodha</button><small id="zl">Pulls today's trades. Zerodha asks you to log in once a day.</small></div></section>
+<div id="tiles"></div>
+<div class="jbar"><div class="tabs"><button id="tv1" class="on">Open positions</button><button id="tv2">All trades</button></div>
+<div class="acts"><button id="add" class="pri">+ Add trade</button><select id="st"><option value="">All trades</option><option>Open</option><option>Closed</option></select><label class="cp">Capital &#8377; <input id="cap" type="number"></label>
+<span class="ghost"><button id="imb" title="Zerodha Console: Reports, Tradebook, download CSV. Other brokers: any CSV with symbol, date, buy/sell, quantity, price.">Import file</button><input type="file" id="bfile" accept=".csv,.txt" hidden><button id="csv">CSV</button><button id="exp">Backup</button><button id="imp">Restore</button><input type="file" id="file" accept=".json" hidden></span></div></div>
+<div id="impmsg" class="read" style="margin:0 0 12px;font-weight:600"></div>
+<div id="cards" class="cards"></div>
+<div class="tw" id="tbl" style="display:none"><table><thead><tr><th>#</th><th class="l">Date</th><th class="l">Stock</th><th class="l">Setup</th><th class="l">Side</th><th>Avg entry</th><th>Qty</th><th>SL</th><th>SL %</th><th>CMP</th><th>Position (Rs)</th><th>Alloc %</th><th>Open qty</th><th>Avg exit</th><th>Stock move</th><th>R</th><th>Days</th><th class="l">Status</th><th>Realised</th><th>Unrealised</th><th>PF impact</th><th>Cum PF</th><th>Risk now %</th><th class="l">Plan</th><th class="l">Exit trigger</th><th class="l">Note</th><th></th></tr></thead><tbody id="jb"></tbody></table></div>
+<div id="impmsg" class="read" style="margin:6px 0"></div>
+<ul class="note"><li><b>Sync Zerodha</b> pulls today's executed trades (Zerodha only shares the current day), so click it after the close each day. Buys add to an open position as pyramids, sells fill the exits, a new stock opens a new trade. Clicking twice never double counts. Zerodha asks you to log in once a day.</li><li><b>Import broker file</b> reads a tradebook CSV (Zerodha: Console, Reports, Tradebook). Buys and sells are paired per stock into trades with up to three entries and three exits. Importing again updates the same trades and keeps your setup, stop, plan and notes. Include the date range from when you opened any position still held.</li><li><b>Avg entry</b> blends the first buy and up to two pyramids. <b>R</b> is total profit or loss divided by the initial risk (entry minus stop, times total quantity).</li>
+<li><b>PF impact</b> is realised profit as a share of capital; <b>Cum PF</b> adds it up in date order. <b>Risk now</b> is what the open quantity loses at the trailing stop (or the stop), as a share of capital.</li>
+<li><b>Win rate</b> counts fully closed trades. <b>Drawdown</b> is the fall from the peak of capital plus realised profit.</li></ul>
+<dialog id="dlg" style="max-width:760px;width:94%;border:1px solid var(--grid);border-radius:12px;background:var(--bg);color:var(--ink)"><form id="frm">
+<h2 style="margin-top:0">Trade</h2><div id="flds" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:4px 10px"></div>
+<div style="margin-top:12px"><button type="submit">Save</button><button type="button" id="cancel">Cancel</button><button type="button" id="del" style="float:right">Delete trade</button></div></form></dialog>
+<datalist id="syms"></datalist><datalist id="setups"><option>Flag after big move<option>Pullback to 10 EMA<option>Pullback to 20 EMA<option>Pullback to 50 EMA<option>Tight range<option>Episodic pivot<option>Breakout</datalist>
+<datalist id="trig"><option>Stop hit<option>Trailing stop<option>Target<option>Sold into strength<option>Time stop<option>Broke 10 EMA<option>Broke 20 EMA</datalist>
+</main><script>document.querySelectorAll("th").forEach((th,i)=>{th.title="Click to sort";th.onclick=()=>{const tb=th.closest("table").tBodies[0],d=th.dataset.d=th.dataset.d=="1"?"-1":"1",key=c=>c.dataset.v??c.textContent.trim(),num=s=>{const v=parseFloat(String(s).replace(/[^0-9.+-]/g,""));return isNaN(v)||/^[A-Za-z]/.test(s)?null:v};[...tb.rows].sort((a,b)=>{const x=key(a.cells[i]),y=key(b.cells[i]),nx=num(x),ny=num(y);return d*(nx!=null&&ny!=null?nx-ny:String(x).localeCompare(String(y)))}).forEach(r=>tb.appendChild(r))}})</script><script>
+const $=i=>document.getElementById(i),KEY="nse-journal-v1",n=v=>+v||0,inr=v=>(v<0?"-":"")+"₹"+Math.abs(Math.round(v)).toLocaleString("en-IN"),
+pct=(v,d=2)=>(v>0?"+":"")+v.toFixed(d)+"%",esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let S={capital:0,trades:[]},P={},editing=null,FL={},FLD="";
+try{S=JSON.parse(localStorage.getItem(KEY))||S}catch(e){}
+let cloudPush=null;const save=()=>{S.trades.forEach(t=>t._id??=Math.random().toString(36).slice(2,10));S.u=Date.now();try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}if(cloudPush)cloudPush(S)};
+const F=[["date","Entry date","date"],["name","Stock (NSE symbol)","text","syms"],["setup","Setup","text","setups"],["side","Side","select",["Buy","Sell"]],
+["entry","Entry price","number"],["qty","Quantity","number"],["sl","Stop loss","number"],["tsl","Trailing stop","number"],
+["p1p","Pyramid 1 price","number"],["p1q","Pyramid 1 qty","number"],["p1d","Pyramid 1 date","date"],["cmp","CMP override","number"],
+["p2p","Pyramid 2 price","number"],["p2q","Pyramid 2 qty","number"],["p2d","Pyramid 2 date","date"],["base","Base duration (days)","number"],
+["e1p","Exit 1 price","number"],["e1q","Exit 1 qty","number"],["e1d","Exit 1 date","date"],["plan","Plan followed","select",["","Yes","No"]],
+["e2p","Exit 2 price","number"],["e2q","Exit 2 qty","number"],["e2d","Exit 2 date","date"],["trigger","Exit trigger","text","trig"],
+["e3p","Exit 3 price","number"],["e3q","Exit 3 qty","number"],["e3d","Exit 3 date","date"],["note","Quick note","text"]];
+$("flds").innerHTML=F.map(([k,l,t,o])=>`<label style="font-size:12.5px;color:var(--ink2)">${l}<br>`+(t=="select"?`<select name="${k}" style="width:100%">${o.map(x=>`<option>${x}</option>`).join("")}</select>`
+:`<input name="${k}" type="${t}" ${t=="number"?'step="any"':""} ${o?`list="${o}"`:""} style="width:100%">`)+"</label>").join("");
+function calc(t){const dir=t.side=="Sell"?-1:1,pick=a=>a.filter(x=>n(x[0])&&n(x[1])),sum=(a,f)=>a.reduce((s,x)=>s+f(x),0),
+ins=pick([[t.entry,t.qty,t.date],[t.p1p,t.p1q,t.p1d],[t.p2p,t.p2q,t.p2d]]),outs=pick([[t.e1p,t.e1q,t.e1d],[t.e2p,t.e2q,t.e2d],[t.e3p,t.e3q,t.e3d]]),
+Q=sum(ins,x=>n(x[1])),avgE=Q?sum(ins,x=>n(x[0])*n(x[1]))/Q:0,XQ=Math.min(Q,sum(outs,x=>n(x[1]))),avgX=XQ?sum(outs,x=>n(x[0])*n(x[1]))/sum(outs,x=>n(x[1])):0,
+open=Q-XQ,sym=(t.name||"").trim().toUpperCase(),cmp=n(t.cmp)||P[sym]||0,real=dir*(avgX-avgE)*XQ,unreal=open&&cmp?dir*(cmp-avgE)*open:0,
+risk=n(t.sl)?Math.abs(n(t.entry)-n(t.sl))*Q:0,stop=n(t.tsl)||n(t.sl),openRisk=stop?Math.max(0,dir*(avgE-stop))*open:0,
+status=!Q?"":open==0?"Closed":XQ?"Partial":"Open",lastX=outs.map(x=>x[2]).filter(Boolean).sort().pop(),
+end=status=="Closed"&&lastX?new Date(lastX):new Date(),days=t.date?Math.max(0,Math.round((end-new Date(t.date))/864e5)):0,
+ref=open&&cmp?(avgX*XQ+cmp*open)/Q:avgX,move=avgE&&ref?dir*(ref/avgE-1)*100:0;
+return{sym,dir,Q,avgE,XQ,avgX,open,cmp,real,unreal,risk,R:risk?(real+unreal)/risk:null,openRisk,status,days,move,lastX:lastX||t.date,
+slp:n(t.sl)&&n(t.entry)?Math.abs(n(t.entry)-n(t.sl))/n(t.entry)*100:0,size:avgE*Q}}
+function wflags(t,c){const f=[],d=FL[c.sym],cmp=c.cmp,stop=n(t.tsl)||n(t.sl);
+if(stop&&cmp){if(cmp<=stop)f.push([3,"Price is at or below your stop ("+num2(stop)+"). Exit per your plan."]);else if(cmp/stop-1<.03)f.push([2,"Only "+((cmp/stop-1)*100).toFixed(1)+"% above your stop ("+num2(stop)+")."])}else if(!stop)f.push([1,"No stop is set for this trade."]);
+if(stop&&cmp&&c.avgE&&cmp/c.avgE>=1.1&&stop<c.avgE)f.push([1,"Up "+((cmp/c.avgE-1)*100).toFixed(0)+"%: consider moving the stop to breakeven (entry "+num2(c.avgE)+")."]);
+let note="";if(d){d.f.forEach(x=>f.push(x));if(d.r){const dl=Math.round((new Date(d.r)-new Date(day))/864e5);if(dl>=0&&dl<=10)f.push([2,"Results due "+d.r+" ("+(dl==0?"today":dl+" day"+(dl>1?"s":""))+"). Overnight gap risk if you hold through it."]);else if(dl>10)note="Next results: "+d.r+".";}else note="Results date not found; check the company calendar."}else note="No price-flag data for this symbol.";
+f.sort((a,b)=>b[0]-a[0]);const w=f.length?f[0][0]:0;
+return`<span class="wf s${w}" tabindex="0">${f.length?"&#9888; "+f.length+(w==3?" urgent":" to watch"):"&#10003; Clear"}<div class="pop"><b>Risk check: ${esc(c.sym)}</b>${f.length?f.map(x=>`<p class="d${x[0]}">${esc(x[1])}</p>`).join(""):'<p class="d0">No warning triggers: price is above its 10, 20 and 50 EMA with no stop, volume or result-date alerts.</p>'}<small>${note?esc(note)+" ":""}Price flags as of close ${FLD||"n/a"}.</small></div></span>`}
+const num2=v=>v?(+v).toLocaleString("en-IN",{maximumFractionDigits:2}):"";
+function render(){const cap=n(S.capital),rows=S.trades.map((t,i)=>({t,i,c:calc(t)})).sort((a,b)=>(a.t.date||"").localeCompare(b.t.date||""));
+let cum=0;rows.forEach(r=>{r.pf=cap?r.c.real/cap*100:0;cum+=r.pf;r.cum=cum});
+const closed=rows.filter(r=>r.c.status=="Closed"),wins=closed.filter(r=>r.c.real>0),real=rows.reduce((s,r)=>s+r.c.real,0),unreal=rows.reduce((s,r)=>s+r.c.unreal,0),
+openR=rows.filter(r=>r.c.open>0),risk=openR.reduce((s,r)=>s+r.c.openRisk,0),inv=openR.reduce((s,r)=>s+r.c.avgE*r.c.open,0),Rs=closed.filter(r=>r.c.R!=null).map(r=>r.c.R),
+avg=a=>a.length?a.reduce((s,x)=>s+x,0)/a.length:0;
+let eq=cap,peak=cap;[...rows].filter(r=>r.c.XQ).sort((a,b)=>(a.c.lastX||"").localeCompare(b.c.lastX||"")).forEach(r=>{eq+=r.c.real;peak=Math.max(peak,eq)});
+const dd=peak?(eq/peak-1)*100:0,tk=(k,v,d,c)=>`<div class="kp"><span>${k}</span><b class="${c||""}">${v}</b><i>${d||""}</i></div>`,t2=(k,v)=>`<div class="k2">${k}<b>${v}</b></div>`,tot=real+unreal,sg=v=>v>0?"g":v<0?"r":"";
+$("tiles").innerHTML=`<div class="kps">`+tk("Total P/L",inr(tot),cap?pct(tot/cap*100)+" of capital":"Set capital for % figures",sg(tot))+tk("Realised",inr(real),cap?pct(real/cap*100)+" of capital":"",sg(real))
++tk("Win rate",closed.length?(wins.length/closed.length*100).toFixed(0)+"%":"-",wins.length+" wins, "+(closed.length-wins.length)+" losses")+tk("Capital at risk",cap?(risk/cap*100).toFixed(2)+"%":"-",inr(risk)+" at stops")+`</div><div class="kps2">`
++t2("Trades",rows.length+" ("+closed.length+" closed)")+t2("Open",openR.length)+t2("Unrealised",inr(unreal))+t2("Invested",cap?(inv/cap*100).toFixed(1)+"%":inr(inv))+t2("Avg R",Rs.length?avg(Rs).toFixed(2)+"R":"-")+t2("Drawdown",cap?dd.toFixed(2)+"%":"-")+`</div>`;
+const f=$("st").value,num=(v,d=2)=>v?v.toLocaleString("en-IN",{maximumFractionDigits:d}):"";
+$("cards").innerHTML=openR.length?[...openR].sort((x,y)=>(y.t.date||"").localeCompare(x.t.date||"")).map(r=>{const c=r.c,t=r.t,ret=c.avgE&&c.cmp?c.dir*(c.cmp/c.avgE-1)*100:0,cl=c.unreal>=0?"g":"r";
+return`<div class="cd"><div class="ch"><div><a class="sy" target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:${esc(c.sym.replace(/[&-]/g,"_"))}">${esc(c.sym)}</a><span class="chip">${esc(t.setup||"No setup")}</span></div><div class="hr">${wflags(t,c)}<button data-i="${r.i}" class="ed">Edit</button></div></div>
+<div class="big ${cl}">${c.cmp?pct(ret,1):"n/a"}<small>${c.cmp?inr(c.unreal):""}</small></div>
+<div class="gr"><div><i>Qty</i>${num(c.open,0)}</div><div><i>Avg</i>${num(c.avgE)}</div><div><i>CMP</i>${num(c.cmp)||"n/a"}</div><div><i>Stop</i>${num(n(t.tsl)||n(t.sl))||"-"}</div>
+<div><i>Risk now</i>${cap?(c.openRisk/cap*100).toFixed(2)+"%":"-"}</div><div><i>R</i>${c.R==null?"-":c.R.toFixed(1)}</div><div><i>Days</i>${c.days}</div><div><i>Size</i>${cap&&c.cmp?(c.cmp*c.open/cap*100).toFixed(1)+"%":"-"}</div></div></div>`}).join(""):'<div class="empty">No open positions yet. Click <b>Sync Zerodha</b> after the close, or add a trade.</div>';
+$("jb").innerHTML=rows.filter(r=>!f||(f=="Open"?r.c.open>0:r.c.status=="Closed")).map((r,k)=>{const t=r.t,c=r.c;return`<tr><td>${k+1}</td><td class="l">${esc(t.date)}</td>
+<td class="l"><b><a target="_blank" rel="noopener" href="https://www.tradingview.com/chart/?symbol=NSE:${esc(c.sym.replace(/[&-]/g,"_"))}">${esc(c.sym)}</a></b></td><td class="l">${esc(t.setup)}</td><td class="l">${esc(t.side)}</td>
+<td>${num(c.avgE)}</td><td>${num(c.Q,0)}</td><td>${num(n(t.tsl)||n(t.sl))}</td><td>${c.slp?c.slp.toFixed(1)+"%":""}</td><td>${num(c.cmp)||"n/a"}</td><td>${num(c.size,0)}</td>
+<td>${cap&&c.open?(c.cmp*c.open/cap*100).toFixed(1)+"%":""}</td><td>${num(c.open,0)||0}</td><td>${num(c.avgX)}</td><td>${c.move?pct(c.move,1):""}</td><td>${c.R==null?"":c.R.toFixed(2)+"R"}</td><td>${c.days}</td><td class="l">${c.status}</td>
+<td>${c.XQ?inr(c.real):""}</td><td>${c.open?inr(c.unreal):""}</td><td>${c.XQ&&cap?pct(r.pf):""}</td><td>${cap?pct(r.cum):""}</td><td>${cap&&c.open?(c.openRisk/cap*100).toFixed(2)+"%":""}</td>
+<td class="l">${esc(t.plan)}</td><td class="l sm">${esc(t.trigger)}</td><td class="l sm">${esc(t.note)}</td><td><button data-i="${r.i}" class="ed">Edit</button></td></tr>`}).join("")
+||'<tr><td colspan="27" class="l">No trades yet. Click "+ Add trade".</td></tr>'}
+function openDlg(i){editing=i;const t=i==null?{date:new Date().toISOString().slice(0,10),side:"Buy"}:S.trades[i];F.forEach(([k])=>$("frm").elements[k].value=t[k]??"");$("del").style.display=i==null?"none":"";$("dlg").showModal()}
+$("add").onclick=()=>openDlg(null);$("cards").onclick=e=>{if(e.target.classList.contains("ed"))openDlg(+e.target.dataset.i)};
+const tab=v=>{$("cards").style.display=v?"none":"";$("tbl").style.display=v?"":"none";$("tv1").classList.toggle("on",!v);$("tv2").classList.toggle("on",!!v)};$("tv1").onclick=()=>tab(0);$("tv2").onclick=()=>tab(1);$("st").onchange=()=>{tab(1);render()};
+$("cancel").onclick=()=>$("dlg").close();$("jb").onclick=e=>{if(e.target.classList.contains("ed"))openDlg(+e.target.dataset.i)};
+$("frm").onsubmit=e=>{e.preventDefault();const t={};F.forEach(([k])=>t[k]=$("frm").elements[k].value.trim());t.name=t.name.toUpperCase();if(!t.name||!n(t.entry)||!n(t.qty))return;
+editing==null?S.trades.push(t):S.trades[editing]=t;save();$("dlg").close();render()};
+$("del").onclick=()=>{if($("del").dataset.sure){S.trades.splice(editing,1);save();$("dlg").close();render();delete $("del").dataset.sure;$("del").textContent="Delete trade"}else{$("del").dataset.sure=1;$("del").textContent="Click again to delete"}};
+$("cap").value=S.capital||"";$("cap").oninput=()=>{S.capital=n($("cap").value);save();render()};
+const dl=(name,text,type)=>{const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click()},day=new Date().toISOString().slice(0,10);
+$("exp").onclick=()=>dl("nse-journal-backup-"+day+".json",JSON.stringify(S),"application/json");$("imp").onclick=()=>$("file").click();
+$("file").onchange=e=>{const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(Array.isArray(d.trades)){S=d;save();$("cap").value=S.capital||"";render()}}catch(x){}};r.readAsText(e.target.files[0])};
+$("csv").onclick=()=>{const q=c=>'"'+c.textContent.trim().replace(/"/g,'""')+'"';dl("nse-journal-"+day+".csv","﻿"+[...document.querySelectorAll("table tr")].map(r=>[...r.cells].slice(0,-1).map(q).join(",")).join("\n"),"text/csv")};
+fetch("flags.json").then(r=>r.json()).then(d=>{FL=d.s;FLD=d.date;render()}).catch(()=>{});
+fetch("prices.json").then(r=>r.json()).then(d=>{P=d.p;$("pd").textContent=d.date;$("syms").innerHTML=Object.keys(P).map(s=>`<option>${s}`).join("");render()}).catch(()=>{$("pd").textContent="unavailable";render()});
+function parseCSV(t){const R=[];let r=[],c="",q=false;for(let i=0;i<t.length;i++){const h=t[i];if(q){if(h=='"'){if(t[i+1]=='"'){c+='"';i++}else q=false}else c+=h}else if(h=='"')q=true;else if(h==","){r.push(c);c=""}else if(h=="\n"||h=="\r"){if(h=="\r"&&t[i+1]=="\n")i++;r.push(c);c="";if(r.length>1||r[0]!=="")R.push(r);r=[]}else c+=h}if(c!==""||r.length){r.push(c);R.push(r)}return R}
+const HD={s:["symbol","tradingsymbol","scrip","scripname","stock","instrument","security"],d:["tradedate","date","executiondate","orderexecutiontime","tradetime"],t:["tradetype","type","side","buysell","buy/sell","transactiontype"],q:["quantity","qty","tradedqty","tradedquantity"],p:["price","tradeprice","avgprice","rate"],g:["segment"]};
+const isoD=v=>{v=String(v).trim();let m=v.match(/^(\d{4})-(\d{2})-(\d{2})/);if(m)return m[1]+"-"+m[2]+"-"+m[3];m=v.match(/^(\d{1,2})[-\/](\d{1,2})[-\/](\d{4})/);return m?m[3]+"-"+m[2].padStart(2,"0")+"-"+m[1].padStart(2,"0"):""};
+const lots=a=>{const m={};a.forEach(x=>{const o=m[x.d]??={d:x.d,q:0,v:0};o.q+=x.q;o.v+=x.q*x.p});return Object.values(m).sort((a,b)=>a.d.localeCompare(b.d)).map(o=>({d:o.d,q:o.q,p:o.v/o.q}))};
+const cap3=a=>{if(a.length<=3)return a;const r=a.slice(2),q=r.reduce((s,x)=>s+x.q,0);return[a[0],a[1],{d:r[0].d,q,p:r.reduce((s,x)=>s+x.q*x.p,0)/q}]};
+function importBroker(text){const R=parseCSV(text.replace(/^﻿/,"")),key=r=>r.map(x=>x.toLowerCase().replace(/[^a-z\/]/g,"")),
+hi=R.findIndex(r=>{const k=key(r);return HD.s.some(h=>k.includes(h))&&HD.q.some(h=>k.includes(h))&&HD.p.some(h=>k.includes(h))});
+if(hi<0)return $("impmsg").textContent="Could not find symbol, quantity and price columns in that file. Use the tradebook CSV from your broker.";
+const k=key(R[hi]),col=a=>k.findIndex(x=>a.includes(x)),C={s:col(HD.s),d:col(HD.d),t:col(HD.t),q:col(HD.q),p:col(HD.p),g:col(HD.g)};
+if([C.s,C.d,C.t].some(x=>x<0))return $("impmsg").textContent="That file needs symbol, date and buy/sell columns.";
+let other=0;const ex=[];R.slice(hi+1).forEach((r,i)=>{if(C.g>=0&&r[C.g]&&!/^(eq|equity|cm)$/i.test(r[C.g].trim()))return other++;
+const sd=/^b/i.test((r[C.t]||"").trim())?"B":/^s/i.test((r[C.t]||"").trim())?"S":"",d=isoD(r[C.d]),q=+String(r[C.q]).replace(/,/g,""),p=+String(r[C.p]).replace(/,/g,""),s=(r[C.s]||"").trim().toUpperCase().replace(/-EQ$/,"");
+if(sd&&d&&q>0&&p>0&&s)ex.push({s,d,side:sd,q,p,i})});
+const by={},out=[];let orphan=0;ex.forEach(e=>(by[e.s]??=[]).push(e));
+for(const s in by){let pos=null,held=0;for(const e of by[s].sort((a,b)=>a.d.localeCompare(b.d)||a.i-b.i)){
+if(e.side=="B"){pos??={s,b:[],x:[]};pos.b.push(e);held+=e.q}else{if(!pos){orphan++;continue}const t=Math.min(held,e.q);pos.x.push({...e,q:t});held-=t;if(!held){out.push(pos);pos=null}}}if(pos)out.push(pos)}
+let add=0,upd=0;const f2=v=>String(Math.round(v*100)/100);
+out.forEach(o=>{const B=cap3(lots(o.b)),X=cap3(lots(o.x)),t={date:B[0].d,name:o.s,side:"Buy",entry:f2(B[0].p),qty:String(B[0].q),src:"broker",key:o.s+"|"+B[0].d};
+[["p1",1],["p2",2]].forEach(([n_,j])=>{t[n_+"p"]=B[j]?f2(B[j].p):"";t[n_+"q"]=B[j]?String(B[j].q):"";t[n_+"d"]=B[j]?B[j].d:""});
+[0,1,2].forEach(j=>{const n_="e"+(j+1);t[n_+"p"]=X[j]?f2(X[j].p):"";t[n_+"q"]=X[j]?String(X[j].q):"";t[n_+"d"]=X[j]?X[j].d:""});
+const i=S.trades.findIndex(x=>x.key==t.key||(x.name==t.name&&x.date==t.date&&!x.key));
+if(i<0){S.trades.push(t);add++}else{S.trades[i]={...S.trades[i],...t};upd++}});
+save();render();$("impmsg").textContent=`Imported: ${add} new, ${upd} updated`+(orphan?`. ${orphan} sell(s) had no matching buy in this file (position opened earlier); import a longer date range to include them.`:".")+(other?` ${other} non-equity rows ignored.`:"")}
+$("imb").onclick=()=>$("bfile").click();$("bfile").onchange=e=>{const fl=e.target.files[0];if(!fl)return;const r=new FileReader();r.onload=()=>importBroker(String(r.result));r.readAsText(fl);e.target.value=""};
+
+const ZW="https://swingdesk-kite.contactatsandeepyadav.workers.dev",f2=v=>String(Math.round(v*100)/100),zm=t=>$("impmsg").textContent=t;
+function putLot(t,k,e,cap){const q=cap?Math.min(e.q,cap):e.q,q0=n(t[k+"q"]),p0=n(t[k+"p"]);if(p0&&q0){t[k+"p"]=f2((p0*q0+e.p*q)/(q0+q));t[k+"q"]=String(q0+q)}else{t[k+"p"]=f2(e.p);t[k+"q"]=String(q);t[k+"d"]=e.d}}
+function applyExecs(ex){S.seen??=[];const seen=new Set(S.seen);let add=0,opened=0,short=0;
+ex.filter(e=>!seen.has(e.id)).sort((a,b)=>(a.ts||a.d).localeCompare(b.ts||b.d)).forEach(e=>{
+const t=S.trades.filter(x=>(x.name||"").toUpperCase()==e.s&&calc(x).open>0).sort((a,b)=>(a.date||"").localeCompare(b.date||"")).pop();
+if(e.side=="B"){if(!t){S.trades.push({date:e.d,name:e.s,side:"Buy",entry:f2(e.p),qty:String(e.q),src:"zerodha",key:e.s+"|"+e.d});opened++}else putLot(t,["p1","p2"].find(k=>!n(t[k+"p"]))||"p2",e)}
+else if(!t){short++}else putLot(t,["e1","e2","e3"].find(k=>!n(t[k+"p"]))||"e3",e,calc(t).open);
+S.seen.push(e.id);if(e.side=="B"||t)add++});S.seen=S.seen.slice(-800);save();render();return{add,opened,short}}
+const ztok=()=>{try{const o=JSON.parse(sessionStorage.getItem("kite-token"));return o&&Date.now()-o.t<14*36e5?o.k:null}catch(e){return null}};
+async function zsync(){if(!ZW)return zm("Zerodha sync is not switched on yet.");const tk=ztok();if(!tk){location.href=ZW+"/login";return}
+zm("Fetching today's trades from Zerodha...");let r,j;try{r=await fetch(ZW+"/trades",{headers:{authorization:"Bearer "+tk}});j=await r.json()}catch(e){return zm("Could not reach the Zerodha bridge. Check the Worker address.")}
+if(j.error_type=="TokenException"){sessionStorage.removeItem("kite-token");if(sessionStorage.getItem("kite-fresh")){sessionStorage.removeItem("kite-fresh");return zm("Zerodha rejected the login: "+(j.message||""))}sessionStorage.setItem("kite-fresh","1");location.href=ZW+"/login";return}
+sessionStorage.removeItem("kite-fresh");if(j.status!="success")return zm("Zerodha said: "+(j.message||r.status));
+const ex=j.data.filter(x=>/^(NSE|BSE)$/.test(x.exchange)&&x.quantity>0).map(x=>({s:String(x.tradingsymbol).toUpperCase().replace(/-EQ$/,""),ts:String(x.fill_timestamp||x.exchange_timestamp||x.order_timestamp||""),d:isoD(x.fill_timestamp||x.exchange_timestamp||x.order_timestamp)||day,side:x.transaction_type=="BUY"?"B":"S",q:+x.quantity,p:+x.average_price,id:String(x.trade_id)}));
+const o=applyExecs(ex);S.lastSync=new Date().toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"});save();$("zl").textContent="Last synced "+S.lastSync;zm(j.data.length?`Zerodha: ${o.add} new execution(s) added (${o.opened} new trade(s)).`+(o.short?` ${o.short} sell(s) had no open position in the journal; add or import the original buy.`:""):"No trades today so far.")}
+$("zs").onclick=zsync;
+(()=>{const h=new URLSearchParams(location.hash.slice(1));if(h.get("kt")){sessionStorage.setItem("kite-token",JSON.stringify({k:h.get("kt"),t:Date.now()}));history.replaceState(null,"",location.pathname);zsync()}else if(h.get("kerr")){history.replaceState(null,"",location.pathname);zm("Zerodha: "+h.get("kerr"))}})();
+
+if(S.lastSync)$("zl").textContent="Last synced "+S.lastSync;
+render();
+</script>
+<script type="module">
+const SD=window.SD,sy=t=>$("sync").textContent=t,has=x=>x&&x.trades&&x.trades.length,idof=t=>t._id||t.key||JSON.stringify([t.date,t.name,t.entry,t.qty]);
+let cur=null,tm=null,first=true;
+const hint=c=>c=="permission-denied"?" (Firestore rules not published or database missing)":c=="unavailable"?" (offline or blocked)":"";
+const adopt=r=>{S=r;S.trades??=[];try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}$("cap").value=S.capital||"";render()};
+const push=()=>SD.save({j:JSON.stringify(S),t:Date.now()});
+if(SD){
+SD.onUser(u=>{const was=cur;cur=u;cloudPush=null;first=true;
+if(!u){sy("");if(was){try{localStorage.removeItem(KEY)}catch(e){}S={capital:0,trades:[],seen:[]};$("cap").value="";render()}return}
+sy("Connecting to your account...");
+SD.watch((d,pending,err)=>{if(err){sy("Account sync problem: "+err.code+hint(err.code));return}
+if(pending)return;let r=null;try{r=d&&d.j?JSON.parse(d.j):null}catch(e){}
+if(first){first=false;const mk="sd-merged-"+u.uid;let done=false;try{done=localStorage.getItem(mk)}catch(e){}
+if(has(r)){let extra=[];if(!done)extra=(S.trades||[]).filter(t=>!new Set(r.trades.map(idof)).has(idof(t)));
+if(extra.length){r.trades=r.trades.concat(extra);r.seen=[...new Set([...(r.seen||[]),...(S.seen||[])])].slice(-800)}
+adopt(r);if(extra.length){save();push()}}
+else if(has(S)||S.capital){save();push()}
+try{localStorage.setItem(mk,"1")}catch(e){}
+cloudPush=s=>{clearTimeout(tm);tm=setTimeout(()=>{tm=null;SD.save({j:JSON.stringify(s),t:Date.now()}).then(()=>sy("\u2713 Saved to your account "+new Date().toLocaleTimeString())).catch(e=>{sy("Could not save: "+e.code+hint(e.code));SD.toast("Cloud save failed: "+e.code)})},600)};
+sy("\u2713 Synced with your account ("+(S.trades||[]).length+" trades)");return}
+if(tm)return;if(r&&JSON.stringify(r)!=JSON.stringify(S)){adopt(r);sy("\u2713 Updated from your account "+new Date().toLocaleTimeString())}})})}
+</script>
+<script type="module" src="site.js"></script></body></html>
